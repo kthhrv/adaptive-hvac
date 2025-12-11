@@ -29,52 +29,19 @@
         "overlays": []
       },
       "01KC6YX6KTJW7DCJ9H5NY7KPA4": {
-        "active": true,
-        "week_profile": [
+        "overlays": [
           {
-            "start": "09:00",
-            "end": "17:00",
-            "days": [
-              "wed"
-            ]
-          },
-          {
-            "start": "09:00",
-            "end": "17:00",
-            "days": [
-              "wed"
-            ]
-          },
-          {
-            "start": "09:00",
-            "end": "17:03",
-            "days": [
-              "sat"
-            ]
-          },
-          {
-            "start": "01:00",
-            "end": "06:00",
-            "days": [
-              "thu"
-            ]
-          },
-          {
-            "start": "09:00",
-            "end": "17:00",
-            "days": [
-              "thu"
-            ]
+            "id": "overlay_1765491823325",
+            "name": "atest",
+            "trigger_entity": "input_boolean.fake_window",
+            "trigger_state": "open",
+            "type": "absolute",
+            "action": {
+              "hvac_mode": "off"
+            },
+            "active": true
           }
-        ],
-        "overlays": [],
-        "rescheduling_delay": 30,
-        "climate_entity_id": "climate.bedroom",
-        "current_temp": 18,
-        "target_temp": 18,
-        "hvac_action": "heating",
-        "hvac_mode": "heat",
-        "override_end": null
+        ]
       }
     }
   }

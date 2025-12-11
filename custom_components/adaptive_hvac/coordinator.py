@@ -42,19 +42,8 @@ class HvacCoordinator:
         """Set up listeners and initial state."""
         _LOGGER.debug("Setting up HvacCoordinator for %s", self.climate_entity)
         
-        # Example: track time interval every minute
-        self._remove_listeners.append(
-            async_track_time_interval(
-                self.hass, self._async_handle_time_tick, datetime.timedelta(minutes=1)
-            )
-        )
-        
-        # Listen for state changes on the climate entity
-        self._remove_listeners.append(
-            async_track_state_change_event(
-                self.hass, [self.climate_entity], self._async_handle_state_change
-            )
-        )
+        # Setup dynamic listeners
+        await self._async_update_listeners()
 
         # Initial calculation
         await self.async_recalculate()
@@ -115,6 +104,7 @@ class HvacCoordinator:
             "hvac_action": attrs.get("hvac_action"), # e.g., heating, idle, cooling
             "hvac_mode": state.state, # e.g., heat, off, auto
             "override_end": self._override_end.isoformat() if self._override_end else None,
+            "active_overlays": getattr(self, "_active_overlays", []),
         }
 
     def _get_current_schedule_target(self) -> float:
@@ -146,37 +136,131 @@ class HvacCoordinator:
         
         return target_temp
 
+    async def _async_update_listeners(self) -> None:
+        """Update listeners based on current overlays."""
+        # Clear existing state listeners
+        for remove in self._remove_listeners:
+             # Hack: We only want to remove state listeners, not the time listener?
+             # For now, let's just clear all and re-add time listener.
+             remove()
+        self._remove_listeners.clear()
+        
+        # 1. Re-add Time Listener
+        self._remove_listeners.append(
+            async_track_time_interval(
+                self.hass, self._async_handle_time_tick, datetime.timedelta(minutes=1)
+            )
+        )
+        
+        # 2. Re-add Climate Entity Listener
+        self._remove_listeners.append(
+            async_track_state_change_event(
+                self.hass, [self.climate_entity], self._async_handle_state_change
+            )
+        )
+        
+        # 3. Add Listeners for Overlay Triggers
+        entities_to_watch = set()
+        for overlay in self.zone_data.get("overlays", []):
+            if overlay.get("active", True) and overlay.get("trigger_entity"):
+                entities_to_watch.add(overlay["trigger_entity"])
+        
+        if entities_to_watch:
+            _LOGGER.debug("Listening to overlay triggers: %s", entities_to_watch)
+            self._remove_listeners.append(
+                async_track_state_change_event(
+                    self.hass, list(entities_to_watch), self._async_handle_overlay_change
+                )
+            )
+
+    async def _async_handle_overlay_change(self, event: Event) -> None:
+        """Handle change in an overlay trigger entity."""
+        _LOGGER.debug("Overlay trigger changed: %s", event.data.get("entity_id"))
+        await self.async_recalculate()
+
     async def async_recalculate(self) -> None:
         """Recalculate the target state."""
         _LOGGER.debug("Recalculating target for %s", self.climate_entity)
         
-        # Check Override
-        if self._override_end:
+        runtime = self.runtime_data
+        
+        # 1. Base Schedule Target
+        target_temp = self._get_current_schedule_target()
+        hvac_mode = "heat" # Default assumption
+        
+        # 2. Apply Overlays
+        active_overlays = []
+        temp_offset = 0
+        absolute_mode = None
+        
+        for overlay in self.zone_data.get("overlays", []):
+            if not overlay.get("active", True):
+                continue
+                
+            entity_id = overlay["trigger_entity"]
+            state = self.hass.states.get(entity_id)
+            if not state:
+                continue
+                
+            # Simple state match for now
+            if state.state == overlay["trigger_state"]:
+                active_overlays.append(overlay["name"])
+                
+                if overlay["type"] == "relative":
+                    if "temp_offset" in overlay["action"]:
+                        temp_offset += float(overlay["action"]["temp_offset"])
+                elif overlay["type"] == "absolute":
+                    # Absolute overrides win immediately
+                    if "hvac_mode" in overlay["action"]:
+                        absolute_mode = overlay["action"]["hvac_mode"]
+        
+        self._active_overlays = active_overlays
+        
+        # 3. Check Manual Override (Only if NO absolute overlay is active)
+        if self._override_end and absolute_mode is None:
             if dt_util.now() < self._override_end:
                 _LOGGER.debug("Skipping enforcement due to manual override (expires %s)", self._override_end)
                 return
             else:
                 _LOGGER.info("Manual override expired for %s", self.climate_entity)
                 self._override_end = None
-        
-        runtime = self.runtime_data
-        
-        # 1. Calculate Target
-        calculated_target = self._get_current_schedule_target()
-        
-        # 2. Compare with Actual
+
+        # 4. Apply Final Logic
+        if absolute_mode:
+            target_hvac_mode = absolute_mode
+            if target_hvac_mode == "off":
+                 _LOGGER.debug("Absolute overlay enforced OFF")
+        else:
+            target_hvac_mode = hvac_mode
+            target_temp += temp_offset
+
+        # 5. Compare with Actual
         current_target = runtime["target_temp"]
+        current_mode = runtime["hvac_mode"]
         
         if current_target is not None:
              try:
                  current_target = float(current_target)
              except ValueError:
                  pass
+        
+        # Enforce Mode
+        if current_mode != target_hvac_mode:
+             _LOGGER.info("Adjusting Mode %s: %s -> %s", self.climate_entity, current_mode, target_hvac_mode)
+             await self.hass.services.async_call(
+                Platform.CLIMATE,
+                "set_hvac_mode",
+                {
+                    "entity_id": self.climate_entity,
+                    "hvac_mode": target_hvac_mode
+                }
+            )
 
-        if current_target != calculated_target:
+        # Enforce Temp (only if allowed)
+        if target_hvac_mode != "off" and current_target != target_temp:
             _LOGGER.info(
-                "Adjusting %s: %s -> %s", 
-                self.climate_entity, current_target, calculated_target
+                "Adjusting Temp %s: %s -> %s", 
+                self.climate_entity, current_target, target_temp
             )
             
             try:
@@ -185,10 +269,10 @@ class HvacCoordinator:
                     "set_temperature",
                     {
                         "entity_id": self.climate_entity,
-                        ATTR_TEMPERATURE: calculated_target
+                        ATTR_TEMPERATURE: target_temp
                     }
                 )
             except (ValueError, Exception) as err:
                  _LOGGER.warning("Could not set temperature for %s: %s", self.climate_entity, err)
         else:
-             _LOGGER.debug("State is correct (%s)", current_target)
+             _LOGGER.debug("State is correct (Mode: %s, Temp: %s)", current_mode, current_target)

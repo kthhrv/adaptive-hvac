@@ -1,6 +1,11 @@
 # Loads default set of integrations. Do not remove.
 default_config:
 
+logger:
+  default: info
+  logs:
+    custom_components.adaptive_hvac: debug
+
 # Load frontend themes from the themes folder
 frontend:
   themes: !include_dir_merge_named themes
@@ -16,6 +21,10 @@ input_boolean:
   fake_heater:
     name: Fake Heater
     icon: mdi:radiator
+  fake_window:
+    name: Fake Window
+    icon: mdi:window-closed-variant
+    initial: true
   fake_heater_two:
     name: Fake Heater Two
     icon: mdi:radiator

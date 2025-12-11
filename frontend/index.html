@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adaptive HVAC Harness</title>
+  <style>
+    body {
+      font-family: Roboto, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      --primary-text-color: #212121;
+      --secondary-text-color: #757575;
+      --primary-color: #03a9f4;
+      --light-primary-color: #b3e5fc;
+      --accent-color: #ff9800;
+      --divider-color: #e0e0e0;
+      --card-background-color: #ffffff;
+      --secondary-background-color: #fafafa;
+      --mdc-icon-size: 24px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 500px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <adaptive-hvac-card id="card"></adaptive-hvac-card>
+  </div>
+  <script type="module" src="/src/harness.ts"></script>
+  <!-- Basic Icon Stub -->
+  <script>
+    // Stub for ha-icon since we don't have the full HA frontend
+    class HaIcon extends HTMLElement {
+      connectedCallback() {
+        this.innerHTML = `<span style="font-family: monospace;">[${this.getAttribute('icon')}]</span>`;
+      }
+    }
+    customElements.define('ha-icon', HaIcon);
+
+    // Stub for ha-card
+    class HaCard extends HTMLElement {
+      connectedCallback() {
+        this.attachShadow({ mode: 'open' });
+        this.shadowRoot.innerHTML = `
+                    <style>
+                        :host {
+                            display: block;
+                            background: var(--ha-card-background, var(--card-background-color, #fff));
+                            box-shadow: var(--ha-card-box-shadow, 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2));
+                            border-radius: var(--ha-card-border-radius, 4px);
+                            color: var(--primary-text-color);
+                        }
+                    </style>
+                    <slot></slot>
+                `;
+      }
+    }
+    customElements.define('ha-card', HaCard);
+  </script>
+</body>
+
+</html>

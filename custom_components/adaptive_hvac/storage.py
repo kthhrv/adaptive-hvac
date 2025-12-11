@@ -2,21 +2,33 @@ from __future__ import annotations
 
 from typing import Any, TypedDict
 
+import logging
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.storage import Store
 
 from .const import DOMAIN
 
+_LOGGER = logging.getLogger(__name__)
+
 STORAGE_VERSION = 1
 STORAGE_KEY = DOMAIN
+
+
+class Overlay(TypedDict):
+    id: str
+    name: str
+    trigger_entity: str
+    trigger_state: str # e.g., "on", "home", or ">25" (advanced later)
+    type: str # Literal["absolute", "relative"]
+    action: dict[str, Any] # {"hvac_mode": "off"} or {"temp_offset": 2}
+    active: bool
 
 
 class ZoneData(TypedDict):
     """Data structure for a single zone."""
     active: bool
-    active: bool
     week_profile: list[dict[str, Any]]
-    overlays: list[dict[str, Any]]
+    overlays: list[Overlay]
     rescheduling_delay: int # in minutes
 
 
@@ -38,8 +50,10 @@ class AdaptiveHvacStorage:
         """Load data from storage."""
         data = await self._store.async_load()
         if data is None:
+            _LOGGER.debug("Storage loaded NO data")
             self._data = {"zones": {}}
         else:
+            _LOGGER.debug("Storage loaded data: %s", data)
             self._data = data
 
     def get_zone_data(self, entry_id: str) -> ZoneData:

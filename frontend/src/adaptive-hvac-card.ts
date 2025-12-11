@@ -1,34 +1,32 @@
 import { LitElement, html, css } from 'lit';
 import { property, state } from 'lit/decorators.js';
-import { HomeAssistant } from './types';
+import { HomeAssistant, ZoneData, Overlay } from './types';
 
 // Helper to check if we are in a "panel" context or standalone card
 // For now, we assume the card handles its own expansion state.
-
-interface ZoneData {
-  active?: boolean;
-  week_profile?: any[];
-  overlays?: any[];
-  current_temp?: number | null;
-  target_temp?: number | null;
-  hvac_action?: string | null;
-  hvac_mode?: string | null;
-  override_end?: string | null;
-}
 
 export class AdaptiveHvacCard extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
 
   @state() private _config: any;
   @state() private _zoneId: string | undefined;
-  @state() private _zoneData: ZoneData = {};
+  @state() private _zoneData: ZoneData = {
+    active: true,
+    week_profile: [],
+    overlays: []
+  };
+  @state() private _runtimeData: any = {};
 
   // UI States
   @state() private _viewMode: 'mini' | 'detail' = 'mini';
   @state() private _activeTab: 'status' | 'schedule' | 'overlays' = 'status';
-  @state() private _scheduleView: 'weekly' | 'all_zones' = 'weekly'; // 'all_zones' might be out of scope for single card
+  @state() private _scheduleView: 'weekly' | 'all_zones' = 'weekly';
   @state() private _editingDay: string | null = null;
   @state() private _applyDays: string[] = [];
+
+  // Overlay Editor State
+  @state() private _editingOverlay: number | null = null; // index
+  @state() private _tempOverlay: Overlay | null = null;
 
   // Lovelace API
   public setConfig(config: any): void {
@@ -45,6 +43,7 @@ export class AdaptiveHvacCard extends LitElement {
     this._zoneId = config.zone_id;
     if (this.isConnected) {
       this._fetchZoneData();
+      // subscribe to updates logic removed for now, relying on connectedCallback
     }
   }
 
@@ -238,8 +237,276 @@ export class AdaptiveHvacCard extends LitElement {
   private _renderContent() {
     switch (this._activeTab) {
       case 'status': return this._renderStatus();
+      case 'overlays': return this._renderOverlays();
       case 'schedule': return this._renderSchedule();
-      case 'overlays': return html`<p>Overlay View (Coming Soon)</p>`;
+    }
+  }
+
+  private _addOverlay(): void {
+    this._editingOverlay = this._zoneData.overlays!.length; // New index
+    this._tempOverlay = {
+      id: `overlay_${Date.now()}`,
+      name: "New Rule",
+      trigger_entity: "",
+      trigger_state: "on",
+      type: "absolute",
+      action: { hvac_mode: "off" },
+      active: true
+    };
+    this.requestUpdate();
+  }
+
+  private _editOverlay(index: number): void {
+    this._editingOverlay = index;
+    this._tempOverlay = JSON.parse(JSON.stringify(this._zoneData.overlays![index]));
+    this.requestUpdate();
+  }
+
+  private async _deleteOverlay(index: number): Promise<void> {
+    if (!confirm("Delete this overlay?")) return;
+
+    const overlays = [...this._zoneData.overlays!];
+    overlays.splice(index, 1);
+    await this._saveOverlaysToServer(overlays);
+  }
+
+  private async _saveOverlay(): Promise<void> {
+    if (!this._tempOverlay || this._editingOverlay === null) return;
+
+    const overlays = [...this._zoneData.overlays!];
+    if (this._editingOverlay >= overlays.length) {
+      overlays.push(this._tempOverlay);
+    } else {
+      overlays[this._editingOverlay] = this._tempOverlay;
+    }
+
+    await this._saveOverlaysToServer(overlays);
+    this._cancelEditOverlay();
+  }
+
+  private async _saveOverlaysToServer(overlays: Overlay[]): Promise<void> {
+    // Optimistic update: Create a brand new ZoneData object to force Lit update
+    const newData = { ...this._zoneData, overlays };
+    this._zoneData = newData;
+    this.requestUpdate();
+
+    try {
+      await this.hass.callWS({
+        type: "adaptive_hvac/update_zone_data",
+        entry_id: this._zoneId,
+        data: { overlays }
+      });
+    } catch (err) {
+      console.error("Failed to save overlays:", err);
+      // Revert on failure (optional, but good practice)
+      this._fetchZoneData();
+    }
+  }
+
+  private _cancelEditOverlay(): void {
+    this._editingOverlay = null;
+    this._tempOverlay = null;
+    this.requestUpdate();
+  }
+
+  private _renderOverlayEditor(): TemplateResult {
+    if (!this._tempOverlay) return html``;
+
+    const isAbsolute = this._tempOverlay.type === "absolute";
+
+    return html`
+            <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 100; display: flex; align-items: center; justify-content: center;">
+                <div style="background: var(--card-background-color, white); padding: 24px; border-radius: 12px; width: 90%; max-width: 400px; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+                    <h3 style="margin-top: 0;">${this._editingOverlay === this._zoneData.overlays!.length ? "Add" : "Edit"} Overlay</h3>
+                    
+                    <div style="margin-bottom: 12px;">
+                        <label style="display: block; font-size: 0.9em; margin-bottom: 4px;">Name</label>
+                        <input type="text" 
+                            style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid var(--divider-color);"
+                            .value="${this._tempOverlay.name}"
+                            @input="${(e: Event) => {
+        if (this._tempOverlay) {
+          this._tempOverlay = { ...this._tempOverlay, name: (e.target as HTMLInputElement).value };
+        }
+      }}"
+                        >
+                    </div>
+
+                    <div style="margin-bottom: 12px;">
+                        <label style="display: block; font-size: 0.9em; margin-bottom: 4px;">Entity</label>
+                        ${customElements.get('ha-entity-picker') ? html`
+                        <ha-entity-picker
+                            .hass=${this.hass}
+                            .value="${this._tempOverlay.trigger_entity}"
+                            @value-changed="${(e: CustomEvent) => {
+          if (this._tempOverlay) {
+            this._tempOverlay = { ...this._tempOverlay, trigger_entity: e.detail.value };
+            this.requestUpdate();
+          }
+        }}"
+                            allow-custom-entity
+                        ></ha-entity-picker>
+                        ` : html`
+                        <input type="text" placeholder="binary_sensor.window"
+                            style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid var(--divider-color);"
+                            .value="${this._tempOverlay.trigger_entity}"
+                            @input="${(e: Event) => {
+          if (this._tempOverlay) {
+            this._tempOverlay = { ...this._tempOverlay, trigger_entity: (e.target as HTMLInputElement).value };
+            this.requestUpdate();
+          }
+        }}"
+                        >
+                        <div style="font-size: 0.8em; color: var(--secondary-text-color); margin-top: 4px;">
+                            (Entity picker not available in this view)
+                        </div>
+                        `}
+                    </div>
+
+                    <div style="margin-bottom: 12px;">
+                        <label style="display: block; font-size: 0.9em; margin-bottom: 4px;">State</label>
+                        <input type="text" placeholder="on"
+                            style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid var(--divider-color);"
+                            .value="${this._tempOverlay.trigger_state}"
+                            @input="${(e: Event) => {
+        if (this._tempOverlay) {
+          this._tempOverlay = { ...this._tempOverlay, trigger_state: (e.target as HTMLInputElement).value };
+          this.requestUpdate();
+        }
+      }}"
+                        >
+                    </div>
+
+                    <div style="margin-bottom: 12px;">
+                        <label style="display: block; font-size: 0.9em; margin-bottom: 4px;">Type</label>
+                        <select 
+                            style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid var(--divider-color);"
+                            .value="${this._tempOverlay.type}"
+                            @change="${(e: Event) => {
+        const newType = (e.target as HTMLSelectElement).value as "absolute" | "relative";
+        let newAction = {};
+        if (newType === "absolute") {
+          newAction = { hvac_mode: "off" };
+        } else {
+          newAction = { temp_offset: 2 };
+        }
+        if (this._tempOverlay) {
+          this._tempOverlay = { ...this._tempOverlay, type: newType, action: newAction };
+          this.requestUpdate();
+        }
+      }}"
+                        >
+                            <option value="absolute">Absolute (Force Mode)</option>
+                            <option value="relative">Relative (Offset Temp)</option>
+                        </select>
+                    </div>
+
+                    <div style="margin-bottom: 24px;">
+                        <label style="display: block; font-size: 0.9em; margin-bottom: 4px;">${isAbsolute ? "Force HVAC Mode" : "Temperature Offset"}</label>
+                        ${isAbsolute ? html`
+                            <select
+                                style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid var(--divider-color);"
+                                .value="${this._tempOverlay.action.hvac_mode || 'off'}"
+                                @change="${(e: Event) => {
+          if (this._tempOverlay) {
+            this._tempOverlay = { ...this._tempOverlay, action: { hvac_mode: (e.target as HTMLSelectElement).value } };
+            this.requestUpdate(); // specific update needed?
+          }
+        }}"
+                            >
+                                <option value="off">Off</option>
+                                <option value="heat">Heat</option>
+                                <option value="cool">Cool</option>
+                            </select>
+                        ` : html`
+                            <input type="number" step="0.5"
+                                style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid var(--divider-color);"
+                                .value="${this._tempOverlay.action.temp_offset || 0}"
+                                @input="${(e: Event) => {
+          if (this._tempOverlay) {
+            this._tempOverlay = { ...this._tempOverlay, action: { temp_offset: parseFloat((e.target as HTMLInputElement).value) } };
+            this.requestUpdate();
+          }
+        }}"
+                            >
+                        `}
+                    </div>
+
+                    <div style="display: flex; justify-content: flex-end; gap: 12px;">
+                        <button id="btn-cancel-overlay" @click="${this._cancelEditOverlay}" style="padding: 8px 16px; background: none; border: 1px solid var(--divider-color); border-radius: 4px; cursor: pointer;">Cancel</button>
+                        <button id="btn-save-overlay" 
+                                @click="${this._saveOverlay}" 
+                                ?disabled="${!this._tempOverlay.name || !this._tempOverlay.trigger_entity}"
+                                style="padding: 8px 16px; background: var(--primary-color); color: white; border: none; border-radius: 4px; cursor: pointer; opacity: ${(!this._tempOverlay.name || !this._tempOverlay.trigger_entity) ? '0.5' : '1'};">
+                                Save
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+  }
+
+  private _renderOverlays() {
+    if (!this._zoneData || !this._zoneData.overlays) {
+      return html`
+                <div class="content-area">
+                    <button class="add-btn" @click="${this._addOverlay}" style="width: 100%; padding: 12px; border: 1px dashed var(--divider-color); background: none; cursor: pointer;">+ Add First Rule</button>
+                    <!-- Render Editor Modal if active -->
+                    ${this._editingOverlay !== null ? this._renderOverlayEditor() : ''}
+                </div>
+            `;
+    }
+
+    return html`
+            <div style="padding-top: 16px;">
+                 <div class="hint-text" style="display: flex; align-items: center; gap: 4px; margin-bottom: 12px; color: var(--secondary-text-color);">
+                    <ha-icon icon="mdi:information-outline" style="--mdc-icon-size: 16px;"></ha-icon> 
+                    Rules that override the schedule
+                </div>
+
+                <div class="overlay-list" style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px;">
+                    ${this._zoneData.overlays.map((overlay, index) => {
+      const isActive = this._runtimeData?.active_overlays?.includes(overlay.name);
+      let description = "";
+      if (overlay.type === "absolute") {
+        description = `Force ${overlay.action.hvac_mode?.toUpperCase()}`;
+      } else {
+        const sign = (overlay.action.temp_offset || 0) > 0 ? "+" : "";
+        description = `${sign}${overlay.action.temp_offset}°C`;
+      }
+
+      return html`
+                            <div class="overlay-row" style="background: var(--secondary-background-color); padding: 12px; border-radius: 8px; border-left: 4px solid ${isActive ? 'var(--accent-color)' : 'transparent'}; display: flex; justify-content: space-between; align-items: center;">
+                                <div class="overlay-info">
+                                    <div class="overlay-name" style="font-weight: 500;">${overlay.name}</div>
+                                    <div class="overlay-desc" style="font-size: 0.85rem; color: var(--secondary-text-color);">
+                                        If ${overlay.trigger_entity} is ${overlay.trigger_state} → ${description}
+                                    </div>
+                                </div>
+                                <div class="overlay-actions" style="display: flex; gap: 8px;">
+                                    <ha-icon id="edit-overlay-${index}" icon="mdi:pencil" @click="${() => this._editOverlay(index)}" style="cursor: pointer; color: var(--secondary-text-color);"></ha-icon>
+                                    <ha-icon id="delete-overlay-${index}" icon="mdi:delete" @click="${() => this._deleteOverlay(index)}" style="cursor: pointer; color: var(--secondary-text-color);"></ha-icon>
+                                </div>
+                            </div>
+                        `;
+    })}
+                </div>
+                
+                <button id="btn-add-overlay" @click="${this._addOverlay}" style="width: 100%; padding: 12px; background: var(--secondary-background-color); border: none; border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; font-weight: 500;">
+                    <ha-icon icon="mdi:plus"></ha-icon> Add Rule
+                </button>
+
+                <!-- Render Editor Modal if active -->
+                ${this._editingOverlay !== null ? this._renderOverlayEditor() : ''}
+            </div>
+        `;
+  }
+
+  private _formatOverlayDescription(overlay: any): string {
+    if (overlay.type === 'absolute') {
+      return `When ${overlay.trigger_entity} is ${overlay.trigger_state} → Force ${overlay.action.hvac_mode}`;
+    } else {
+      return `When ${overlay.trigger_entity} is ${overlay.trigger_state} → Adjust ${overlay.action.temp_offset > 0 ? '+' : ''}${overlay.action.temp_offset}°C`;
     }
   }
 

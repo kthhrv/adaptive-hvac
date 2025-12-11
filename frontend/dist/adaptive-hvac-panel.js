@@ -1,11 +1,11 @@
-import { r as c, i as p, a as h, x as o, n as i } from "./adaptive-hvac-card-DSN_cmg5.mjs";
+import { r as c, i as p, a as h, x as o, n as i } from "./adaptive-hvac-card-DVI2USjv.mjs";
 var v = Object.defineProperty, a = (n, e, d, g) => {
-  for (var t = void 0, s = n.length - 1, l; s >= 0; s--)
-    (l = n[s]) && (t = l(e, d, t) || t);
-  return t && v(e, d, t), t;
+  for (var r = void 0, s = n.length - 1, l; s >= 0; s--)
+    (l = n[s]) && (r = l(e, d, r) || r);
+  return r && v(e, d, r), r;
 };
 console.log("AdaptiveHvacPanel: Module Loaded! Top-level execution.");
-class r extends p {
+class t extends p {
   constructor() {
     super(), this._entries = [], console.log("AdaptiveHvacPanel: Constructor called.");
   }
@@ -19,7 +19,7 @@ class r extends p {
     }
     try {
       const e = await this.hass.callWS({ type: "config_entries/get", domain: "adaptive_hvac" });
-      console.log("Fetched config entries:", e), this._entries = e, this._error = void 0;
+      console.log("Fetched config entries:", e), this._entries = e, this._error = void 0, this.requestUpdate();
     } catch (e) {
       console.error("Could not fetch entries:", e), this._error = `Error fetching zones: ${e.message || e}`;
     }
@@ -82,11 +82,15 @@ class r extends p {
         <h1>Adaptive HVAC Control Center</h1>
       </div>
       <div class="content">
+
         ${this._error ? o`<div class="error-message">${this._error}</div>` : this._entries.length === 0 ? o`<p>No Adaptive HVAC zones found. Please add the integration first.</p>` : this._entries.map((e) => o`
                 <div class="zone-card-container">
                   <adaptive-hvac-card 
                     .hass=${this.hass} 
-                    .config=${{ zone_id: e.entry_id }}
+                    .config=${{
+      zone_id: e.entry_id,
+      title: e.title
+    }}
                   ></adaptive-hvac-card>
                 </div>
               `)}
@@ -96,24 +100,24 @@ class r extends p {
 }
 a([
   i({ attribute: !1 })
-], r.prototype, "hass");
+], t.prototype, "hass");
 a([
   i({ type: Boolean })
-], r.prototype, "narrow");
+], t.prototype, "narrow");
 a([
   i({ attribute: !1 })
-], r.prototype, "route");
+], t.prototype, "route");
 a([
   i({ attribute: !1 })
-], r.prototype, "panel");
+], t.prototype, "panel");
 a([
   c()
-], r.prototype, "_entries");
+], t.prototype, "_entries");
 a([
   c()
-], r.prototype, "_error");
-customElements.get("adaptive-hvac-panel") || (customElements.define("adaptive-hvac-panel", r), console.log("AdaptiveHvacPanel: Custom element defined."));
+], t.prototype, "_error");
+customElements.get("adaptive-hvac-panel") || (customElements.define("adaptive-hvac-panel", t), console.log("AdaptiveHvacPanel: Custom element defined."));
 console.log("AdaptiveHvacPanel: End of module execution.");
 export {
-  r as AdaptiveHvacPanel
+  t as AdaptiveHvacPanel
 };
