@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "adaptive_hvac",
+  "data": {
+    "zones": {
+      "01KC45CM2NHGM8VCDS1DKCDKQP": {
+        "active": true,
+        "week_profile": [],
+        "overlays": []
+      },
+      "01KC4W5TBY6RZGTARJFYHSC5VX": {
+        "active": false,
+        "week_profile": [],
+        "overlays": []
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "minor_version": 2,
+  "key": "repairs.issue_registry",
+  "data": {
+    "issues": [
+      {
+        "created": "2025-12-10T12:37:27.786622+00:00",
+        "dismissed_version": null,
+        "domain": "homeassistant",
+        "is_persistent": false,
+        "issue_id": "python_version"
+      },
+      {
+        "created": "2025-12-10T12:39:30.910831+00:00",
+        "dismissed_version": null,
+        "domain": "homeassistant",
+        "is_persistent": false,
+        "issue_id": "python_version_3.13"
+      },
+      {
+        "created": "2025-12-10T12:47:50.899633+00:00",
+        "dismissed_version": null,
+        "domain": "homeassistant",
+        "is_persistent": false,
+        "issue_id": "deprecated_method"
+      }
+    ]
+  }
+}

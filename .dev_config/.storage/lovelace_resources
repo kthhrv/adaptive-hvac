@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "lovelace_resources",
+  "data": {
+    "items": [
+      {
+        "id": "dd7e838b0332403ea568667f7d085b59",
+        "url": "http://localhost:5173/src/adaptive-hvac-card.ts",
+        "type": "module"
+      }
+    ]
+  }
+}

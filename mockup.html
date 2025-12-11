@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adaptive HVAC - HA Card Mockup</title>
+    
+    <!-- 1. SIMULATE HOME ASSISTANT ENVIRONMENT -->
+    <style>
+        :root {
+            /* Core HA Colors (Default Theme) */
+            --primary-color: #03a9f4;
+            --light-primary-color: #b3e5fc;
+            --dark-primary-color: #0288d1;
+            --accent-color: #ff9800;
+            --primary-background-color: #fafafa;
+            --secondary-background-color: #e5e5e5;
+            --ha-card-background: #ffffff;
+            --ha-card-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+            --primary-text-color: #212121;
+            --secondary-text-color: #727272;
+            --divider-color: #e0e0e0;
+            --error-color: #db4437;
+            --success-color: #43a047;
+            
+            /* Typography */
+            font-family: Roboto, Noto, sans-serif;
+            background-color: var(--primary-background-color);
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        /* Simulating the Lovelace Column */
+        .lovelace-container {
+            width: 100%;
+            max-width: 500px;
+        }
+    </style>
+
+    <!-- Material Design Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.2.96/css/materialdesignicons.min.css">
+</head>
+<body>
+
+<div class="lovelace-container">
+    <!-- This is where our custom element lives -->
+    <adaptive-hvac-card></adaptive-hvac-card>
+</div>
+
+<!-- 2. THE CUSTOM COMPONENT LOGIC -->
+<script type="module">
+    import { LitElement, html, css } from 'https://cdn.jsdelivr.net/gh/lit/dist@3/core/lit-core.min.js';
+
+    // Mock Data for the simulation
+    const WEEK_TEMPLATE_A = [
+        { day: 'Mon', slots: [{ start: 0, w: 30, type: 'night' }, { start: 30, w: 40, type: 'day' }, { start: 70, w: 30, type: 'night' }] },
+        { day: 'Tue', slots: [{ start: 0, w: 30, type: 'night' }, { start: 30, w: 40, type: 'day' }, { start: 70, w: 30, type: 'night' }] },
+        { day: 'Wed', slots: [{ start: 0, w: 30, type: 'night' }, { start: 30, w: 40, type: 'day' }, { start: 70, w: 30, type: 'night' }] },
+        { day: 'Thu', slots: [{ start: 0, w: 30, type: 'night' }, { start: 30, w: 40, type: 'day' }, { start: 70, w: 30, type: 'night' }] },
+        { day: 'Fri', slots: [{ start: 0, w: 30, type: 'night' }, { start: 30, w: 50, type: 'day' }, { start: 80, w: 20, type: 'night' }] },
+        { day: 'Sat', slots: [{ start: 0, w: 20, type: 'night' }, { start: 20, w: 80, type: 'day' }] },
+        { day: 'Sun', slots: [{ start: 0, w: 20, type: 'night' }, { start: 20, w: 80, type: 'day' }] },
+    ];
+
+    const WEEK_TEMPLATE_B = [
+        { day: 'Mon', slots: [{ start: 0, w: 25, type: 'night' }, { start: 25, w: 15, type: 'day' }, { start: 40, w: 60, type: 'night' }] },
+        { day: 'Tue', slots: [{ start: 0, w: 25, type: 'night' }, { start: 25, w: 15, type: 'day' }, { start: 40, w: 60, type: 'night' }] },
+        { day: 'Wed', slots: [{ start: 0, w: 25, type: 'night' }, { start: 25, w: 15, type: 'day' }, { start: 40, w: 60, type: 'night' }] },
+        { day: 'Thu', slots: [{ start: 0, w: 25, type: 'night' }, { start: 25, w: 15, type: 'day' }, { start: 40, w: 60, type: 'night' }] },
+        { day: 'Fri', slots: [{ start: 0, w: 25, type: 'night' }, { start: 25, w: 15, type: 'day' }, { start: 40, w: 60, type: 'night' }] },
+        { day: 'Sat', slots: [{ start: 0, w: 100, type: 'night' }] },
+        { day: 'Sun', slots: [{ start: 0, w: 100, type: 'night' }] },
+    ];
+
+    const MOCK_DATA = {
+        zones: {
+            'living_room': { name: 'Living Room', current_temp: 20.5, target_temp: 21.0, mode: 'heat', state: 'heating', next_event: '22:00 -> 18°C' },
+            'kitchen': { name: 'Kitchen', current_temp: 22.0, target_temp: 18.0, mode: 'off', state: 'idle', next_event: '06:00 -> 21°C' },
+            'bedroom': { name: 'Master Bedroom', current_temp: 19.0, target_temp: 19.0, mode: 'heat', state: 'idle', next_event: '23:00 -> 16°C' }
+        },
+        trace: {
+            'living_room': [
+                { source: 'Base Schedule', value: 19, icon: 'mdi:calendar-clock' },
+                { source: 'Guest Mode', value: 2, icon: 'mdi:account-group', operator: '+' },
+                { source: 'Final Target', value: 21, icon: 'mdi:thermostat', highlight: true }
+            ],
+            'kitchen': [
+                { source: 'Base Schedule', value: 18, icon: 'mdi:calendar-clock' },
+                { source: 'Final Target', value: 18, icon: 'mdi:thermostat', highlight: true }
+            ],
+            'bedroom': [
+                { source: 'Base Schedule', value: 19, icon: 'mdi:calendar-clock' },
+                { source: 'Final Target', value: 19, icon: 'mdi:thermostat', highlight: true }
+            ]
+        },
+        schedules: {
+            'living_room': WEEK_TEMPLATE_A,
+            'kitchen': WEEK_TEMPLATE_B,
+            'bedroom': WEEK_TEMPLATE_A
+        }
+    };
+
+    class AdaptiveHvacCard extends LitElement {
+        static properties = {
+            viewMode: { state: true }, // 'overview' | 'detail'
+            activeTab: { state: true },
+            selectedZone: { state: true },
+            scheduleView: { state: true },
+            viewDay: { state: true },
+            mockData: { state: true },
+            editingDay: { state: true },
+            applyDays: { state: true }
+        };
+
+        constructor() {
+            super();
+            this.viewMode = 'overview'; // START IN OVERVIEW
+            this.activeTab = 'status';
+            this.selectedZone = 'living_room';
+            this.scheduleView = 'weekly';
+            this.viewDay = 'Mon';
+            this.mockData = MOCK_DATA;
+            this.editingDay = null; 
+            this.applyDays = [];
+        }
+
+        render() {
+            return html`
+            <div class="card">
+                ${this.viewMode === 'overview' ? this._renderOverview() : this._renderDetail()}
+            </div>
+            `;
+        }
+
+        // --- MASTER VIEW (The Dashboard) ---
+        _renderOverview() {
+            const zones = Object.entries(this.mockData.zones);
+            return html`
+                <div class="overview-header">
+                    <h2><span class="mdi mdi-home-thermometer"></span> Climate Overview</h2>
+                    <span class="status-summary">3 Zones Active</span>
+                </div>
+                
+                <div class="zone-grid">
+                    ${zones.map(([id, zone]) => this._renderZoneCard(id, zone))}
+                </div>
+                
+                <div class="global-actions">
+                    <button class="action-chip"><span class="mdi mdi-bag-suitcase"></span> Vacation Mode</button>
+                    <button class="action-chip"><span class="mdi mdi-account-group"></span> Guest Mode</button>
+                </div>
+            `;
+        }
+
+        _renderZoneCard(id, zone) {
+            const isHeating = zone.state === 'heating';
+            return html`
+                <div class="zone-mini-card" @click="${() => this._selectZone(id)}">
+                    <div class="mini-header">
+                        <span class="zone-name">${zone.name}</span>
+                        ${isHeating 
+                            ? html`<span class="mini-badge heating"><span class="mdi mdi-fire"></span></span>` 
+                            : html`<span class="mini-badge idle"><span class="mdi mdi-power-sleep"></span></span>`
+                        }
+                    </div>
+                    <div class="mini-body">
+                        <div class="temp-display">
+                            <span class="current">${zone.current_temp}°</span>
+                            <span class="target">/ ${zone.target_temp}°</span>
+                        </div>
+                        <div class="next-event">
+                            <span class="mdi mdi-clock-outline"></span> ${zone.next_event}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        _selectZone(id) {
+            this.selectedZone = id;
+            this.viewMode = 'detail';
+            this.activeTab = 'status'; // Reset tab
+        }
+
+        // --- DETAIL VIEW (The Editor) ---
+        _renderDetail() {
+            const zoneData = this.mockData.zones[this.selectedZone];
+            const isHeating = zoneData.state === 'heating';
+
+            return html`
+                <!-- HEADER WITH BACK BUTTON -->
+                <div class="header">
+                    <div class="nav-cluster">
+                        <button class="nav-btn" @click="${() => this.viewMode = 'overview'}">
+                            <span class="mdi mdi-arrow-left"></span>
+                        </button>
+                        <div class="zone-title">
+                            ${zoneData.name}
+                        </div>
+                    </div>
+                    <div class="badges">
+                        ${isHeating ? html`<span class="badge heating">Heating</span>` : html`<span class="badge idle">Idle</span>`}
+                    </div>
+                </div>
+
+                <!-- TABS -->
+                <div class="tabs">
+                    <button class="${this.activeTab === 'status' ? 'active' : ''}" @click="${() => this.activeTab = 'status'}">
+                        Status
+                    </button>
+                    <button class="${this.activeTab === 'schedule' ? 'active' : ''}" @click="${() => this.activeTab = 'schedule'}">
+                        Schedule
+                    </button>
+                    <button class="${this.activeTab === 'overlays' ? 'active' : ''}" @click="${() => this.activeTab = 'overlays'}">
+                        Overlays
+                    </button>
+                </div>
+
+                <!-- CONTENT -->
+                <div class="content-area">
+                    ${this._renderContent(zoneData)}
+                </div>
+
+                <!-- EDITOR MODAL -->
+                ${this.editingDay ? this._renderEditorModal() : ''}
+            `;
+        }
+
+        _renderContent(zoneData) {
+            switch(this.activeTab) {
+                case 'status': return this._renderStatus(zoneData);
+                case 'schedule': return this._renderSchedule();
+                case 'overlays': return this._renderOverlays();
+            }
+        }
+
+        _renderStatus(zoneData) {
+            const trace = this.mockData.trace[this.selectedZone];
+            return html`
+                <div class="thermostat-visual">
+                    <div class="ring ${zoneData.state}">
+                        <div class="current">${zoneData.current_temp}°</div>
+                        <div class="target">Target: ${zoneData.target_temp}°</div>
+                    </div>
+                </div>
+
+                <div class="logic-trace">
+                    <h3><span class="mdi mdi-calculator"></span> Logic Trace</h3>
+                    ${trace.map(step => html`
+                        <div class="trace-row ${step.highlight ? 'highlight' : ''}">
+                            <div class="trace-source">
+                                <span class="mdi ${step.icon}"></span> ${step.source}
+                            </div>
+                            <div class="trace-value">
+                                ${step.operator ? step.operator : ''}${step.value}°
+                            </div>
+                        </div>
+                    `)}
+                </div>
+            `;
+        }
+
+        _renderSchedule() {
+            const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
+            return html`
+                <div class="schedule-toolbar">
+                    <div class="segment-control">
+                        <button class="${this.scheduleView === 'weekly' ? 'active' : ''}" 
+                                @click="${() => this.scheduleView = 'weekly'}">
+                            Weekly
+                        </button>
+                        <button class="${this.scheduleView === 'all_zones' ? 'active' : ''}" 
+                                @click="${() => this.scheduleView = 'all_zones'}">
+                            Compare Zones
+                        </button>
+                    </div>
+                </div>
+
+                ${this.scheduleView === 'weekly' ? html`
+                    <div class="schedule-grid animated-fade">
+                        <div class="hint-text"><span class="mdi mdi-gesture-tap"></span> Click a day to edit</div>
+                        ${this.mockData.schedules[this.selectedZone].map(d => html`
+                            <div class="day-row hoverable" @click="${() => this._openEditor(d.day)}">
+                                <div class="day-label">${d.day}</div>
+                                <div class="timeline">
+                                    ${d.slots.map(s => html`
+                                        <div class="slot ${s.type}" style="width: ${s.w}%"></div>
+                                    `)}
+                                </div>
+                                <div class="edit-icon"><span class="mdi mdi-pencil"></span></div>
+                            </div>
+                        `)}
+                    </div>
+                ` : ''}
+
+                ${this.scheduleView === 'all_zones' ? html`
+                    <div class="all-zones-view animated-fade">
+                        <div class="day-pills">
+                            ${days.map(d => html`
+                                <button class="${this.viewDay === d ? 'active' : ''}" 
+                                        @click="${() => this.viewDay = d}">
+                                    ${d}
+                                </button>
+                            `)}
+                        </div>
+                        <div class="schedule-grid">
+                            ${Object.entries(this.mockData.zones).map(([id, zone]) => {
+                                const daySchedule = this.mockData.schedules[id] ? this.mockData.schedules[id].find(s => s.day === this.viewDay) : this.mockData.schedules['living_room'][0]; // Fallback for mockup
+                                return html`
+                                    <div class="day-row">
+                                        <div class="day-label zone-label">${zone.name}</div>
+                                        <div class="timeline">
+                                            ${daySchedule.slots.map(s => html`
+                                                <div class="slot ${s.type}" style="width: ${s.w}%"></div>
+                                            `)}
+                                        </div>
+                                    </div>
+                                `;
+                            })}
+                        </div>
+                    </div>
+                ` : ''}
+
+                <div class="legend">
+                    <span class="dot day"></span> Comfort
+                    <span class="dot night"></span> Eco
+                </div>
+            `;
+        }
+
+        _openEditor(day) {
+            this.editingDay = day;
+            this.applyDays = [day]; 
+        }
+
+        _toggleApplyDay(day) {
+            if (this.applyDays.includes(day)) {
+                if (day !== this.editingDay) {
+                    this.applyDays = this.applyDays.filter(d => d !== day);
+                }
+            } else {
+                this.applyDays = [...this.applyDays, day];
+            }
+        }
+
+        _setApplyPattern(pattern) {
+            const weekdays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
+            const weekend = ['Sat', 'Sun'];
+            const all = [...weekdays, ...weekend];
+
+            if (pattern === 'weekdays') {
+                this.applyDays = [...new Set([...this.applyDays, ...weekdays])];
+            } else if (pattern === 'weekend') {
+                this.applyDays = [...new Set([...this.applyDays, ...weekend])];
+            } else if (pattern === 'all') {
+                this.applyDays = all;
+            }
+        }
+
+        _renderEditorModal() {
+            const allDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
+            return html`
+                <div class="modal-backdrop" @click="${() => this.editingDay = null}">
+                    <div class="modal-content" @click="${(e) => e.stopPropagation()}">
+                        <div class="modal-header">
+                            <h3>Edit ${this.editingDay} Schedule</h3>
+                            <button class="icon-btn" @click="${() => this.editingDay = null}"><span class="mdi mdi-close"></span></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="editor-list">
+                                <div class="editor-row">
+                                    <div class="time-input">00:00</div>
+                                    <div class="arrow">→</div>
+                                    <div class="mode-select night"><span class="mdi mdi-moon-waning-crescent"></span> Eco (18°)</div>
+                                    <div class="action-spacer"></div>
+                                </div>
+                                <div class="editor-row">
+                                    <div class="time-input editable">07:15 <span class="mdi mdi-pencil-outline tiny"></span></div>
+                                    <div class="arrow">→</div>
+                                    <div class="mode-select day"><span class="mdi mdi-white-balance-sunny"></span> Comfort (21°)</div>
+                                    <button class="delete-btn"><span class="mdi mdi-delete"></span></button>
+                                </div>
+                                <div class="editor-row">
+                                    <div class="time-input editable">16:45 <span class="mdi mdi-pencil-outline tiny"></span></div>
+                                    <div class="arrow">→</div>
+                                    <div class="mode-select night"><span class="mdi mdi-moon-waning-crescent"></span> Eco (18°)</div>
+                                    <button class="delete-btn"><span class="mdi mdi-delete"></span></button>
+                                </div>
+                            </div>
+                            <button class="add-slot-btn"><span class="mdi mdi-plus-circle-outline"></span> Add Switch Point</button>
+                            <div class="apply-section">
+                                <div class="apply-header">Apply changes to:</div>
+                                <div class="apply-days">
+                                    ${allDays.map(d => html`
+                                        <button class="day-circle ${this.applyDays.includes(d) ? 'selected' : ''} ${d === this.editingDay ? 'current' : ''}"
+                                                @click="${() => this._toggleApplyDay(d)}">${d.charAt(0)}</button>
+                                    `)}
+                                </div>
+                                <div class="apply-quick-select">
+                                    <span @click="${() => this._setApplyPattern('weekdays')}">Weekdays</span>
+                                    <span class="sep">•</span>
+                                    <span @click="${() => this._setApplyPattern('weekend')}">Weekend</span>
+                                    <span class="sep">•</span>
+                                    <span @click="${() => this._setApplyPattern('all')}">All Days</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn-cancel" @click="${() => this.editingDay = null}">Cancel</button>
+                            <button class="btn-save" @click="${() => this.editingDay = null}">Save (${this.applyDays.length} days)</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        _renderOverlays() {
+            return html`
+                <div class="overlays-list">
+                    <div class="rule-card high-priority">
+                        <div class="rule-icon"><span class="mdi mdi-window-open-variant"></span></div>
+                        <div class="rule-info">
+                            <div class="rule-title">Window Open</div>
+                            <div class="rule-desc">If <b>binary_sensor.window_all</b> is <b>on</b>, set to <b>OFF</b></div>
+                        </div>
+                        <label class="switch"><input type="checkbox" checked><span class="slider round"></span></label>
+                    </div>
+                    <div class="rule-card">
+                        <div class="rule-icon"><span class="mdi mdi-account-group"></span></div>
+                        <div class="rule-info">
+                            <div class="rule-title">Guest Boost</div>
+                            <div class="rule-desc">If <b>input_boolean.guests</b> is <b>on</b>, add <b>+2°C</b></div>
+                        </div>
+                        <label class="switch"><input type="checkbox" checked><span class="slider round"></span></label>
+                    </div>
+                    <button class="add-rule-btn"><span class="mdi mdi-plus"></span> Add Rule</button>
+                </div>
+            `;
+        }
+
+        static styles = css`
+            :host { display: block; width: 100%; position: relative; }
+            .card {
+                background: var(--ha-card-background);
+                border-radius: 12px;
+                box-shadow: var(--ha-card-box-shadow);
+                color: var(--primary-text-color);
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+                position: relative; /* Context for modal */
+            }
+
+            /* --- OVERVIEW STYLES --- */
+            .overview-header { padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--divider-color); }
+            .overview-header h2 { margin: 0; font-size: 1.2rem; display: flex; align-items: center; gap: 8px; }
+            .status-summary { font-size: 0.9rem; color: var(--secondary-text-color); font-weight: bold; }
+            
+            .zone-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; padding: 20px; background: var(--secondary-background-color); }
+            .zone-mini-card {
+                background: var(--ha-card-background);
+                border-radius: 12px;
+                padding: 12px;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+                cursor: pointer;
+                transition: transform 0.2s, box-shadow 0.2s;
+                border: 1px solid transparent;
+            }
+            .zone-mini-card:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-color: var(--primary-color); }
+            
+            .mini-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+            .zone-name { font-weight: bold; font-size: 0.95rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 80%; }
+            .mini-badge { width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; }
+            .mini-badge.heating { background: rgba(255, 152, 0, 0.15); color: var(--accent-color); }
+            .mini-badge.idle { background: var(--secondary-background-color); color: var(--secondary-text-color); }
+            
+            .mini-body { text-align: center; }
+            .temp-display { font-size: 1.5rem; font-weight: 300; margin: 4px 0; }
+            .temp-display .target { font-size: 0.9rem; color: var(--secondary-text-color); }
+            .next-event { font-size: 0.75rem; color: var(--secondary-text-color); display: flex; align-items: center; justify-content: center; gap: 4px; }
+
+            .global-actions { display: flex; gap: 8px; padding: 0 20px 20px 20px; background: var(--secondary-background-color); overflow-x: auto; }
+            .action-chip { background: var(--ha-card-background); border: 1px solid var(--divider-color); border-radius: 16px; padding: 6px 12px; font-size: 0.85rem; font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 6px; white-space: nowrap; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+            .action-chip:hover { border-color: var(--primary-color); color: var(--primary-color); }
+
+            /* --- DETAIL HEADER STYLES --- */
+            .header { padding: 16px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--divider-color); }
+            .nav-cluster { display: flex; align-items: center; gap: 12px; }
+            .zone-title { font-size: 1.2rem; font-weight: 500; }
+            
+            /* UPDATED: Nav Button Style (Distinct from Modal Close Button) */
+            .nav-btn { background: none; border: none; font-size: 1.5rem; cursor: pointer; padding: 4px; border-radius: 50%; color: var(--secondary-text-color); display: flex; }
+            .nav-btn:hover { background: rgba(0,0,0,0.05); color: var(--primary-color); }
+            
+            .badges .badge { padding: 4px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; }
+            .badge.heating { background: var(--accent-color); color: white; }
+            .badge.idle { background: var(--secondary-background-color); color: var(--secondary-text-color); }
+
+            /* --- TABS --- */
+            .tabs { display: flex; background: var(--secondary-background-color); }
+            .tabs button { flex: 1; background: none; border: none; padding: 12px; cursor: pointer; font-weight: 500; color: var(--secondary-text-color); border-bottom: 3px solid transparent; transition: 0.2s; }
+            .tabs button.active { color: var(--primary-color); border-bottom-color: var(--primary-color); background: rgba(255,255,255,0.5); }
+
+            .content-area { padding: 24px; min-height: 300px; }
+
+            /* --- SCHEDULE STYLES --- */
+            .schedule-toolbar { display: flex; justify-content: center; margin-bottom: 20px; }
+            .segment-control { display: flex; background: var(--secondary-background-color); border-radius: 8px; padding: 4px; gap: 4px; }
+            .segment-control button { border: none; background: none; padding: 6px 16px; border-radius: 6px; font-weight: 500; color: var(--secondary-text-color); cursor: pointer; transition: 0.2s; }
+            .segment-control button.active { background: var(--ha-card-background); color: var(--primary-color); box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
+            
+            .day-row { display: flex; align-items: center; gap: 12px; padding: 4px 8px; border-radius: 6px; transition: background 0.2s; }
+            .day-row.hoverable:hover { background: var(--secondary-background-color); cursor: pointer; }
+            .day-label { width: 40px; font-weight: bold; font-size: 0.9rem; color: var(--secondary-text-color); text-align: right;}
+            .timeline { flex: 1; height: 24px; background: #eee; border-radius: 4px; overflow: hidden; display: flex; }
+            .slot.day { background: var(--accent-color); opacity: 0.8; }
+            .slot.night { background: var(--primary-color); opacity: 0.2; }
+            .edit-icon { opacity: 0; color: var(--primary-color); }
+            .day-row:hover .edit-icon { opacity: 1; }
+            .hint-text { text-align: center; color: var(--secondary-text-color); font-size: 0.8rem; margin-bottom: 12px; opacity: 0.7; }
+
+            /* --- EDITOR MODAL --- */
+            .modal-backdrop { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; z-index: 100; backdrop-filter: blur(2px); animation: fadeIn 0.2s; }
+            .modal-content { background: var(--ha-card-background); width: 90%; max-width: 400px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); display: flex; flex-direction: column; overflow: hidden; animation: slideUp 0.2s; }
+            .modal-header { padding: 16px; border-bottom: 1px solid var(--divider-color); display: flex; justify-content: space-between; align-items: center; background: var(--primary-color); color: white; }
+            .modal-header h3 { margin: 0; font-size: 1.1rem; }
+            
+            /* Modal-specific icon button (white) */
+            .icon-btn { background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; }
+
+            .modal-body { padding: 16px; flex: 1; }
+            .editor-list { display: flex; flex-direction: column; gap: 12px; }
+            .editor-row { display: flex; align-items: center; gap: 12px; padding: 8px; background: var(--secondary-background-color); border-radius: 8px; }
+            
+            .time-input { font-family: monospace; font-size: 1.1rem; font-weight: bold; padding: 4px 8px; background: white; border-radius: 4px; border: 1px solid transparent; }
+            .time-input.editable { border-color: var(--divider-color); cursor: pointer; color: var(--primary-color); }
+            .tiny { font-size: 0.8rem; opacity: 0.5; }
+            
+            .mode-select { flex: 1; display: flex; align-items: center; gap: 8px; font-size: 0.9rem; font-weight: 500; padding: 4px; border-radius: 4px; }
+            .mode-select.day { color: #d84315; } 
+            .mode-select.night { color: var(--primary-color); }
+            
+            .delete-btn { background: none; border: none; color: var(--error-color); cursor: pointer; font-size: 1.2rem; opacity: 0.7; }
+            .delete-btn:hover { opacity: 1; }
+            .action-spacer { width: 24px; }
+
+            .add-slot-btn { width: 100%; margin-top: 16px; padding: 12px; border: 2px dashed var(--divider-color); background: none; border-radius: 8px; color: var(--secondary-text-color); font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; }
+            .add-slot-btn:hover { border-color: var(--primary-color); color: var(--primary-color); }
+
+            /* New Apply Section Styles */
+            .apply-section { margin-top: 24px; border-top: 1px solid var(--divider-color); padding-top: 16px; }
+            .apply-header { font-size: 0.9rem; font-weight: bold; color: var(--secondary-text-color); margin-bottom: 12px; }
+            .apply-days { display: flex; justify-content: space-between; gap: 4px; margin-bottom: 12px; }
+            .day-circle { width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--divider-color); background: white; display: flex; align-items: center; justify-content: center; font-weight: bold; cursor: pointer; color: var(--secondary-text-color); transition: 0.2s; }
+            .day-circle.selected { background: var(--primary-color); color: white; border-color: var(--primary-color); }
+            .day-circle.current { border-color: var(--accent-color); color: var(--accent-color); background: white; border-width: 2px; }
+            .day-circle.selected.current { background: var(--accent-color); color: white; }
+            .apply-quick-select { display: flex; justify-content: center; gap: 8px; font-size: 0.85rem; color: var(--primary-color); }
+            .apply-quick-select span { cursor: pointer; text-decoration: underline; }
+            .apply-quick-select .sep { text-decoration: none; color: var(--divider-color); }
+
+            .modal-footer { padding: 12px 16px; border-top: 1px solid var(--divider-color); display: flex; justify-content: flex-end; gap: 8px; background: #f5f5f5; }
+            .btn-cancel { background: none; border: none; padding: 8px 16px; font-weight: 500; cursor: pointer; color: var(--secondary-text-color); }
+            .btn-save { background: var(--primary-color); color: white; border: none; padding: 8px 16px; border-radius: 4px; font-weight: 500; cursor: pointer; }
+
+            @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+            @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+            /* --- OTHER STYLES (Status/Overlays) --- */
+            .thermostat-visual { display: flex; justify-content: center; margin-bottom: 32px; }
+            .ring { width: 150px; height: 150px; border-radius: 50%; border: 8px solid var(--divider-color); display: flex; flex-direction: column; justify-content: center; align-items: center; }
+            .ring.heating { border-color: var(--accent-color); }
+            .ring .current { font-size: 3rem; font-weight: 300; }
+            .ring .target { font-size: 0.9rem; color: var(--secondary-text-color); }
+
+            .logic-trace h3 { margin: 0 0 16px 0; font-size: 1rem; color: var(--secondary-text-color); }
+            .trace-row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--divider-color); }
+            .trace-row.highlight { color: var(--primary-color); font-weight: bold; border-bottom: none; font-size: 1.1rem; margin-top: 8px; }
+
+            .overlays-list { display: flex; flex-direction: column; gap: 12px; }
+            .rule-card { display: flex; align-items: center; gap: 16px; padding: 16px; border: 1px solid var(--divider-color); border-radius: 8px; }
+            .rule-card.high-priority { border-left: 4px solid var(--error-color); }
+            .rule-icon { font-size: 1.5rem; color: var(--secondary-text-color); }
+            .rule-info { flex: 1; }
+            .rule-title { font-weight: bold; margin-bottom: 4px; }
+            .rule-desc { font-size: 0.9rem; color: var(--secondary-text-color); }
+            .switch { position: relative; display: inline-block; width: 40px; height: 24px; }
+            .switch input { opacity: 0; width: 0; height: 0; }
+            .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 24px; }
+            .slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+            input:checked + .slider { background-color: var(--primary-color); }
+            input:checked + .slider:before { transform: translateX(16px); }
+            
+            .day-pills { display: flex; gap: 8px; margin-bottom: 20px; overflow-x: auto; padding-bottom: 4px; }
+            .day-pills button { border: 1px solid var(--divider-color); background: none; border-radius: 16px; padding: 4px 12px; cursor: pointer; color: var(--secondary-text-color); }
+            .day-pills button.active { background: var(--primary-color); color: white; border-color: var(--primary-color); }
+            .zone-label { width: 100px; text-align: left; }
+            .slot.day { background: var(--accent-color); opacity: 0.8; }
+            .slot.night { background: var(--primary-color); opacity: 0.2; }
+            .legend { margin-top: 16px; display: flex; gap: 16px; font-size: 0.9rem; justify-content: center; }
+            .legend .dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; margin-right: 4px; }
+            .legend .dot.day { background: var(--accent-color); opacity: 0.8; }
+            .legend .dot.night { background: var(--primary-color); opacity: 0.2; }
+            .animated-fade { animation: fadeIn 0.3s ease-out; }
+            .add-rule-btn { margin-top: 16px; background: none; border: 2px dashed var(--divider-color); color: var(--secondary-text-color); padding: 12px; border-radius: 8px; cursor: pointer; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 8px; }
+            .add-rule-btn:hover { border-color: var(--primary-color); color: var(--primary-color); }
+
+        `;
+    }
+
+    customElements.define('adaptive-hvac-card', AdaptiveHvacCard);
+</script>
+
+</body>
+</html>

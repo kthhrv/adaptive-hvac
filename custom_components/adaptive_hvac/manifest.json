@@ -3,7 +3,7 @@
   "name": "Adaptive HVAC",
   "codeowners": [],
   "config_flow": true,
-  "dependencies": [],
+  "dependencies": ["panel_custom"],
   "documentation": "https://github.com/kthhrv/adaptive_hvac",
   "iot_class": "local_push",
   "issue_tracker": "https://github.com/kthhrv/adaptive_hvac/issues",

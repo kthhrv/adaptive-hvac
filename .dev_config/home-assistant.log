@@ -1,0 +1,21 @@
+2025-12-10 23:48:56.074 WARNING (SyncWorker_0) [homeassistant.loader] We found a custom integration adaptive_hvac which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant
+2025-12-10 23:48:56.983 ERROR (MainThread) [habluetooth.manager] Missing required permissions for Bluetooth management: Missing NET_ADMIN/NET_RAW capabilities for Bluetooth management. Automatic adapter recovery is unavailable. Add NET_ADMIN and NET_RAW capabilities to the container to enable it
+2025-12-10 23:48:57.080 ERROR (ImportExecutor_0) [homeassistant.components.camera.img_util] Error loading libturbojpeg; Camera snapshot performance will be sub-optimal
+Traceback (most recent call last):
+  File "/home/keith/ws/adaptive_hvac/.venv/lib/python3.13/site-packages/homeassistant/components/camera/img_util.py", line 93, in __init__
+    TurboJPEGSingleton.__instance = TurboJPEG()
+                                    ~~~~~~~~~^^
+  File "/home/keith/ws/adaptive_hvac/.venv/lib/python3.13/site-packages/turbojpeg.py", line 301, in __init__
+    self.__find_turbojpeg() if lib_path is None else lib_path)
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/keith/ws/adaptive_hvac/.venv/lib/python3.13/site-packages/turbojpeg.py", line 974, in __find_turbojpeg
+    raise RuntimeError(
+    ...<2 lines>...
+        'e.g. jpeg = TurboJPEG(lib_path)')
+RuntimeError: Unable to locate turbojpeg library automatically. You may specify the turbojpeg library path manually.
+e.g. jpeg = TurboJPEG(lib_path)
+2025-12-10 23:48:57.283 WARNING (MainThread) [asyncio] Executing <Task pending name='Task-1' coro=<setup_and_run_hass() running at /home/keith/ws/adaptive_hvac/.venv/lib/python3.13/site-packages/homeassistant/runner.py:256> wait_for=<_GatheringFuture pending cb=[Task.task_wakeup()] created at /home/keith/.local/share/uv/python/cpython-3.13.8-linux-x86_64-gnu/lib/python3.13/asyncio/tasks.py:765> cb=[_run_until_complete_cb() at /home/keith/.local/share/uv/python/cpython-3.13.8-linux-x86_64-gnu/lib/python3.13/asyncio/base_events.py:181] created at /home/keith/.local/share/uv/python/cpython-3.13.8-linux-x86_64-gnu/lib/python3.13/asyncio/tasks.py:748> took 0.174 seconds
+2025-12-10 23:48:58.010 WARNING (MainThread) [asyncio] Executing <Handle WebSocketHandler._release_ready_future_or_reschedule() created at /home/keith/ws/adaptive_hvac/.venv/lib/python3.13/site-packages/homeassistant/components/websocket_api/http.py:266> took 0.237 seconds
+2025-12-10 23:48:58.697 WARNING (MainThread) [asyncio] Executing <Task pending name='Task-1' coro=<setup_and_run_hass() running at /home/keith/ws/adaptive_hvac/.venv/lib/python3.13/site-packages/homeassistant/runner.py:264> wait_for=<Future pending cb=[Task.task_wakeup()] created at /home/keith/.local/share/uv/python/cpython-3.13.8-linux-x86_64-gnu/lib/python3.13/asyncio/base_events.py:459> cb=[_run_until_complete_cb() at /home/keith/.local/share/uv/python/cpython-3.13.8-linux-x86_64-gnu/lib/python3.13/asyncio/base_events.py:181] created at /home/keith/.local/share/uv/python/cpython-3.13.8-linux-x86_64-gnu/lib/python3.13/asyncio/tasks.py:748> took 0.665 seconds
+2025-12-10 23:49:00.112 WARNING (MainThread) [asyncio] Executing <Task pending name='dhcp discovery' coro=<NetworkWatcher.async_discover() running at /home/keith/ws/adaptive_hvac/.venv/lib/python3.13/site-packages/homeassistant/components/dhcp/__init__.py:347> wait_for=<Future pending cb=[Task.task_wakeup()] created at /home/keith/.local/share/uv/python/cpython-3.13.8-linux-x86_64-gnu/lib/python3.13/asyncio/base_events.py:459> cb=[set.remove()] created at /home/keith/ws/adaptive_hvac/.venv/lib/python3.13/site-packages/homeassistant/util/async_.py:44> took 0.173 seconds
+2025-12-10 23:49:00.383 WARNING (MainThread) [asyncio] Executing <Task pending name='dhcp discovery' coro=<NetworkWatcher.async_discover() running at /home/keith/ws/adaptive_hvac/.venv/lib/python3.13/site-packages/homeassistant/components/dhcp/__init__.py:347> wait_for=<Future pending cb=[Task.task_wakeup()] created at /home/keith/.local/share/uv/python/cpython-3.13.8-linux-x86_64-gnu/lib/python3.13/asyncio/base_events.py:459> cb=[set.remove()] created at /home/keith/ws/adaptive_hvac/.venv/lib/python3.13/site-packages/homeassistant/util/async_.py:44> took 0.116 seconds

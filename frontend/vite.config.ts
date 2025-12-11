@@ -3,9 +3,16 @@ import { defineConfig } from 'vite';
 export default defineConfig({
   build: {
     lib: {
-      entry: 'src/adaptive-hvac-card.ts',
-      fileName: 'adaptive-hvac-card',
+      entry: {
+        'adaptive-hvac-card': 'src/adaptive-hvac-card.ts',
+        'adaptive-hvac-panel': 'src/adaptive-hvac-panel.ts',
+      },
       formats: ['es'],
+    },
+    rollupOptions: {
+      output: {
+        entryFileNames: '[name].js',
+      },
     },
   },
 });
