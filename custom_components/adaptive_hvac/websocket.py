@@ -33,9 +33,15 @@ async def ws_get_zone_data(
     if entry := hass.config_entries.async_get_entry(entry_id):
         climate_entity_id = entry.data.get("climate_entity")
 
+    # Enrich with runtime data from coordinator
+    runtime_data = {}
+    if coordinator := hass.data[DOMAIN]["coordinators"].get(entry_id):
+        runtime_data = coordinator.runtime_data
+
     response_data = {
         **data,
-        "climate_entity_id": climate_entity_id
+        "climate_entity_id": climate_entity_id,
+        **runtime_data
     }
     
     connection.send_result(msg["id"], response_data)

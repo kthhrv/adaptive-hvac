@@ -24,7 +24,7 @@ We use `uv` to manage the Python environment and run Home Assistant.
     uv run hass -c .dev_config
     ```
     *   Access HA at: `http://localhost:8123`
-    *   Default User/Pass: (Create one on first launch)
+    *   Default User/Pass: keith/Agn0stic
 
 ### Directory Structure
 *   `custom_components/adaptive_hvac/`: The Python backend logic.
@@ -62,6 +62,8 @@ This allows you to see changes instantly without restarting HA.
         module_url="http://localhost:5173/src/adaptive-hvac-panel.ts",
         ```
     *   If you change `__init__.py` to point to the production build, you will need to restart HA once to pick up the new path.
+
+    *   access app on http://localhost:8123/adaptive_hvac
 
 ### Production Build
 

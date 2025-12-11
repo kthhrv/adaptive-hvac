@@ -14,10 +14,6 @@
                 {
                   "type": "custom:adaptive-hvac-card",
                   "zone_id": "01KC45CM2NHGM8VCDS1DKCDKQP"
-                },
-                {
-                  "type": "custom:adaptive-hvac-card",
-                  "zone_id": "01KC4W5TBY6RZGTARJFYHSC5VX"
                 }
               ]
             }

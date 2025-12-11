@@ -39,6 +39,20 @@
             "should_expose": true
           }
         }
+      },
+      "climate.bedroom": {
+        "assistants": {
+          "conversation": {
+            "should_expose": true
+          }
+        }
+      },
+      "sensor.fake_room_temperature_two": {
+        "assistants": {
+          "conversation": {
+            "should_expose": true
+          }
+        }
       }
     }
   }

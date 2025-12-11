@@ -1,17 +1,28 @@
 import { LitElement, html, css } from 'lit';
 import { property, state } from 'lit/decorators.js';
-import { HomeAssistant } from 'home-assistant-js-websocket';
+import { HomeAssistant } from './types';
 
 // Helper to check if we are in a "panel" context or standalone card
 // For now, we assume the card handles its own expansion state.
 
+interface ZoneData {
+  active?: boolean;
+  week_profile?: any[];
+  overlays?: any[];
+  current_temp?: number | null;
+  target_temp?: number | null;
+  hvac_action?: string | null;
+  hvac_mode?: string | null;
+  override_end?: string | null;
+}
+
 export class AdaptiveHvacCard extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
-  
+
   @state() private _config: any;
   @state() private _zoneId: string | undefined;
-  @state() private _zoneData: any = {};
-  
+  @state() private _zoneData: ZoneData = {};
+
   // UI States
   @state() private _viewMode: 'mini' | 'detail' = 'mini';
   @state() private _activeTab: 'status' | 'schedule' | 'overlays' = 'status';
@@ -41,11 +52,9 @@ export class AdaptiveHvacCard extends LitElement {
     return this._config;
   }
 
-  protected async connectedCallback(): Promise<void> {
+  public connectedCallback() {
     super.connectedCallback();
-    if (this.hass && this._zoneId) {
-      await this._fetchZoneData();
-    }
+    this._fetchZoneData();
   }
 
   private async _fetchZoneData(): Promise<void> {
@@ -69,7 +78,7 @@ export class AdaptiveHvacCard extends LitElement {
         entry_id: this._zoneId,
         data: newData,
       });
-      this._zoneData = newData; 
+      this._zoneData = newData;
     } catch (err) {
       console.error('Error saving zone data:', err);
       await this._fetchZoneData();
@@ -80,9 +89,7 @@ export class AdaptiveHvacCard extends LitElement {
     return css`
       :host { display: block; width: 100%; position: relative; }
       .card {
-          background: var(--ha-card-background, #fff);
-          border-radius: var(--ha-card-border-radius, 12px);
-          box-shadow: var(--ha-card-box-shadow, 0 2px 2px 0 rgba(0, 0, 0, 0.14));
+          /* ha-card handles background, border, shadow */
           color: var(--primary-text-color);
           overflow: hidden;
           display: flex;
@@ -150,6 +157,8 @@ export class AdaptiveHvacCard extends LitElement {
       .legend .dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; margin-right: 4px; }
       .legend .dot.day { background: var(--accent-color); opacity: 0.8; }
       .legend .dot.night { background: var(--primary-color); opacity: 0.2; }
+      
+      input[type="time"] { font-family: inherit; font-size: 0.9rem; color: var(--primary-text-color); background: var(--secondary-background-color); }
     `;
   }
 
@@ -157,26 +166,25 @@ export class AdaptiveHvacCard extends LitElement {
     if (!this._zoneId) return html`<ha-card>No Zone ID</ha-card>`;
 
     return html`
-      <div class="card">
+      <ha-card class="card">
         ${this._viewMode === 'mini' ? this._renderMini() : this._renderDetail()}
-      </div>
+      </ha-card>
     `;
   }
 
   private _renderMini() {
-    // TODO: Get real state (heating/idle) and current temp from entities
-    const isHeating = this._zoneData.active; // Placeholder logic
-    const currentTemp = 20.5; // Placeholder
-    const targetTemp = 21.0; // Placeholder
+    const isHeating = this._zoneData.hvac_action === 'heating';
+    const currentTemp = this._zoneData.current_temp ?? '--';
+    const targetTemp = this._zoneData.target_temp ?? '--';
 
     return html`
         <div class="zone-mini-card" @click="${() => this._viewMode = 'detail'}">
             <div class="mini-header">
                 <span class="zone-name">${this._config.title || 'Zone ' + this._zoneId}</span>
-                ${isHeating 
-                    ? html`<span class="mini-badge heating"><ha-icon icon="mdi:fire"></ha-icon></span>` 
-                    : html`<span class="mini-badge idle"><ha-icon icon="mdi:power-sleep"></ha-icon></span>`
-                }
+                ${isHeating
+        ? html`<span class="mini-badge heating"><ha-icon icon="mdi:fire"></ha-icon></span>`
+        : html`<span class="mini-badge idle"><ha-icon icon="mdi:power-sleep"></ha-icon></span>`
+      }
             </div>
             <div class="mini-body">
                 <div class="temp-display">
@@ -192,7 +200,7 @@ export class AdaptiveHvacCard extends LitElement {
   }
 
   private _renderDetail() {
-    const isHeating = this._zoneData.active; 
+    const isHeating = this._zoneData.active;
 
     return html`
         <div class="header">
@@ -210,13 +218,13 @@ export class AdaptiveHvacCard extends LitElement {
         </div>
 
         <div class="tabs">
-            <button class="${this._activeTab === 'status' ? 'active' : ''}" @click="${() => this._activeTab = 'status'}">
+            <button id="tab-status" class="${this._activeTab === 'status' ? 'active' : ''}" @click="${() => this._activeTab = 'status'}">
                 Status
             </button>
-            <button class="${this._activeTab === 'schedule' ? 'active' : ''}" @click="${() => this._activeTab = 'schedule'}">
+            <button id="tab-schedule" class="${this._activeTab === 'schedule' ? 'active' : ''}" @click="${() => this._activeTab = 'schedule'}">
                 Schedule
             </button>
-            <button class="${this._activeTab === 'overlays' ? 'active' : ''}" @click="${() => this._activeTab = 'overlays'}">
+            <button id="tab-overlays" class="${this._activeTab === 'overlays' ? 'active' : ''}" @click="${() => this._activeTab = 'overlays'}">
                 Overlays
             </button>
         </div>
@@ -228,10 +236,10 @@ export class AdaptiveHvacCard extends LitElement {
   }
 
   private _renderContent() {
-    switch(this._activeTab) {
-        case 'status': return this._renderStatus();
-        case 'schedule': return this._renderSchedule();
-        case 'overlays': return html`<p>Overlay View (Coming Soon)</p>`; 
+    switch (this._activeTab) {
+      case 'status': return this._renderStatus();
+      case 'schedule': return this._renderSchedule();
+      case 'overlays': return html`<p>Overlay View (Coming Soon)</p>`;
     }
   }
 
@@ -250,60 +258,60 @@ export class AdaptiveHvacCard extends LitElement {
     // Backend profiles are list of rules. 
     // Simplified visualization: Just show the rules as "day" blocks on top of a "night" background?
     // Or simpler: Build a timeline.
-    
+
     // Let's iterate days and build slots.
     // 1. Create a 1440-minute array for each day, fill with 0 (Eco).
     // 2. Mark 1 (Comfort) for rule ranges.
     // 3. Compress into slots.
-    
-    const dayMaps: {[key: string]: number[]} = {};
+
+    const dayMaps: { [key: string]: number[] } = {};
     days.forEach(d => {
-        dayMaps[d] = new Array(1440).fill(0); // 0 = Eco
+      dayMaps[d] = new Array(1440).fill(0); // 0 = Eco
     });
 
     const profiles = this._zoneData.week_profile || [];
     profiles.forEach((rule: any) => {
-        const [startH, startM] = rule.start.split(':').map(Number);
-        const [endH, endM] = rule.end.split(':').map(Number);
-        const startMin = startH * 60 + startM;
-        const endMin = endH * 60 + endM;
-        
-        rule.days.forEach((d: string) => {
-            if (dayMaps[d]) {
-                for (let i = startMin; i < endMin; i++) {
-                    dayMaps[d][i] = 1; // 1 = Comfort
-                }
-            }
-        });
+      const [startH, startM] = rule.start.split(':').map(Number);
+      const [endH, endM] = rule.end.split(':').map(Number);
+      const startMin = startH * 60 + startM;
+      const endMin = endH * 60 + endM;
+
+      rule.days.forEach((d: string) => {
+        if (dayMaps[d]) {
+          for (let i = startMin; i < endMin; i++) {
+            dayMaps[d][i] = 1; // 1 = Comfort
+          }
+        }
+      });
     });
 
     // Compress to slots
     const visualSchedule = days.map(d => {
-        const slots = [];
-        let currentType = dayMaps[d][0] === 1 ? 'day' : 'night';
-        let currentStart = 0;
-        
-        for (let i = 1; i < 1440; i++) {
-            const type = dayMaps[d][i] === 1 ? 'day' : 'night';
-            if (type !== currentType) {
-                // End of slot
-                slots.push({
-                    start: (currentStart / 1440) * 100,
-                    w: ((i - currentStart) / 1440) * 100,
-                    type: currentType
-                });
-                currentType = type;
-                currentStart = i;
-            }
-        }
-        // Last slot
-        slots.push({
+      const slots = [];
+      let currentType = dayMaps[d][0] === 1 ? 'day' : 'night';
+      let currentStart = 0;
+
+      for (let i = 1; i < 1440; i++) {
+        const type = dayMaps[d][i] === 1 ? 'day' : 'night';
+        if (type !== currentType) {
+          // End of slot
+          slots.push({
             start: (currentStart / 1440) * 100,
-            w: ((1440 - currentStart) / 1440) * 100,
+            w: ((i - currentStart) / 1440) * 100,
             type: currentType
-        });
-        
-        return { day: d.charAt(0).toUpperCase() + d.slice(1), slots };
+          });
+          currentType = type;
+          currentStart = i;
+        }
+      }
+      // Last slot
+      slots.push({
+        start: (currentStart / 1440) * 100,
+        w: ((1440 - currentStart) / 1440) * 100,
+        type: currentType
+      });
+
+      return { day: d.charAt(0).toUpperCase() + d.slice(1), slots };
     });
 
     return visualSchedule;
@@ -314,15 +322,16 @@ export class AdaptiveHvacCard extends LitElement {
 
     return html`
         <div class="schedule-grid">
-            <div class="hint-text"><ha-icon icon="mdi:gesture-tap" style="--mdc-icon-size: 16px;"></ha-icon> Read-Only View (Editing Coming Soon)</div>
+            <div class="hint-text"><ha-icon icon="mdi:gesture-tap" style="--mdc-icon-size: 16px;"></ha-icon> Tap a day to edit the schedule</div>
             ${visualSchedule.map((d: any) => html`
-                <div class="day-row hoverable">
+                <div class="day-row hoverable" @click="${() => this._openEditor(d.day)}" data-testid="day-row-${d.day.toLowerCase()}">
                     <div class="day-label">${d.day}</div>
                     <div class="timeline">
                         ${d.slots.map((s: any) => html`
                             <div class="slot ${s.type}" style="width: ${s.w}%"></div>
                         `)}
                     </div>
+                    <ha-icon icon="mdi:pencil" style="--mdc-icon-size: 16px; color: var(--secondary-text-color); margin-left: 8px;"></ha-icon>
                 </div>
             `)}
         </div>
@@ -330,14 +339,119 @@ export class AdaptiveHvacCard extends LitElement {
             <span class="dot day"></span> Comfort
             <span class="dot night"></span> Eco
         </div>
+        
+        ${this._editingDay ? this._renderEditor() : ''}
     `;
   }
 
+  @state() private _tempRules: any[] = [];
+
+  private _openEditor(visualDay: string) {
+    this._editingDay = visualDay;
+    const shortDay = visualDay.substring(0, 3).toLowerCase();
+
+    // Filter generic week profile for this day
+    const existingRules = (this._zoneData.week_profile || [])
+      .filter((r: any) => r.days.includes(shortDay))
+      .map((r: any) => ({ ...r, days: [shortDay] })); // Clone and isolate day
+
+    this._tempRules = JSON.parse(JSON.stringify(existingRules));
+  }
+
+  private _closeEditor() {
+    this._editingDay = null;
+    this._tempRules = [];
+  }
+
+  private _addRule() {
+    this._tempRules = [...this._tempRules, { start: "09:00", end: "17:00", days: [this._editingDay!.substring(0, 3).toLowerCase()] }];
+  }
+
+  private _removeRule(index: number) {
+    this._tempRules = this._tempRules.filter((_, i) => i !== index);
+  }
+
+  private _updateRule(index: number, field: string, value: string) {
+    const newRules = [...this._tempRules];
+    newRules[index] = { ...newRules[index], [field]: value };
+    this._tempRules = newRules;
+  }
+
+  private async _saveSchedule() {
+    if (!this._editingDay) return;
+
+    const shortDay = this._editingDay.substring(0, 3).toLowerCase();
+
+    // 1. Get all OTHER rules not for this day
+    const otherDayRules = (this._zoneData.week_profile || []).filter((r: any) => !r.days.includes(shortDay));
+
+    // 2. If a rule in "other" had multiple days including this one, we implicitly split it above. 
+    //    Wait, simpler strategy:
+    //    We need to fully reconstruct the profile. The backend expects a list of generic rules.
+    //    For this MVP editor, we act as if we are editing "This Day Only" rules.
+    //    So we remove THIS day from any shared rules, and then append our new rules for THIS day.
+
+    let newProfile: any[] = [];
+
+    // Keep existing rules, removing 'shortDay' from them
+    (this._zoneData.week_profile || []).forEach((r: any) => {
+      const days = r.days.filter((d: string) => d !== shortDay);
+      if (days.length > 0) {
+        newProfile.push({ ...r, days });
+      }
+    });
+
+    // Add new rules
+    this._tempRules.forEach(r => {
+      newProfile.push({ ...r, days: [shortDay] });
+    });
+
+    // Optimization: (Optional) Merge identical rules back together? 
+    // For now, let's keep it simple. Explicit per-day rules are fine.
+
+    await this._saveZoneData({ ...this._zoneData, week_profile: newProfile });
+    this._closeEditor();
+  }
+
+  private _renderEditor() {
+    return html`
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 100; display: flex; align-items: center; justify-content: center;">
+            <div style="background: var(--card-background-color, white); padding: 24px; border-radius: 12px; width: 90%; max-width: 400px; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+                <h3 style="margin-top: 0;">Edit ${this._editingDay}</h3>
+                <p>Define "Comfort" periods. Rest is Eco.</p>
+                
+                <div style="max-height: 200px; overflow-y: auto; margin-bottom: 16px;">
+                    ${this._tempRules.length === 0 ? html`<div style="text-align: center; padding: 20px; color: var(--secondary-text-color);">No Comfort Blocks (All Day Eco)</div>` : ''}
+                    
+                    ${this._tempRules.map((rule, idx) => html`
+                        <div style="display: flex; gap: 8px; margin-bottom: 8px; align-items: center;" data-testid="rule-row-${idx}">
+                            <input type="time" .value="${rule.start}" @change="${(e: any) => this._updateRule(idx, 'start', e.target.value)}" style="padding: 8px; border-radius: 4px; border: 1px solid var(--divider-color);" data-testid="input-start-${idx}">
+                            <span>to</span>
+                            <input type="time" .value="${rule.end}" @change="${(e: any) => this._updateRule(idx, 'end', e.target.value)}" style="padding: 8px; border-radius: 4px; border: 1px solid var(--divider-color);" data-testid="input-end-${idx}">
+                            <ha-icon icon="mdi:delete" @click="${() => this._removeRule(idx)}" style="cursor: pointer; color: var(--error-color, red);" data-testid="btn-delete-${idx}"></ha-icon>
+                        </div>
+                    `)}
+                </div>
+                
+                <div style="display: flex; justify-content: space-between; gap: 8px;">
+                    <button id="btn-add-rule" @click="${this._addRule}" style="flex: 1; padding: 12px; background: var(--accent-color); color: white; border: none; border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                        <ha-icon icon="mdi:plus"></ha-icon> Add Block
+                    </button>
+                </div>
+                
+                <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 24px; border-top: 1px solid var(--divider-color); padding-top: 16px;">
+                    <button id="btn-cancel-editor" @click="${this._closeEditor}" style="padding: 8px 16px; background: none; border: 1px solid var(--divider-color); border-radius: 4px; cursor: pointer;">Cancel</button>
+                    <button id="btn-save-schedule" @click="${this._saveSchedule}" style="padding: 8px 16px; background: var(--primary-color); color: white; border: none; border-radius: 4px; cursor: pointer;">Save</button>
+                </div>
+            </div>
+        </div>
+      `;
+  }
+
   private _renderStatus() {
-    // Placeholders
-    const currentTemp = 20.5;
-    const targetTemp = 21.0;
-    const isHeating = this._zoneData.active;
+    const currentTemp = this._zoneData.current_temp ?? '--';
+    const targetTemp = this._zoneData.target_temp ?? '--';
+    const isHeating = this._zoneData.hvac_action === 'heating';
 
     return html`
         <div class="thermostat-visual">
@@ -346,10 +460,26 @@ export class AdaptiveHvacCard extends LitElement {
                 <div class="target">Target: ${targetTemp}°</div>
             </div>
         </div>
+        ${this._renderOverrideStatus()}
         <div>
             <h3>Logic Trace</h3>
-            <p>Trace data visualization coming here...</p>
+            <p>HVAC Mode: ${this._zoneData.hvac_mode ?? 'Unknown'}</p>
+            <p>Action: ${this._zoneData.hvac_action ?? 'Idle'}</p>
         </div>
+    `;
+  }
+
+  private _renderOverrideStatus() {
+    if (!this._zoneData.override_end) return html``;
+
+    const endTime = new Date(this._zoneData.override_end);
+    const timeStr = endTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+    return html`
+      <div style="background: var(--warning-color, #ff9800); color: black; padding: 8px; border-radius: 8px; margin-top: 10px; text-align: center; font-weight: bold;">
+        <ha-icon icon="mdi:clock-alert-outline"></ha-icon>
+        Manual Override (Ends ${timeStr})
+      </div>
     `;
   }
 }

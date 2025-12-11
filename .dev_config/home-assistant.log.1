@@ -1,6 +1,9 @@
-2025-12-10 23:46:47.431 WARNING (SyncWorker_0) [homeassistant.loader] We found a custom integration adaptive_hvac which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant
-2025-12-10 23:46:48.420 ERROR (MainThread) [habluetooth.manager] Missing required permissions for Bluetooth management: Missing NET_ADMIN/NET_RAW capabilities for Bluetooth management. Automatic adapter recovery is unavailable. Add NET_ADMIN and NET_RAW capabilities to the container to enable it
-2025-12-10 23:46:48.497 ERROR (ImportExecutor_0) [homeassistant.components.camera.img_util] Error loading libturbojpeg; Camera snapshot performance will be sub-optimal
+2025-12-11 15:03:15.147 WARNING (SyncWorker_0) [annotatedyaml.constructors] YAML file /home/keith/ws/adaptive_hvac/.dev_config/configuration.yaml contains duplicate key "input_boolean". Check lines 14 and 51
+2025-12-11 15:03:15.147 WARNING (SyncWorker_0) [annotatedyaml.constructors] YAML file /home/keith/ws/adaptive_hvac/.dev_config/configuration.yaml contains duplicate key "input_number". Check lines 20 and 57
+2025-12-11 15:03:15.147 WARNING (SyncWorker_0) [annotatedyaml.constructors] YAML file /home/keith/ws/adaptive_hvac/.dev_config/configuration.yaml contains duplicate key "template". Check lines 30 and 67
+2025-12-11 15:03:15.147 WARNING (SyncWorker_0) [annotatedyaml.constructors] YAML file /home/keith/ws/adaptive_hvac/.dev_config/configuration.yaml contains duplicate key "climate". Check lines 38 and 75
+2025-12-11 15:03:15.148 WARNING (SyncWorker_0) [homeassistant.loader] We found a custom integration adaptive_hvac which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant
+2025-12-11 15:03:15.759 ERROR (ImportExecutor_0) [homeassistant.components.camera.img_util] Error loading libturbojpeg; Camera snapshot performance will be sub-optimal
 Traceback (most recent call last):
   File "/home/keith/ws/adaptive_hvac/.venv/lib/python3.13/site-packages/homeassistant/components/camera/img_util.py", line 93, in __init__
     TurboJPEGSingleton.__instance = TurboJPEG()
@@ -14,10 +17,32 @@ Traceback (most recent call last):
         'e.g. jpeg = TurboJPEG(lib_path)')
 RuntimeError: Unable to locate turbojpeg library automatically. You may specify the turbojpeg library path manually.
 e.g. jpeg = TurboJPEG(lib_path)
-2025-12-10 23:46:48.796 WARNING (MainThread) [asyncio] Executing <Task pending name='Task-1' coro=<setup_and_run_hass() running at /home/keith/ws/adaptive_hvac/.venv/lib/python3.13/site-packages/homeassistant/runner.py:256> wait_for=<_GatheringFuture pending cb=[Task.task_wakeup()] created at /home/keith/.local/share/uv/python/cpython-3.13.8-linux-x86_64-gnu/lib/python3.13/asyncio/tasks.py:765> cb=[_run_until_complete_cb() at /home/keith/.local/share/uv/python/cpython-3.13.8-linux-x86_64-gnu/lib/python3.13/asyncio/base_events.py:181] created at /home/keith/.local/share/uv/python/cpython-3.13.8-linux-x86_64-gnu/lib/python3.13/asyncio/tasks.py:748> took 0.256 seconds
-2025-12-10 23:46:49.703 WARNING (MainThread) [asyncio] Executing <Task pending name='Task-149' coro=<UpnpServer.async_start() running at /home/keith/ws/adaptive_hvac/.venv/lib/python3.13/site-packages/async_upnp_client/server.py:1340> wait_for=<_GatheringFuture pending cb=[Task.task_wakeup()] created at /home/keith/.local/share/uv/python/cpython-3.13.8-linux-x86_64-gnu/lib/python3.13/asyncio/tasks.py:765> cb=[gather.<locals>._done_callback() at /home/keith/.local/share/uv/python/cpython-3.13.8-linux-x86_64-gnu/lib/python3.13/asyncio/tasks.py:820] created at /home/keith/.local/share/uv/python/cpython-3.13.8-linux-x86_64-gnu/lib/python3.13/asyncio/tasks.py:748> took 0.264 seconds
-2025-12-10 23:46:49.816 WARNING (MainThread) [asyncio] Executing <Task finished name='Task-109' coro=<gather_with_limited_concurrency.<locals>.sem_task() done, defined at /home/keith/ws/adaptive_hvac/.venv/lib/python3.13/site-packages/homeassistant/util/async_.py:109> result={'flow_id': '01KC5AJ2VZH4M7Q05PWV8MHSRP', 'handler': 'cast', 'reason': 'single_instance_allowed', 'translation_domain': 'homeassistant', ...} created at /home/keith/ws/adaptive_hvac/.venv/lib/python3.13/site-packages/homeassistant/util/async_.py:44> took 0.102 seconds
-2025-12-10 23:46:49.943 WARNING (MainThread) [asyncio] Executing <Task pending name='Task-125' coro=<gather_with_limited_concurrency.<locals>.sem_task() running at /home/keith/ws/adaptive_hvac/.venv/lib/python3.13/site-packages/homeassistant/util/async_.py:111> wait_for=<Future pending cb=[_chain_future.<locals>._call_check_cancel() at /home/keith/.local/share/uv/python/cpython-3.13.8-linux-x86_64-gnu/lib/python3.13/asyncio/futures.py:384, <1 more>, Task.task_wakeup()] created at /home/keith/.local/share/uv/python/cpython-3.13.8-linux-x86_64-gnu/lib/python3.13/asyncio/base_events.py:459> cb=[gather.<locals>._done_callback() at /home/keith/.local/share/uv/python/cpython-3.13.8-linux-x86_64-gnu/lib/python3.13/asyncio/tasks.py:820] created at /home/keith/ws/adaptive_hvac/.venv/lib/python3.13/site-packages/homeassistant/util/async_.py:44> took 0.126 seconds
-2025-12-10 23:46:51.027 WARNING (MainThread) [asyncio] Executing <Task pending name='dhcp discovery' coro=<NetworkWatcher.async_discover() running at /home/keith/ws/adaptive_hvac/.venv/lib/python3.13/site-packages/homeassistant/components/dhcp/__init__.py:347> wait_for=<Future pending cb=[Task.task_wakeup()] created at /home/keith/.local/share/uv/python/cpython-3.13.8-linux-x86_64-gnu/lib/python3.13/asyncio/base_events.py:459> cb=[set.remove()] created at /home/keith/ws/adaptive_hvac/.venv/lib/python3.13/site-packages/homeassistant/util/async_.py:44> took 0.360 seconds
-2025-12-10 23:46:51.406 WARNING (MainThread) [asyncio] Executing <Task pending name='dhcp discovery' coro=<NetworkWatcher.async_discover() running at /home/keith/ws/adaptive_hvac/.venv/lib/python3.13/site-packages/homeassistant/components/dhcp/__init__.py:347> wait_for=<Future pending cb=[Task.task_wakeup()] created at /home/keith/.local/share/uv/python/cpython-3.13.8-linux-x86_64-gnu/lib/python3.13/asyncio/base_events.py:459> cb=[set.remove()] created at /home/keith/ws/adaptive_hvac/.venv/lib/python3.13/site-packages/homeassistant/util/async_.py:44> took 0.168 seconds
-2025-12-10 23:46:51.663 WARNING (MainThread) [asyncio] Executing <Task pending name='dhcp discovery' coro=<NetworkWatcher.async_discover() running at /home/keith/ws/adaptive_hvac/.venv/lib/python3.13/site-packages/homeassistant/components/dhcp/__init__.py:347> wait_for=<Future pending cb=[Task.task_wakeup()] created at /home/keith/.local/share/uv/python/cpython-3.13.8-linux-x86_64-gnu/lib/python3.13/asyncio/base_events.py:459> cb=[set.remove()] created at /home/keith/ws/adaptive_hvac/.venv/lib/python3.13/site-packages/homeassistant/util/async_.py:44> took 0.120 seconds
+2025-12-11 15:03:16.205 ERROR (MainThread) [habluetooth.manager] Missing required permissions for Bluetooth management: Missing NET_ADMIN/NET_RAW capabilities for Bluetooth management. Automatic adapter recovery is unavailable. Add NET_ADMIN and NET_RAW capabilities to the container to enable it
+2025-12-11 15:03:16.337 WARNING (MainThread) [homeassistant.helpers.service] Referenced entities climate.study are missing or not currently available
+2025-12-11 15:03:16.337 WARNING (MainThread) [homeassistant.helpers.service] Referenced entities climate.bedroom are missing or not currently available
+2025-12-11 15:04:16.338 WARNING (MainThread) [homeassistant.helpers.service] Referenced entities climate.study are missing or not currently available
+2025-12-11 15:05:16.339 WARNING (MainThread) [homeassistant.helpers.service] Referenced entities climate.study are missing or not currently available
+2025-12-11 15:12:58.598 ERROR (MainThread) [frontend.js.modern.202512032] Uncaught error from Chrome 143.0.0.0 on Linux
+TypeError: this._fetchData is not a function
+connectedCallback (/src/adaptive-hvac-card.ts:57:9)
+apply (node_modules/@webcomponents/scoped-custom-element-registry/src/scoped-custom-element-registry.ts:424:39)
+Node> (/node_modules/lit-html/src/lit-html.ts:1502:52)
+_ChildPart._commitNode (/node_modules/lit-html/src/lit-html.ts:1546:35)
+_ChildPart._commitTemplateResult (/node_modules/lit-html/src/lit-html.ts:1661:11)
+this._commitText (/node_modules/lit-html/src/lit-html.ts:1475:11)
+_ChildPart._commitIterable (/node_modules/lit-html/src/lit-html.ts:1716:15)
+isIterable (/node_modules/lit-html/src/lit-html.ts:1494:11)
+debugLogEvent (/node_modules/lit-html/src/lit-html.ts:1282:15)
+trustFromTemplateString (/node_modules/lit-html/src/lit-html.ts:1636:50)
+2025-12-11 15:12:58.598 ERROR (MainThread) [frontend.js.modern.202512032] Uncaught error from Chrome 143.0.0.0 on Linux
+TypeError: this._fetchData is not a function
+connectedCallback (/src/adaptive-hvac-card.ts:57:9)
+apply (node_modules/@webcomponents/scoped-custom-element-registry/src/scoped-custom-element-registry.ts:424:39)
+Node> (/node_modules/lit-html/src/lit-html.ts:1502:52)
+_ChildPart._commitNode (/node_modules/lit-html/src/lit-html.ts:1546:35)
+_ChildPart._commitTemplateResult (/node_modules/lit-html/src/lit-html.ts:1661:11)
+this._commitText (/node_modules/lit-html/src/lit-html.ts:1475:11)
+_ChildPart._commitIterable (/node_modules/lit-html/src/lit-html.ts:1716:15)
+isIterable (/node_modules/lit-html/src/lit-html.ts:1494:11)
+debugLogEvent (/node_modules/lit-html/src/lit-html.ts:1282:15)
+trustFromTemplateString (/node_modules/lit-html/src/lit-html.ts:1636:50)

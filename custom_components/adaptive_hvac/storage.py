@@ -14,8 +14,10 @@ STORAGE_KEY = DOMAIN
 class ZoneData(TypedDict):
     """Data structure for a single zone."""
     active: bool
+    active: bool
     week_profile: list[dict[str, Any]]
     overlays: list[dict[str, Any]]
+    rescheduling_delay: int # in minutes
 
 
 class AdaptiveHvacData(TypedDict):
@@ -47,7 +49,7 @@ class AdaptiveHvacStorage:
         
         return self._data["zones"].get(
             entry_id, 
-            {"active": True, "week_profile": [], "overlays": []}
+            {"active": True, "week_profile": [], "overlays": [], "rescheduling_delay": 30}
         )
 
     async def async_save_zone_data(self, entry_id: str, data: ZoneData) -> None:

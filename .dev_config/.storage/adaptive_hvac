@@ -6,13 +6,75 @@
     "zones": {
       "01KC45CM2NHGM8VCDS1DKCDKQP": {
         "active": true,
-        "week_profile": [],
-        "overlays": []
+        "week_profile": [
+          {
+            "start": "09:00",
+            "end": "17:00",
+            "days": [
+              "mon"
+            ]
+          }
+        ],
+        "overlays": [],
+        "climate_entity_id": "climate.study",
+        "current_temp": 20,
+        "target_temp": 18,
+        "hvac_action": "idle",
+        "hvac_mode": "heat",
+        "override_end": null
       },
       "01KC4W5TBY6RZGTARJFYHSC5VX": {
         "active": false,
         "week_profile": [],
         "overlays": []
+      },
+      "01KC6YX6KTJW7DCJ9H5NY7KPA4": {
+        "active": true,
+        "week_profile": [
+          {
+            "start": "09:00",
+            "end": "17:00",
+            "days": [
+              "wed"
+            ]
+          },
+          {
+            "start": "09:00",
+            "end": "17:00",
+            "days": [
+              "wed"
+            ]
+          },
+          {
+            "start": "09:00",
+            "end": "17:03",
+            "days": [
+              "sat"
+            ]
+          },
+          {
+            "start": "01:00",
+            "end": "06:00",
+            "days": [
+              "thu"
+            ]
+          },
+          {
+            "start": "09:00",
+            "end": "17:00",
+            "days": [
+              "thu"
+            ]
+          }
+        ],
+        "overlays": [],
+        "rescheduling_delay": 30,
+        "climate_entity_id": "climate.bedroom",
+        "current_temp": 18,
+        "target_temp": 18,
+        "hvac_action": "heating",
+        "hvac_mode": "heat",
+        "override_end": null
       }
     }
   }

@@ -4,50 +4,73 @@
   "key": "core.restore_state",
   "data": [
     {
-      "state": {"entity_id":"conversation.home_assistant","state":"unknown","attributes":{"friendly_name":"Home Assistant","supported_features":1},"last_changed":"2025-12-10T23:48:56.923168+00:00","last_reported":"2025-12-10T23:48:56.923168+00:00","last_updated":"2025-12-10T23:48:56.923168+00:00","context":{"id":"01KC5ANZEVJQG61GV4KS4S0VFG","parent_id":null,"user_id":null}},
+      "state": {"entity_id":"conversation.home_assistant","state":"unknown","attributes":{"friendly_name":"Home Assistant","supported_features":1},"last_changed":"2025-12-11T15:14:06.186968+00:00","last_reported":"2025-12-11T15:14:06.186968+00:00","last_updated":"2025-12-11T15:14:06.186968+00:00","context":{"id":"01KC6ZKZQAESJMXDQS7ZC4SDV7","parent_id":null,"user_id":null}},
       "extra_data": null,
-      "last_seen": "2025-12-11T08:17:54.374286+00:00"
+      "last_seen": "2025-12-11T16:59:07.176505+00:00"
     },
     {
-      "state": {"entity_id":"event.backup_automatic_backup","state":"unknown","attributes":{"event_types":["completed","failed","in_progress"],"event_type":null,"friendly_name":"Backup Automatic backup"},"last_changed":"2025-12-10T23:48:56.952939+00:00","last_reported":"2025-12-10T23:48:56.952939+00:00","last_updated":"2025-12-10T23:48:56.952939+00:00","context":{"id":"01KC5ANZFRBMJ4RNKXJDNYTCD9","parent_id":null,"user_id":null}},
+      "state": {"entity_id":"event.backup_automatic_backup","state":"unknown","attributes":{"event_types":["completed","failed","in_progress"],"event_type":null,"friendly_name":"Backup Automatic backup"},"last_changed":"2025-12-11T15:14:06.198038+00:00","last_reported":"2025-12-11T15:14:06.198038+00:00","last_updated":"2025-12-11T15:14:06.198038+00:00","context":{"id":"01KC6ZKZQPNAK0PT192MD24HRQ","parent_id":null,"user_id":null}},
       "extra_data": {
         "last_event_type": null,
         "last_event_attributes": null
       },
-      "last_seen": "2025-12-11T08:17:54.374286+00:00"
+      "last_seen": "2025-12-11T16:59:07.176505+00:00"
     },
     {
-      "state": {"entity_id":"person.keith","state":"unknown","attributes":{"editable":true,"id":"keith","device_trackers":[],"user_id":"c230c4e8a1e94274a427f9140b8c875f","friendly_name":"keith"},"last_changed":"2025-12-10T23:48:57.285125+00:00","last_reported":"2025-12-10T23:48:58.025764+00:00","last_updated":"2025-12-10T23:48:58.025764+00:00","context":{"id":"01KC5AP0H91J19YD8GDDMXQ439","parent_id":null,"user_id":null}},
+      "state": {"entity_id":"person.keith","state":"unknown","attributes":{"editable":true,"id":"keith","device_trackers":[],"user_id":"c230c4e8a1e94274a427f9140b8c875f","friendly_name":"keith"},"last_changed":"2025-12-11T15:14:06.717560+00:00","last_reported":"2025-12-11T15:14:07.172848+00:00","last_updated":"2025-12-11T15:14:07.172848+00:00","context":{"id":"01KC6ZM0P4W0ZV54SKT8GM6Q18","parent_id":null,"user_id":null}},
       "extra_data": null,
-      "last_seen": "2025-12-11T08:17:54.374286+00:00"
+      "last_seen": "2025-12-11T16:59:07.176505+00:00"
     },
     {
-      "state": {"entity_id":"input_boolean.fake_heater","state":"off","attributes":{"editable":false,"icon":"mdi:radiator","friendly_name":"Fake Heater"},"last_changed":"2025-12-10T23:48:57.286020+00:00","last_reported":"2025-12-10T23:48:57.286020+00:00","last_updated":"2025-12-10T23:48:57.286020+00:00","context":{"id":"01KC5ANZT698S9BATAZF4BDV4K","parent_id":null,"user_id":null}},
+      "state": {"entity_id":"input_boolean.fake_heater","state":"off","attributes":{"editable":false,"icon":"mdi:radiator","friendly_name":"Fake Heater"},"last_changed":"2025-12-11T15:45:06.838580+00:00","last_reported":"2025-12-11T15:45:06.838580+00:00","last_updated":"2025-12-11T15:45:06.838580+00:00","context":{"id":"01KC71CRRNFTRXW41XVPF8D666","parent_id":null,"user_id":null}},
       "extra_data": null,
-      "last_seen": "2025-12-11T08:17:54.374286+00:00"
+      "last_seen": "2025-12-11T16:59:07.176505+00:00"
     },
     {
-      "state": {"entity_id":"input_number.fake_temperature","state":"10.0","attributes":{"initial":null,"editable":false,"min":10.0,"max":30.0,"step":0.5,"mode":"slider","unit_of_measurement":"°C","icon":"mdi:thermometer","friendly_name":"Fake Room Temp"},"last_changed":"2025-12-10T23:48:57.286564+00:00","last_reported":"2025-12-10T23:48:57.286564+00:00","last_updated":"2025-12-10T23:48:57.286564+00:00","context":{"id":"01KC5ANZT6KDHAYFXGJMQ5HMXE","parent_id":null,"user_id":null}},
+      "state": {"entity_id":"input_boolean.fake_heater_two","state":"on","attributes":{"editable":false,"icon":"mdi:radiator","friendly_name":"Fake Heater Two"},"last_changed":"2025-12-11T15:14:06.717813+00:00","last_reported":"2025-12-11T15:14:06.717813+00:00","last_updated":"2025-12-11T15:14:06.717813+00:00","context":{"id":"01KC6ZM07XZDPTDS1YXYGY9P6T","parent_id":null,"user_id":null}},
       "extra_data": null,
-      "last_seen": "2025-12-11T08:17:54.374286+00:00"
+      "last_seen": "2025-12-11T16:59:07.176505+00:00"
     },
     {
-      "state": {"entity_id":"sensor.fake_room_temperature","state":"50.0","attributes":{"unit_of_measurement":"°F","device_class":"temperature","friendly_name":"Fake Room Temperature"},"last_changed":"2025-12-10T23:48:58.026513+00:00","last_reported":"2025-12-10T23:48:58.026513+00:00","last_updated":"2025-12-10T23:48:58.026513+00:00","context":{"id":"01KC5AP0HANH73YQNGGSXN1QG9","parent_id":null,"user_id":null}},
+      "state": {"entity_id":"input_number.fake_temperature","state":"20.0","attributes":{"initial":null,"editable":false,"min":10.0,"max":30.0,"step":0.5,"mode":"slider","unit_of_measurement":"°C","icon":"mdi:thermometer","friendly_name":"Fake Room Temp"},"last_changed":"2025-12-11T15:14:06.717923+00:00","last_reported":"2025-12-11T15:14:06.717923+00:00","last_updated":"2025-12-11T15:14:06.717923+00:00","context":{"id":"01KC6ZM07XG28Z8B2RWHXBH0J8","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-12-11T16:59:07.176505+00:00"
+    },
+    {
+      "state": {"entity_id":"input_number.fake_temperature_two","state":"18.0","attributes":{"initial":null,"editable":false,"min":10.0,"max":30.0,"step":0.5,"mode":"slider","unit_of_measurement":"°C","icon":"mdi:thermometer","friendly_name":"Fake Room Temp"},"last_changed":"2025-12-11T15:14:06.717969+00:00","last_reported":"2025-12-11T15:14:06.717969+00:00","last_updated":"2025-12-11T15:14:06.717969+00:00","context":{"id":"01KC6ZM07XP3397MGW9VED7AEM","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-12-11T16:59:07.176505+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.fake_room_temperature","state":"20.0","attributes":{"unit_of_measurement":"°C","device_class":"temperature","friendly_name":"Fake Room Temperature"},"last_changed":"2025-12-11T15:14:07.173217+00:00","last_reported":"2025-12-11T15:14:07.173217+00:00","last_updated":"2025-12-11T15:14:07.173217+00:00","context":{"id":"01KC6ZM0P5TBCXMFHAD9ZPCWH4","parent_id":null,"user_id":null}},
       "extra_data": {
-        "native_value": 10.0,
+        "native_value": 20.0,
         "native_unit_of_measurement": "°C"
       },
-      "last_seen": "2025-12-11T08:17:54.374286+00:00"
+      "last_seen": "2025-12-11T16:59:07.176505+00:00"
     },
     {
-      "state": {"entity_id":"tts.google_translate_en_com","state":"unknown","attributes":{"friendly_name":"Google Translate en com"},"last_changed":"2025-12-10T23:48:57.375951+00:00","last_reported":"2025-12-10T23:48:57.375951+00:00","last_updated":"2025-12-10T23:48:57.375951+00:00","context":{"id":"01KC5ANZWZ98EWVSZY6S84A5WP","parent_id":null,"user_id":null}},
-      "extra_data": null,
-      "last_seen": "2025-12-11T08:17:54.374286+00:00"
+      "state": {"entity_id":"sensor.fake_room_temperature_two","state":"18.0","attributes":{"unit_of_measurement":"°C","device_class":"temperature","friendly_name":"Fake Room Temperature Two"},"last_changed":"2025-12-11T15:14:07.173354+00:00","last_reported":"2025-12-11T15:14:07.173354+00:00","last_updated":"2025-12-11T15:14:07.173354+00:00","context":{"id":"01KC6ZM0P5WKSPQK0874MH7CM7","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": 18.0,
+        "native_unit_of_measurement": "°C"
+      },
+      "last_seen": "2025-12-11T16:59:07.176505+00:00"
     },
     {
-      "state": {"entity_id":"climate.study","state":"off","attributes":{"hvac_modes":["heat","off"],"min_temp":15,"max_temp":25,"target_temp_step":1,"current_temperature":50,"temperature":21,"hvac_action":"off","friendly_name":"Study","supported_features":385},"last_changed":"2025-12-10T23:48:57.385356+00:00","last_reported":"2025-12-10T23:48:58.028997+00:00","last_updated":"2025-12-10T23:48:58.026734+00:00","context":{"id":"01KC5AP0HAEJ98VED01WJP9YBA","parent_id":null,"user_id":null}},
+      "state": {"entity_id":"climate.study","state":"heat","attributes":{"hvac_modes":["heat","off"],"min_temp":15.0,"max_temp":25.0,"target_temp_step":0.1,"current_temperature":20.0,"temperature":18.0,"hvac_action":"idle","friendly_name":"Study","supported_features":385},"last_changed":"2025-12-11T15:14:06.907984+00:00","last_reported":"2025-12-11T15:45:06.838704+00:00","last_updated":"2025-12-11T15:45:06.838704+00:00","context":{"id":"01KC71CRRNFTRXW41XVPF8D666","parent_id":null,"user_id":null}},
       "extra_data": null,
-      "last_seen": "2025-12-11T08:17:54.374286+00:00"
+      "last_seen": "2025-12-11T16:59:07.176505+00:00"
+    },
+    {
+      "state": {"entity_id":"climate.bedroom","state":"heat","attributes":{"hvac_modes":["heat","off"],"min_temp":15.0,"max_temp":25.0,"target_temp_step":0.1,"current_temperature":18.0,"temperature":21.0,"hvac_action":"heating","friendly_name":"Bedroom","supported_features":385},"last_changed":"2025-12-11T15:14:06.908221+00:00","last_reported":"2025-12-11T16:55:37.731029+00:00","last_updated":"2025-12-11T16:55:37.731029+00:00","context":{"id":"01KC75DWG2HM0ZF4Z07E35JXW4","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-12-11T16:59:07.176505+00:00"
+    },
+    {
+      "state": {"entity_id":"tts.google_translate_en_com","state":"unknown","attributes":{"friendly_name":"Google Translate en com"},"last_changed":"2025-12-11T15:14:06.925993+00:00","last_reported":"2025-12-11T15:14:06.925993+00:00","last_updated":"2025-12-11T15:14:06.925993+00:00","context":{"id":"01KC6ZM0EDQX5HA1Y52SXYM9WH","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-12-11T16:59:07.176505+00:00"
     }
   ]
 }

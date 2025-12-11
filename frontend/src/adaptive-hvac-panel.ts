@@ -29,16 +29,16 @@ export class AdaptiveHvacPanel extends LitElement {
       this._error = "Home Assistant object not available.";
       return;
     }
-    
+
     try {
-        const entries = await this.hass.callWS({ type: 'config_entries/get', domain: 'adaptive_hvac' });
-        console.log("Fetched config entries:", entries);
-        this._entries = entries;
-        this._error = undefined;
-        this.requestUpdate(); // Force update just in case
+      const entries = await this.hass.callWS({ type: 'config_entries/get', domain: 'adaptive_hvac' });
+      console.log("Fetched config entries:", entries);
+      this._entries = entries;
+      this._error = undefined;
+      this.requestUpdate(); // Force update just in case
     } catch (err: any) {
-        console.error("Could not fetch entries:", err);
-        this._error = `Error fetching zones: ${err.message || err}`; 
+      console.error("Could not fetch entries:", err);
+      this._error = `Error fetching zones: ${err.message || err}`;
     }
   }
 
@@ -102,26 +102,23 @@ export class AdaptiveHvacPanel extends LitElement {
         <h1>Adaptive HVAC Control Center</h1>
       </div>
       <div class="content">
-        <div style="background: #333; color: #fff; padding: 10px; margin-bottom: 20px;">
-            DEBUG: Entries Length: ${this._entries.length} <br>
-            Raw: ${JSON.stringify(this._entries)}
-        </div>
+
         ${this._error
-          ? html`<div class="error-message">${this._error}</div>`
-          : this._entries.length === 0 
-            ? html`<p>No Adaptive HVAC zones found. Please add the integration first.</p>` 
-            : this._entries.map(entry => html`
+        ? html`<div class="error-message">${this._error}</div>`
+        : this._entries.length === 0
+          ? html`<p>No Adaptive HVAC zones found. Please add the integration first.</p>`
+          : this._entries.map(entry => html`
                 <div class="zone-card-container">
                   <adaptive-hvac-card 
                     .hass=${this.hass} 
-                    .config=${{ 
-                      zone_id: entry.entry_id,
-                      title: entry.title
-                    }}
+                    .config=${{
+              zone_id: entry.entry_id,
+              title: entry.title
+            }}
                   ></adaptive-hvac-card>
                 </div>
               `)
-        }
+      }
       </div>
     `;
   }
