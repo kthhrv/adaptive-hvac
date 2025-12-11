@@ -34,12 +34,37 @@
             "id": "overlay_1765491823325",
             "name": "atest",
             "trigger_entity": "input_boolean.fake_window",
-            "trigger_state": "open",
+            "trigger_state": "on",
             "type": "absolute",
             "action": {
               "hvac_mode": "off"
             },
             "active": true
+          }
+        ],
+        "climate_entity_id": "climate.bedroom",
+        "current_temp": 18,
+        "target_temp": 21,
+        "hvac_action": "off",
+        "hvac_mode": "off",
+        "override_end": null,
+        "active_overlays": [
+          "atest"
+        ],
+        "week_profile": [
+          {
+            "start": "09:00",
+            "end": "23:59",
+            "days": [
+              "thu"
+            ]
+          },
+          {
+            "start": "09:00",
+            "end": "17:00",
+            "days": [
+              "thu"
+            ]
           }
         ]
       }

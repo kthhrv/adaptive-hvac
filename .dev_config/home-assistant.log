@@ -1,105 +1,87 @@
-2025-12-11 22:15:38.186 WARNING (SyncWorker_0) [homeassistant.loader] We found a custom integration adaptive_hvac which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant
-2025-12-11 22:15:38.806 INFO (MainThread) [homeassistant.setup] Setup of domain http took 0.03 seconds
-2025-12-11 22:15:38.806 INFO (MainThread) [homeassistant.setup] Setup of domain system_log took 0.03 seconds
-2025-12-11 22:15:38.806 INFO (MainThread) [homeassistant.setup] Setup of domain logger took 0.03 seconds
-2025-12-11 22:15:38.806 INFO (MainThread) [homeassistant.setup] Setting up websocket_api
-2025-12-11 22:15:38.807 INFO (MainThread) [homeassistant.setup] Setup of domain websocket_api took 0.00 seconds
-2025-12-11 22:15:38.807 INFO (MainThread) [homeassistant.setup] Setting up network
-2025-12-11 22:15:38.808 INFO (MainThread) [homeassistant.setup] Setup of domain network took 0.00 seconds
-2025-12-11 22:15:38.808 INFO (MainThread) [homeassistant.bootstrap] Setting up stage labs: {'labs'}; already set up: {}
+2025-12-11 22:35:52.374 WARNING (SyncWorker_0) [homeassistant.loader] We found a custom integration adaptive_hvac which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant
+2025-12-11 22:35:52.736 INFO (MainThread) [homeassistant.setup] Setting up system_log
+2025-12-11 22:35:52.760 INFO (MainThread) [homeassistant.setup] Setup of domain http took 0.02 seconds
+2025-12-11 22:35:52.760 INFO (MainThread) [homeassistant.setup] Setup of domain logger took 0.02 seconds
+2025-12-11 22:35:52.760 INFO (MainThread) [homeassistant.setup] Setup of domain system_log took 0.02 seconds
+2025-12-11 22:35:52.760 INFO (MainThread) [homeassistant.setup] Setting up websocket_api
+2025-12-11 22:35:52.760 INFO (MainThread) [homeassistant.setup] Setup of domain websocket_api took 0.00 seconds
+2025-12-11 22:35:52.761 INFO (MainThread) [homeassistant.setup] Setting up network
+2025-12-11 22:35:52.761 INFO (MainThread) [homeassistant.setup] Setup of domain network took 0.00 seconds
+2025-12-11 22:35:52.761 INFO (MainThread) [homeassistant.bootstrap] Setting up stage labs: {'labs'}; already set up: {}
 Dependencies: {}; already set up: {}
-2025-12-11 22:15:38.808 INFO (MainThread) [homeassistant.setup] Setting up labs
-2025-12-11 22:15:38.809 INFO (MainThread) [homeassistant.setup] Setup of domain labs took 0.00 seconds
-2025-12-11 22:15:38.809 INFO (MainThread) [homeassistant.bootstrap] Setting up stage frontend: {'frontend'}; already set up: {}
-Dependencies: {'auth', 'search', 'diagnostics', 'api', 'file_upload', 'onboarding', 'lovelace', 'repairs', 'device_automation', 'config'}; already set up: {'http', 'system_log', 'websocket_api'}
-2025-12-11 22:15:38.809 INFO (MainThread) [homeassistant.setup] Setting up auth
-2025-12-11 22:15:38.810 INFO (MainThread) [homeassistant.setup] Setup of domain auth took 0.00 seconds
-2025-12-11 22:15:38.810 INFO (MainThread) [homeassistant.setup] Setting up search
-2025-12-11 22:15:38.810 INFO (MainThread) [homeassistant.setup] Setup of domain search took 0.00 seconds
-2025-12-11 22:15:38.810 INFO (MainThread) [homeassistant.setup] Setting up diagnostics
-2025-12-11 22:15:38.811 INFO (MainThread) [homeassistant.setup] Setup of domain diagnostics took 0.00 seconds
-2025-12-11 22:15:38.812 INFO (MainThread) [homeassistant.setup] Setting up api
-2025-12-11 22:15:38.813 INFO (MainThread) [homeassistant.setup] Setup of domain api took 0.00 seconds
-2025-12-11 22:15:38.813 INFO (MainThread) [homeassistant.setup] Setting up file_upload
-2025-12-11 22:15:38.814 INFO (MainThread) [homeassistant.setup] Setup of domain file_upload took 0.00 seconds
-2025-12-11 22:15:38.814 INFO (MainThread) [homeassistant.setup] Setting up onboarding
-2025-12-11 22:15:38.814 INFO (MainThread) [homeassistant.setup] Setup of domain onboarding took 0.00 seconds
-2025-12-11 22:15:38.814 INFO (MainThread) [homeassistant.setup] Setting up lovelace
-2025-12-11 22:15:38.816 INFO (MainThread) [homeassistant.setup] Setting up repairs
-2025-12-11 22:15:38.817 INFO (MainThread) [homeassistant.setup] Setup of domain repairs took 0.00 seconds
-2025-12-11 22:15:38.817 INFO (MainThread) [homeassistant.setup] Setting up config
-2025-12-11 22:15:38.820 INFO (MainThread) [homeassistant.setup] Setup of domain config took 0.00 seconds
-2025-12-11 22:15:38.821 INFO (MainThread) [homeassistant.setup] Setting up device_automation
-2025-12-11 22:15:38.821 INFO (MainThread) [homeassistant.setup] Setup of domain device_automation took 0.00 seconds
-2025-12-11 22:15:38.823 INFO (MainThread) [homeassistant.setup] Setup of domain lovelace took 0.01 seconds
-2025-12-11 22:15:38.825 INFO (SyncWorker_1) [homeassistant.util.package] Attempting install of home-assistant-frontend==20251203.2
-2025-12-11 22:15:39.054 INFO (MainThread) [homeassistant.setup] Setting up frontend
-2025-12-11 22:15:39.056 INFO (MainThread) [homeassistant.setup] Setup of domain frontend took 0.00 seconds
-2025-12-11 22:15:39.056 INFO (MainThread) [homeassistant.bootstrap] Setting up stage recorder: {'recorder'}; already set up: {}
+2025-12-11 22:35:52.762 INFO (MainThread) [homeassistant.setup] Setting up labs
+2025-12-11 22:35:52.762 INFO (MainThread) [homeassistant.setup] Setup of domain labs took 0.00 seconds
+2025-12-11 22:35:52.762 INFO (MainThread) [homeassistant.bootstrap] Setting up stage frontend: {'frontend'}; already set up: {}
+Dependencies: {'search', 'auth', 'lovelace', 'api', 'file_upload', 'device_automation', 'diagnostics', 'repairs', 'onboarding', 'config'}; already set up: {'websocket_api', 'http', 'system_log'}
+2025-12-11 22:35:52.762 INFO (MainThread) [homeassistant.setup] Setting up search
+2025-12-11 22:35:52.762 INFO (MainThread) [homeassistant.setup] Setup of domain search took 0.00 seconds
+2025-12-11 22:35:52.762 INFO (MainThread) [homeassistant.setup] Setting up auth
+2025-12-11 22:35:52.762 INFO (MainThread) [homeassistant.setup] Setup of domain auth took 0.00 seconds
+2025-12-11 22:35:52.762 INFO (MainThread) [homeassistant.setup] Setting up onboarding
+2025-12-11 22:35:52.762 INFO (MainThread) [homeassistant.setup] Setup of domain onboarding took 0.00 seconds
+2025-12-11 22:35:52.763 INFO (MainThread) [homeassistant.setup] Setting up lovelace
+2025-12-11 22:35:52.763 INFO (MainThread) [homeassistant.setup] Setting up api
+2025-12-11 22:35:52.764 INFO (MainThread) [homeassistant.setup] Setup of domain api took 0.00 seconds
+2025-12-11 22:35:52.764 INFO (MainThread) [homeassistant.setup] Setting up file_upload
+2025-12-11 22:35:52.764 INFO (MainThread) [homeassistant.setup] Setup of domain file_upload took 0.00 seconds
+2025-12-11 22:35:52.764 INFO (MainThread) [homeassistant.setup] Setting up device_automation
+2025-12-11 22:35:52.764 INFO (MainThread) [homeassistant.setup] Setup of domain device_automation took 0.00 seconds
+2025-12-11 22:35:52.764 INFO (MainThread) [homeassistant.setup] Setting up diagnostics
+2025-12-11 22:35:52.764 INFO (MainThread) [homeassistant.setup] Setup of domain diagnostics took 0.00 seconds
+2025-12-11 22:35:52.764 INFO (MainThread) [homeassistant.setup] Setting up repairs
+2025-12-11 22:35:52.765 INFO (MainThread) [homeassistant.setup] Setup of domain repairs took 0.00 seconds
+2025-12-11 22:35:52.765 INFO (MainThread) [homeassistant.setup] Setting up config
+2025-12-11 22:35:52.766 INFO (MainThread) [homeassistant.setup] Setup of domain config took 0.00 seconds
+2025-12-11 22:35:52.767 INFO (MainThread) [homeassistant.setup] Setup of domain lovelace took 0.00 seconds
+2025-12-11 22:35:52.767 INFO (MainThread) [homeassistant.setup] Setting up frontend
+2025-12-11 22:35:52.770 INFO (MainThread) [homeassistant.setup] Setup of domain frontend took 0.00 seconds
+2025-12-11 22:35:52.770 INFO (MainThread) [homeassistant.bootstrap] Setting up stage recorder: {'recorder'}; already set up: {}
 Dependencies: {}; already set up: {}
-2025-12-11 22:15:39.056 INFO (MainThread) [homeassistant.setup] Setting up recorder
-2025-12-11 22:15:39.057 INFO (MainThread) [homeassistant.components.http] Now listening on port 8123
-2025-12-11 22:15:39.058 INFO (MainThread) [homeassistant.setup] Setup of domain http took 0.00 seconds
-2025-12-11 22:15:39.075 INFO (MainThread) [homeassistant.setup] Setup of domain recorder took 0.02 seconds
-2025-12-11 22:15:39.075 INFO (MainThread) [homeassistant.bootstrap] Nothing to set up in stage debugger: {'debugpy'}
-2025-12-11 22:15:39.075 INFO (MainThread) [homeassistant.bootstrap] Setting up stage zeroconf: {'zeroconf'}; already set up: {}
-Dependencies: {}; already set up: {'network', 'http', 'api', 'websocket_api'}
-2025-12-11 22:15:39.075 INFO (MainThread) [homeassistant.setup] Setting up zeroconf
-2025-12-11 22:15:39.077 INFO (MainThread) [homeassistant.components.zeroconf] Starting Zeroconf broadcast
-2025-12-11 22:15:39.077 INFO (MainThread) [homeassistant.setup] Setup of domain zeroconf took 0.00 seconds
-2025-12-11 22:15:39.077 INFO (MainThread) [homeassistant.bootstrap] Setting up stage 1: {'cloud', 'dhcp', 'ssdp', 'usb', 'bluetooth'}; already set up: {}
-Dependencies: {'ffmpeg', 'conversation', 'webhook', 'wake_word', 'backup', 'intent', 'stt', 'assist_pipeline', 'tts'}; already set up: {'http', 'network', 'websocket_api', 'auth', 'repairs'}
-2025-12-11 22:15:39.078 INFO (MainThread) [homeassistant.setup] Setting up webhook
-2025-12-11 22:15:39.078 INFO (MainThread) [homeassistant.setup] Setup of domain webhook took 0.00 seconds
-2025-12-11 22:15:39.078 INFO (MainThread) [homeassistant.setup] Setting up backup
-2025-12-11 22:15:39.080 INFO (MainThread) [homeassistant.setup] Setup of domain backup took 0.00 seconds
-2025-12-11 22:15:39.083 INFO (MainThread) [homeassistant.setup] Setting up wake_word
-2025-12-11 22:15:39.083 INFO (MainThread) [homeassistant.setup] Setup of domain wake_word took 0.00 seconds
-2025-12-11 22:15:39.084 INFO (SyncWorker_5) [homeassistant.util.package] Attempting install of ha-ffmpeg==3.2.2
-2025-12-11 22:15:39.087 INFO (MainThread) [homeassistant.setup] Setting up stt
-2025-12-11 22:15:39.087 INFO (MainThread) [homeassistant.setup] Setup of domain stt took 0.00 seconds
-2025-12-11 22:15:39.092 INFO (MainThread) [homeassistant.setup] Setting up intent
-2025-12-11 22:15:39.092 INFO (MainThread) [homeassistant.setup] Setup of domain intent took 0.00 seconds
-2025-12-11 22:15:39.095 INFO (MainThread) [homeassistant.setup] Setting up event
-2025-12-11 22:15:39.096 INFO (MainThread) [homeassistant.setup] Setup of domain event took 0.00 seconds
-2025-12-11 22:15:39.096 INFO (MainThread) [homeassistant.components.event] Setting up backup.event
-2025-12-11 22:15:39.096 INFO (MainThread) [homeassistant.setup] Setting up sensor
-2025-12-11 22:15:39.096 INFO (MainThread) [homeassistant.setup] Setup of domain sensor took 0.00 seconds
-2025-12-11 22:15:39.097 INFO (MainThread) [homeassistant.components.sensor] Setting up backup.sensor
-2025-12-11 22:15:39.234 INFO (SyncWorker_1) [homeassistant.util.package] Attempting install of aiodhcpwatcher==1.2.1
-2025-12-11 22:15:39.239 INFO (MainThread) [homeassistant.setup] Setting up ffmpeg
-2025-12-11 22:15:39.276 INFO (MainThread) [homeassistant.setup] Setup of domain ffmpeg took 0.04 seconds
-2025-12-11 22:15:39.387 INFO (SyncWorker_1) [homeassistant.util.package] Attempting install of aiodiscover==2.7.1
-2025-12-11 22:15:39.600 INFO (SyncWorker_0) [homeassistant.util.package] Attempting install of async-upnp-client==0.46.0
-2025-12-11 22:15:39.649 INFO (MainThread) [homeassistant.setup] Setting up dhcp
-2025-12-11 22:15:39.650 INFO (MainThread) [homeassistant.setup] Setup of domain dhcp took 0.00 seconds
-2025-12-11 22:15:39.815 INFO (SyncWorker_3) [homeassistant.util.package] Attempting install of aiousbwatcher==1.1.1
-2025-12-11 22:15:39.862 INFO (MainThread) [homeassistant.setup] Setting up ssdp
-2025-12-11 22:15:39.864 INFO (MainThread) [homeassistant.setup] Setup of domain ssdp took 0.00 seconds
-2025-12-11 22:15:39.967 INFO (SyncWorker_3) [homeassistant.util.package] Attempting install of pyserial==3.5
-2025-12-11 22:15:40.098 INFO (SyncWorker_4) [homeassistant.util.package] Attempting install of hassil==3.5.0
-2025-12-11 22:15:40.118 INFO (MainThread) [homeassistant.setup] Setting up usb
-2025-12-11 22:15:40.119 INFO (MainThread) [homeassistant.setup] Setup of domain usb took 0.00 seconds
-2025-12-11 22:15:40.248 INFO (SyncWorker_4) [homeassistant.util.package] Attempting install of home-assistant-intents==2025.12.2
-2025-12-11 22:15:40.372 INFO (SyncWorker_5) [homeassistant.util.package] Attempting install of mutagen==1.47.0
-2025-12-11 22:15:40.436 INFO (MainThread) [homeassistant.setup] Setting up conversation
-2025-12-11 22:15:40.436 INFO (MainThread) [homeassistant.setup] Setup of domain conversation took 0.00 seconds
-2025-12-11 22:15:40.535 INFO (SyncWorker_1) [homeassistant.util.package] Attempting install of bleak==1.0.1
-2025-12-11 22:15:40.653 INFO (MainThread) [homeassistant.setup] Setting up tts
-2025-12-11 22:15:40.660 INFO (MainThread) [homeassistant.setup] Setup of domain tts took 0.01 seconds
-2025-12-11 22:15:40.813 INFO (SyncWorker_1) [homeassistant.util.package] Attempting install of bleak-retry-connector==4.4.3
-2025-12-11 22:15:40.994 INFO (SyncWorker_1) [homeassistant.util.package] Attempting install of habluetooth==5.7.0
-2025-12-11 22:15:41.288 INFO (SyncWorker_2) [homeassistant.util.package] Attempting install of pymicro-vad==1.0.1
-2025-12-11 22:15:41.300 INFO (MainThread) [homeassistant.setup] Setting up bluetooth
-2025-12-11 22:15:41.331 ERROR (MainThread) [habluetooth.manager] Missing required permissions for Bluetooth management: Missing NET_ADMIN/NET_RAW capabilities for Bluetooth management. Automatic adapter recovery is unavailable. Add NET_ADMIN and NET_RAW capabilities to the container to enable it
-2025-12-11 22:15:41.332 INFO (MainThread) [homeassistant.setup] Setup of domain bluetooth took 0.03 seconds
-2025-12-11 22:15:41.336 INFO (MainThread) [habluetooth.channels.bluez] Bluetooth management socket connection closed
-2025-12-11 22:15:41.579 INFO (SyncWorker_2) [homeassistant.util.package] Attempting install of pyspeex-noise==1.0.2
-2025-12-11 22:15:41.846 INFO (MainThread) [homeassistant.setup] Setting up assist_pipeline
-2025-12-11 22:15:41.847 INFO (MainThread) [homeassistant.setup] Setup of domain assist_pipeline took 0.00 seconds
-2025-12-11 22:15:41.849 INFO (SyncWorker_3) [homeassistant.util.package] Attempting install of PyTurboJPEG==1.8.0
-2025-12-11 22:15:41.992 INFO (SyncWorker_1) [homeassistant.util.package] Attempting install of python-matter-server==8.1.0
-2025-12-11 22:15:42.402 ERROR (ImportExecutor_0) [homeassistant.components.camera.img_util] Error loading libturbojpeg; Camera snapshot performance will be sub-optimal
+2025-12-11 22:35:52.770 INFO (MainThread) [homeassistant.setup] Setting up recorder
+2025-12-11 22:35:52.771 INFO (MainThread) [homeassistant.components.http] Now listening on port 8123
+2025-12-11 22:35:52.772 INFO (MainThread) [homeassistant.setup] Setup of domain http took 0.00 seconds
+2025-12-11 22:35:52.789 INFO (MainThread) [homeassistant.setup] Setup of domain recorder took 0.02 seconds
+2025-12-11 22:35:52.789 INFO (MainThread) [homeassistant.bootstrap] Nothing to set up in stage debugger: {'debugpy'}
+2025-12-11 22:35:52.789 INFO (MainThread) [homeassistant.bootstrap] Setting up stage zeroconf: {'zeroconf'}; already set up: {}
+Dependencies: {}; already set up: {'websocket_api', 'network', 'api', 'http'}
+2025-12-11 22:35:52.789 INFO (MainThread) [homeassistant.setup] Setting up zeroconf
+2025-12-11 22:35:52.792 INFO (MainThread) [homeassistant.components.zeroconf] Starting Zeroconf broadcast
+2025-12-11 22:35:52.792 INFO (MainThread) [homeassistant.setup] Setup of domain zeroconf took 0.00 seconds
+2025-12-11 22:35:52.792 INFO (MainThread) [homeassistant.bootstrap] Setting up stage 1: {'bluetooth', 'ssdp', 'cloud', 'dhcp', 'usb'}; already set up: {}
+Dependencies: {'wake_word', 'tts', 'intent', 'backup', 'assist_pipeline', 'webhook', 'ffmpeg', 'stt', 'conversation'}; already set up: {'auth', 'http', 'websocket_api', 'repairs', 'network'}
+2025-12-11 22:35:52.793 INFO (MainThread) [homeassistant.setup] Setting up backup
+2025-12-11 22:35:52.793 INFO (MainThread) [homeassistant.setup] Setting up webhook
+2025-12-11 22:35:52.793 INFO (MainThread) [homeassistant.setup] Setup of domain webhook took 0.00 seconds
+2025-12-11 22:35:52.797 INFO (MainThread) [homeassistant.setup] Setup of domain backup took 0.00 seconds
+2025-12-11 22:35:52.802 INFO (MainThread) [homeassistant.setup] Setting up intent
+2025-12-11 22:35:52.802 INFO (MainThread) [homeassistant.setup] Setup of domain intent took 0.00 seconds
+2025-12-11 22:35:52.804 INFO (MainThread) [homeassistant.setup] Setting up wake_word
+2025-12-11 22:35:52.804 INFO (MainThread) [homeassistant.setup] Setup of domain wake_word took 0.00 seconds
+2025-12-11 22:35:52.805 INFO (MainThread) [homeassistant.setup] Setting up ffmpeg
+2025-12-11 22:35:52.808 INFO (MainThread) [homeassistant.setup] Setting up stt
+2025-12-11 22:35:52.808 INFO (MainThread) [homeassistant.setup] Setup of domain stt took 0.00 seconds
+2025-12-11 22:35:52.817 INFO (MainThread) [homeassistant.setup] Setting up usb
+2025-12-11 22:35:52.817 INFO (MainThread) [homeassistant.setup] Setup of domain usb took 0.00 seconds
+2025-12-11 22:35:52.819 INFO (SyncWorker_6) [homeassistant.util.package] Attempting install of bleak==1.0.1
+2025-12-11 22:35:52.834 INFO (MainThread) [homeassistant.setup] Setting up ssdp
+2025-12-11 22:35:52.840 INFO (MainThread) [homeassistant.setup] Setup of domain ssdp took 0.01 seconds
+2025-12-11 22:35:52.848 INFO (MainThread) [homeassistant.setup] Setup of domain ffmpeg took 0.04 seconds
+2025-12-11 22:35:52.887 INFO (MainThread) [homeassistant.setup] Setting up dhcp
+2025-12-11 22:35:52.888 INFO (MainThread) [homeassistant.setup] Setup of domain dhcp took 0.00 seconds
+2025-12-11 22:35:52.924 INFO (MainThread) [homeassistant.setup] Setting up conversation
+2025-12-11 22:35:52.924 INFO (MainThread) [homeassistant.setup] Setup of domain conversation took 0.00 seconds
+2025-12-11 22:35:52.935 INFO (MainThread) [homeassistant.setup] Setting up tts
+2025-12-11 22:35:52.937 INFO (MainThread) [homeassistant.setup] Setting up event
+2025-12-11 22:35:52.938 INFO (MainThread) [homeassistant.setup] Setup of domain event took 0.00 seconds
+2025-12-11 22:35:52.938 INFO (MainThread) [homeassistant.components.event] Setting up backup.event
+2025-12-11 22:35:52.938 INFO (MainThread) [homeassistant.setup] Setting up sensor
+2025-12-11 22:35:52.938 INFO (MainThread) [homeassistant.setup] Setup of domain sensor took 0.00 seconds
+2025-12-11 22:35:52.938 INFO (MainThread) [homeassistant.components.sensor] Setting up backup.sensor
+2025-12-11 22:35:52.941 INFO (MainThread) [homeassistant.setup] Setup of domain tts took 0.01 seconds
+2025-12-11 22:35:52.950 INFO (MainThread) [homeassistant.setup] Setting up assist_pipeline
+2025-12-11 22:35:52.951 INFO (MainThread) [homeassistant.setup] Setup of domain assist_pipeline took 0.00 seconds
+2025-12-11 22:35:52.990 INFO (SyncWorker_6) [homeassistant.util.package] Attempting install of bleak-retry-connector==4.4.3
+2025-12-11 22:35:53.034 ERROR (ImportExecutor_0) [homeassistant.components.camera.img_util] Error loading libturbojpeg; Camera snapshot performance will be sub-optimal
 Traceback (most recent call last):
   File "/home/keith/ws/adaptive_hvac/.venv/lib/python3.13/site-packages/homeassistant/components/camera/img_util.py", line 93, in __init__
     TurboJPEGSingleton.__instance = TurboJPEG()
@@ -113,268 +95,253 @@ Traceback (most recent call last):
         'e.g. jpeg = TurboJPEG(lib_path)')
 RuntimeError: Unable to locate turbojpeg library automatically. You may specify the turbojpeg library path manually.
 e.g. jpeg = TurboJPEG(lib_path)
-2025-12-11 22:15:42.435 INFO (MainThread) [homeassistant.setup] Setting up cloud
-2025-12-11 22:15:42.437 INFO (MainThread) [homeassistant.setup] Setup of domain cloud took 0.00 seconds
-2025-12-11 22:15:42.437 INFO (MainThread) [homeassistant.bootstrap] Setting up stage 2: {'sun', 'application_credentials', 'met', 'automation', 'shopping_list', 'google_translate', 'input_datetime', 'input_select', 'system_health', 'hardware', 'counter', 'tag', 'input_button', 'schedule', 'analytics', 'default_config', 'adaptive_hvac', 'climate', 'script', 'radio_browser', 'timer', 'person', 'input_number', 'scene', 'input_boolean', 'input_text', 'template', 'zone'}; already set up: {'network', 'logger', 'labs', 'frontend', 'backup', 'bluetooth'}
-Dependencies: {'panel_custom', 'usage_prediction', 'history', 'media_source', 'blueprint', 'image_upload', 'homeassistant_alerts', 'mobile_app', 'energy', 'trace', 'stream', 'camera', 'my', 'file', 'logbook', 'go2rtc'}; already set up: {'http', 'ffmpeg', 'websocket_api', 'dhcp', 'lovelace', 'config', 'tts', 'frontend', 'bluetooth', 'system_log', 'cloud', 'auth', 'diagnostics', 'zeroconf', 'usb', 'conversation', 'network', 'search', 'webhook', 'wake_word', 'api', 'file_upload', 'onboarding', 'repairs', 'backup', 'ssdp', 'intent', 'stt', 'recorder', 'assist_pipeline', 'device_automation'}
-2025-12-11 22:15:42.437 INFO (MainThread) [homeassistant.setup] Setting up scene
-2025-12-11 22:15:42.438 INFO (MainThread) [homeassistant.setup] Setup of domain scene took 0.00 seconds
-2025-12-11 22:15:42.438 INFO (MainThread) [homeassistant.setup] Setting up camera
-2025-12-11 22:15:42.439 INFO (MainThread) [homeassistant.setup] Setup of domain camera took 0.00 seconds
-2025-12-11 22:15:42.439 INFO (MainThread) [homeassistant.setup] Setting up panel_custom
-2025-12-11 22:15:42.439 INFO (MainThread) [homeassistant.setup] Setup of domain panel_custom took 0.00 seconds
-2025-12-11 22:15:42.439 INFO (MainThread) [homeassistant.setup] Setting up blueprint
-2025-12-11 22:15:42.439 INFO (MainThread) [homeassistant.setup] Setup of domain blueprint took 0.00 seconds
-2025-12-11 22:15:42.440 INFO (MainThread) [homeassistant.setup] Setting up trace
-2025-12-11 22:15:42.440 INFO (MainThread) [homeassistant.setup] Setup of domain trace took 0.00 seconds
-2025-12-11 22:15:42.440 INFO (MainThread) [homeassistant.setup] Setting up automation
-2025-12-11 22:15:42.440 INFO (MainThread) [homeassistant.setup] Setup of domain automation took 0.00 seconds
-2025-12-11 22:15:42.440 INFO (MainThread) [homeassistant.setup] Setting up input_select
-2025-12-11 22:15:42.441 INFO (MainThread) [homeassistant.setup] Setup of domain input_select took 0.00 seconds
-2025-12-11 22:15:42.441 INFO (MainThread) [homeassistant.setup] Setting up system_health
-2025-12-11 22:15:42.441 INFO (MainThread) [homeassistant.setup] Setup of domain system_health took 0.00 seconds
-2025-12-11 22:15:42.441 INFO (MainThread) [homeassistant.setup] Setting up media_source
-2025-12-11 22:15:42.442 INFO (MainThread) [homeassistant.setup] Setup of domain media_source took 0.00 seconds
-2025-12-11 22:15:42.442 INFO (MainThread) [homeassistant.setup] Setting up input_button
-2025-12-11 22:15:42.444 INFO (MainThread) [homeassistant.setup] Setup of domain input_button took 0.00 seconds
-2025-12-11 22:15:42.444 INFO (MainThread) [homeassistant.setup] Setting up logbook
-2025-12-11 22:15:42.445 INFO (MainThread) [homeassistant.setup] Setup of domain logbook took 0.00 seconds
-2025-12-11 22:15:42.445 INFO (MainThread) [homeassistant.setup] Setting up history
-2025-12-11 22:15:42.445 INFO (MainThread) [homeassistant.setup] Setup of domain history took 0.00 seconds
-2025-12-11 22:15:42.445 INFO (MainThread) [homeassistant.setup] Setting up image_upload
-2025-12-11 22:15:42.446 INFO (MainThread) [homeassistant.setup] Setup of domain image_upload took 0.00 seconds
-2025-12-11 22:15:42.446 INFO (MainThread) [homeassistant.setup] Setting up zone
-2025-12-11 22:15:42.447 INFO (MainThread) [homeassistant.setup] Setup of domain zone took 0.00 seconds
-2025-12-11 22:15:42.447 INFO (MainThread) [homeassistant.setup] Setting up person
-2025-12-11 22:15:42.447 INFO (MainThread) [homeassistant.setup] Setting up script
-2025-12-11 22:15:42.448 INFO (MainThread) [homeassistant.setup] Setup of domain script took 0.00 seconds
-2025-12-11 22:15:42.448 INFO (MainThread) [homeassistant.setup] Setting up timer
-2025-12-11 22:15:42.448 INFO (MainThread) [homeassistant.setup] Setup of domain timer took 0.00 seconds
-2025-12-11 22:15:42.449 INFO (MainThread) [homeassistant.setup] Setting up input_number
-2025-12-11 22:15:42.449 INFO (MainThread) [homeassistant.setup] Setting up input_boolean
-2025-12-11 22:15:42.452 INFO (MainThread) [homeassistant.setup] Setup of domain person took 0.00 seconds
-2025-12-11 22:15:42.452 INFO (MainThread) [homeassistant.setup] Setup of domain input_number took 0.00 seconds
-2025-12-11 22:15:42.452 INFO (MainThread) [homeassistant.setup] Setup of domain input_boolean took 0.00 seconds
-2025-12-11 22:15:42.455 INFO (MainThread) [homeassistant.components.scene] Setting up homeassistant.scene
-2025-12-11 22:15:42.459 INFO (SyncWorker_5) [homeassistant.util.package] Attempting install of PyMetno==0.13.0
-2025-12-11 22:15:42.459 INFO (MainThread) [homeassistant.setup] Setting up climate
-2025-12-11 22:15:42.460 INFO (MainThread) [homeassistant.setup] Setting up switch
-2025-12-11 22:15:42.460 INFO (MainThread) [homeassistant.setup] Setup of domain switch took 0.00 seconds
-2025-12-11 22:15:42.462 INFO (MainThread) [homeassistant.setup] Setup of domain climate took 0.00 seconds
-2025-12-11 22:15:42.465 INFO (MainThread) [homeassistant.setup] Setting up sun
-2025-12-11 22:15:42.465 INFO (MainThread) [homeassistant.setup] Setup of domain sun took 0.00 seconds
-2025-12-11 22:15:42.466 INFO (MainThread) [homeassistant.setup] Setting up binary_sensor
-2025-12-11 22:15:42.466 INFO (MainThread) [homeassistant.setup] Setup of domain binary_sensor took 0.00 seconds
-2025-12-11 22:15:42.466 INFO (MainThread) [homeassistant.components.binary_sensor] Setting up sun.binary_sensor
-2025-12-11 22:15:42.467 INFO (MainThread) [homeassistant.components.sensor] Setting up sun.sensor
-2025-12-11 22:15:42.469 INFO (MainThread) [homeassistant.setup] Setting up application_credentials
-2025-12-11 22:15:42.469 INFO (MainThread) [homeassistant.setup] Setup of domain application_credentials took 0.00 seconds
-2025-12-11 22:15:42.472 INFO (MainThread) [homeassistant.setup] Setting up shopping_list
-2025-12-11 22:15:42.472 INFO (MainThread) [homeassistant.setup] Setup of domain shopping_list took 0.00 seconds
-2025-12-11 22:15:42.472 INFO (MainThread) [homeassistant.setup] Setting up input_datetime
-2025-12-11 22:15:42.472 INFO (MainThread) [homeassistant.setup] Setup of domain input_datetime took 0.00 seconds
-2025-12-11 22:15:42.472 INFO (MainThread) [homeassistant.setup] Setting up my
-2025-12-11 22:15:42.472 INFO (MainThread) [homeassistant.setup] Setup of domain my took 0.00 seconds
-2025-12-11 22:15:42.496 INFO (MainThread) [homeassistant.setup] Setting up go2rtc
-2025-12-11 22:15:42.497 INFO (MainThread) [homeassistant.setup] Setup of domain go2rtc took 0.00 seconds
-2025-12-11 22:15:42.500 INFO (MainThread) [homeassistant.setup] Setting up hardware
-2025-12-11 22:15:42.501 INFO (MainThread) [homeassistant.setup] Setting up counter
-2025-12-11 22:15:42.501 INFO (MainThread) [homeassistant.setup] Setup of domain counter took 0.00 seconds
-2025-12-11 22:15:42.506 INFO (MainThread) [homeassistant.setup] Setting up tag
-2025-12-11 22:15:42.506 INFO (MainThread) [homeassistant.setup] Setup of domain tag took 0.00 seconds
-2025-12-11 22:15:42.512 INFO (MainThread) [homeassistant.setup] Setting up schedule
-2025-12-11 22:15:42.512 INFO (MainThread) [homeassistant.setup] Setup of domain schedule took 0.00 seconds
-2025-12-11 22:15:42.513 INFO (MainThread) [homeassistant.setup] Setup of domain hardware took 0.01 seconds
-2025-12-11 22:15:42.515 INFO (MainThread) [homeassistant.setup] Setting up usage_prediction
-2025-12-11 22:15:42.515 INFO (MainThread) [homeassistant.setup] Setup of domain usage_prediction took 0.00 seconds
-2025-12-11 22:15:42.518 INFO (MainThread) [homeassistant.setup] Setting up energy
-2025-12-11 22:15:42.519 INFO (MainThread) [homeassistant.setup] Setup of domain energy took 0.00 seconds
-2025-12-11 22:15:42.520 INFO (MainThread) [homeassistant.setup] Setting up homeassistant_alerts
-2025-12-11 22:15:42.520 INFO (MainThread) [homeassistant.setup] Setup of domain homeassistant_alerts took 0.00 seconds
-2025-12-11 22:15:42.523 INFO (MainThread) [homeassistant.setup] Setting up adaptive_hvac
-2025-12-11 22:15:42.523 INFO (MainThread) [homeassistant.setup] Setup of domain adaptive_hvac took 0.00 seconds
-2025-12-11 22:15:42.523 DEBUG (MainThread) [custom_components.adaptive_hvac.storage] Storage loaded data: {'zones': {'01KC45CM2NHGM8VCDS1DKCDKQP': {'active': True, 'week_profile': [{'start': '09:00', 'end': '17:00', 'days': ['mon']}], 'overlays': [], 'climate_entity_id': 'climate.study', 'current_temp': 20, 'target_temp': 18, 'hvac_action': 'idle', 'hvac_mode': 'heat', 'override_end': None}, '01KC4W5TBY6RZGTARJFYHSC5VX': {'active': False, 'week_profile': [], 'overlays': []}, '01KC6YX6KTJW7DCJ9H5NY7KPA4': {'active': True, 'week_profile': [{'start': '09:00', 'end': '17:00', 'days': ['wed']}, {'start': '09:00', 'end': '17:00', 'days': ['wed']}, {'start': '09:00', 'end': '17:03', 'days': ['sat']}, {'start': '01:00', 'end': '06:00', 'days': ['thu']}, {'start': '09:00', 'end': '17:00', 'days': ['thu']}], 'overlays': [], 'rescheduling_delay': 30, 'climate_entity_id': 'climate.bedroom', 'current_temp': 18, 'target_temp': 18, 'hvac_action': 'heating', 'hvac_mode': 'heat', 'override_end': None}}}
-2025-12-11 22:15:42.523 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Setting up HvacCoordinator for climate.study
-2025-12-11 22:15:42.523 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.study
-2025-12-11 22:15:42.524 INFO (MainThread) [custom_components.adaptive_hvac.coordinator] Adjusting Mode climate.study: None -> heat
-2025-12-11 22:15:42.524 WARNING (MainThread) [homeassistant.helpers.service] Referenced entities climate.study are missing or not currently available
-2025-12-11 22:15:42.524 INFO (MainThread) [custom_components.adaptive_hvac.coordinator] Adjusting Temp climate.study: None -> 18.0
-2025-12-11 22:15:42.524 WARNING (MainThread) [homeassistant.helpers.service] Referenced entities climate.study are missing or not currently available
-2025-12-11 22:15:42.524 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Setting up HvacCoordinator for climate.bedroom
-2025-12-11 22:15:42.524 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.bedroom
-2025-12-11 22:15:42.524 INFO (MainThread) [custom_components.adaptive_hvac.coordinator] Adjusting Mode climate.bedroom: None -> heat
-2025-12-11 22:15:42.524 WARNING (MainThread) [homeassistant.helpers.service] Referenced entities climate.bedroom are missing or not currently available
-2025-12-11 22:15:42.524 INFO (MainThread) [custom_components.adaptive_hvac.coordinator] Adjusting Temp climate.bedroom: None -> 18.0
-2025-12-11 22:15:42.524 WARNING (MainThread) [homeassistant.helpers.service] Referenced entities climate.bedroom are missing or not currently available
-2025-12-11 22:15:42.526 INFO (MainThread) [homeassistant.setup] Setting up input_text
-2025-12-11 22:15:42.527 INFO (MainThread) [homeassistant.setup] Setup of domain input_text took 0.00 seconds
-2025-12-11 22:15:42.556 INFO (MainThread) [homeassistant.setup] Setting up template
-2025-12-11 22:15:42.556 INFO (MainThread) [homeassistant.setup] Setup of domain template took 0.00 seconds
-2025-12-11 22:15:42.556 INFO (MainThread) [homeassistant.components.climate] Setting up generic_thermostat.climate
-2025-12-11 22:15:42.557 INFO (MainThread) [homeassistant.components.sensor] Setting up template.sensor
-2025-12-11 22:15:42.557 INFO (MainThread) [homeassistant.components.sensor] Setting up template.sensor
-2025-12-11 22:15:42.557 INFO (MainThread) [homeassistant.components.climate] Setting up generic_thermostat.climate
-2025-12-11 22:15:42.557 INFO (MainThread) [custom_components.adaptive_hvac.coordinator] Manual override detected on climate.study. Pausing for 30 min.
-2025-12-11 22:15:42.557 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.study
-2025-12-11 22:15:42.557 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Skipping enforcement due to manual override (expires 2025-12-11 22:45:42.557907+00:00)
-2025-12-11 22:15:42.558 INFO (MainThread) [custom_components.adaptive_hvac.coordinator] Manual override detected on climate.bedroom. Pausing for 30 min.
-2025-12-11 22:15:42.558 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.bedroom
-2025-12-11 22:15:42.558 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Skipping enforcement due to manual override (expires 2025-12-11 22:45:42.558745+00:00)
-2025-12-11 22:15:42.559 INFO (MainThread) [homeassistant.setup] Setting up todo
-2025-12-11 22:15:42.560 INFO (MainThread) [homeassistant.setup] Setup of domain todo took 0.00 seconds
-2025-12-11 22:15:42.560 INFO (MainThread) [homeassistant.components.todo] Setting up shopping_list.todo
-2025-12-11 22:15:42.562 INFO (MainThread) [homeassistant.components.sensor] Setting up energy.sensor
-2025-12-11 22:15:42.564 INFO (MainThread) [homeassistant.setup] Setting up analytics
-2025-12-11 22:15:42.564 INFO (MainThread) [homeassistant.setup] Setup of domain analytics took 0.00 seconds
-2025-12-11 22:15:42.705 INFO (SyncWorker_3) [homeassistant.util.package] Attempting install of gTTS==2.5.3
-2025-12-11 22:15:42.710 INFO (MainThread) [homeassistant.setup] Setting up met
-2025-12-11 22:15:42.710 INFO (MainThread) [homeassistant.setup] Setup of domain met took 0.00 seconds
-2025-12-11 22:15:42.921 INFO (MainThread) [homeassistant.setup] Setting up weather
-2025-12-11 22:15:42.921 INFO (MainThread) [homeassistant.setup] Setup of domain weather took 0.00 seconds
-2025-12-11 22:15:42.921 INFO (MainThread) [homeassistant.components.weather] Setting up met.weather
-2025-12-11 22:15:43.023 INFO (MainThread) [homeassistant.setup] Setting up google_translate
-2025-12-11 22:15:43.023 INFO (MainThread) [homeassistant.setup] Setup of domain google_translate took 0.00 seconds
-2025-12-11 22:15:43.024 INFO (SyncWorker_0) [homeassistant.util.package] Attempting install of file-read-backwards==2.0.0
-2025-12-11 22:15:43.032 INFO (MainThread) [homeassistant.components.tts] Setting up google_translate.tts
-2025-12-11 22:15:43.162 INFO (MainThread) [homeassistant.setup] Setting up file
-2025-12-11 22:15:43.162 INFO (MainThread) [homeassistant.setup] Setup of domain file took 0.00 seconds
-2025-12-11 22:15:43.163 INFO (SyncWorker_1) [homeassistant.util.package] Attempting install of av==16.0.1
-2025-12-11 22:15:43.303 INFO (MainThread) [homeassistant.setup] Setting up stream
-2025-12-11 22:15:43.306 INFO (SyncWorker_2) [homeassistant.util.package] Attempting install of radios==0.3.2
-2025-12-11 22:15:43.332 INFO (MainThread) [homeassistant.setup] Setup of domain stream took 0.03 seconds
-2025-12-11 22:15:43.559 INFO (SyncWorker_5) [homeassistant.util.package] Attempting install of PyNaCl==1.6.0
-2025-12-11 22:15:43.615 INFO (MainThread) [homeassistant.setup] Setting up radio_browser
-2025-12-11 22:15:43.615 INFO (MainThread) [homeassistant.setup] Setup of domain radio_browser took 0.00 seconds
-2025-12-11 22:15:43.786 INFO (MainThread) [homeassistant.setup] Setting up mobile_app
-2025-12-11 22:15:43.786 INFO (MainThread) [homeassistant.setup] Setting up notify
-2025-12-11 22:15:43.787 INFO (MainThread) [homeassistant.setup] Setup of domain notify took 0.00 seconds
-2025-12-11 22:15:43.787 INFO (MainThread) [homeassistant.setup] Setup of domain mobile_app took 0.00 seconds
-2025-12-11 22:15:43.787 INFO (MainThread) [homeassistant.components.notify] Setting up notify.mobile_app
-2025-12-11 22:15:43.788 INFO (MainThread) [homeassistant.setup] Setting up default_config
-2025-12-11 22:15:43.788 INFO (MainThread) [homeassistant.setup] Setup of domain default_config took 0.00 seconds
-2025-12-11 22:15:43.789 INFO (MainThread) [homeassistant.bootstrap] Home Assistant initialized in 5.60s
-2025-12-11 22:15:43.790 INFO (MainThread) [homeassistant.core] Starting Home Assistant 2025.12.2
-2025-12-11 22:15:43.794 INFO (MainThread) [custom_components.adaptive_hvac.coordinator] Manual override detected on climate.bedroom. Pausing for 30 min.
-2025-12-11 22:15:43.794 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.bedroom
-2025-12-11 22:15:43.794 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Skipping enforcement due to manual override (expires 2025-12-11 22:45:43.794435+00:00)
-2025-12-11 22:15:43.796 INFO (MainThread) [custom_components.adaptive_hvac.coordinator] Manual override detected on climate.study. Pausing for 30 min.
-2025-12-11 22:15:43.796 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.study
-2025-12-11 22:15:43.796 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Skipping enforcement due to manual override (expires 2025-12-11 22:45:43.796778+00:00)
-2025-12-11 22:15:43.801 INFO (SyncWorker_4) [homeassistant.loader] Loaded samsungtv from homeassistant.components.samsungtv
-2025-12-11 22:15:43.803 INFO (SyncWorker_1) [homeassistant.loader] Loaded cast from homeassistant.components.cast
-2025-12-11 22:15:43.818 INFO (SyncWorker_6) [homeassistant.loader] Loaded esphome from homeassistant.components.esphome
-2025-12-11 22:15:43.818 INFO (SyncWorker_1) [homeassistant.loader] Loaded home_connect from homeassistant.components.home_connect
-2025-12-11 22:15:43.819 INFO (SyncWorker_1) [homeassistant.loader] Loaded apple_tv from homeassistant.components.apple_tv
-2025-12-11 22:15:43.822 INFO (SyncWorker_6) [homeassistant.loader] Loaded smlight from homeassistant.components.smlight
-2025-12-11 22:15:43.824 INFO (SyncWorker_3) [homeassistant.util.package] Attempting install of getmac==0.9.5
-2025-12-11 22:15:43.824 INFO (SyncWorker_4) [homeassistant.loader] Loaded brother from homeassistant.components.brother
-2025-12-11 22:15:43.827 INFO (SyncWorker_1) [homeassistant.loader] Loaded androidtv_remote from homeassistant.components.androidtv_remote
-2025-12-11 22:15:43.829 INFO (SyncWorker_0) [homeassistant.loader] Loaded ipp from homeassistant.components.ipp
-2025-12-11 22:15:43.831 INFO (SyncWorker_7) [homeassistant.loader] Loaded zha from homeassistant.components.zha
-2025-12-11 22:15:43.842 INFO (SyncWorker_6) [homeassistant.loader] Loaded homeassistant_hardware from homeassistant.components.homeassistant_hardware
-2025-12-11 22:15:44.437 INFO (SyncWorker_3) [homeassistant.util.package] Attempting install of samsungctl[websocket]==0.7.1
-2025-12-11 22:15:44.695 INFO (SyncWorker_3) [homeassistant.util.package] Attempting install of samsungtvws[async,encrypted]==2.7.2
-2025-12-11 22:15:44.785 INFO (SyncWorker_1) [homeassistant.loader] Loaded shelly from homeassistant.components.shelly
-2025-12-11 22:15:45.333 INFO (SyncWorker_3) [homeassistant.util.package] Attempting install of wakeonlan==3.1.0
-2025-12-11 22:15:45.562 INFO (SyncWorker_6) [homeassistant.util.package] Attempting install of aioesphomeapi==42.9.0
-2025-12-11 22:15:45.577 INFO (SyncWorker_4) [homeassistant.loader] Loaded homekit_controller from homeassistant.components.homekit_controller
-2025-12-11 22:15:45.579 INFO (SyncWorker_1) [homeassistant.loader] Loaded bluetooth_adapters from homeassistant.components.bluetooth_adapters
-2025-12-11 22:15:45.854 INFO (SyncWorker_6) [homeassistant.util.package] Attempting install of esphome-dashboard-api==1.3.0
-2025-12-11 22:15:46.088 INFO (SyncWorker_6) [homeassistant.util.package] Attempting install of bleak-esphome==3.4.0
-2025-12-11 22:15:46.416 INFO (SyncWorker_3) [homeassistant.loader] Loaded mqtt from homeassistant.components.mqtt
-2025-12-11 22:15:46.418 INFO (SyncWorker_4) [homeassistant.util.package] Attempting install of aiohomeconnect==0.23.1
-2025-12-11 22:15:46.669 INFO (SyncWorker_1) [homeassistant.util.package] Attempting install of pyatv==0.16.1;python_version<'3.14'
-2025-12-11 22:15:47.242 INFO (SyncWorker_2) [homeassistant.util.package] Attempting install of pysmlight==0.2.11
-2025-12-11 22:15:47.517 INFO (SyncWorker_0) [homeassistant.util.package] Attempting install of brother==6.0.0
-2025-12-11 22:15:47.688 INFO (SyncWorker_5) [homeassistant.loader] Loaded snmp from homeassistant.components.snmp
-2025-12-11 22:15:47.689 INFO (SyncWorker_7) [homeassistant.util.package] Attempting install of androidtvremote2==0.2.3
-2025-12-11 22:15:47.927 INFO (SyncWorker_6) [homeassistant.util.package] Attempting install of pyipp==0.17.0
-2025-12-11 22:15:48.136 INFO (SyncWorker_3) [homeassistant.util.package] Attempting install of universal-silabs-flasher==0.1.2
-2025-12-11 22:15:48.431 INFO (SyncWorker_3) [homeassistant.util.package] Attempting install of ha-silabs-firmware-client==0.3.0
-2025-12-11 22:15:48.665 INFO (MainThread) [homeassistant.setup] Setting up homeassistant_hardware
-2025-12-11 22:15:48.667 INFO (SyncWorker_4) [homeassistant.util.package] Attempting install of aioshelly==13.22.0
-2025-12-11 22:15:48.974 INFO (SyncWorker_0) [homeassistant.loader] Loaded ruuvi_gateway from homeassistant.components.ruuvi_gateway
-2025-12-11 22:15:48.977 INFO (SyncWorker_5) [homeassistant.util.package] Attempting install of zha==0.0.80
-2025-12-11 22:15:49.368 INFO (SyncWorker_6) [homeassistant.util.package] Attempting install of aioruuvigateway==0.1.0
-2025-12-11 22:15:50.177 INFO (MainThread) [homeassistant.setup] Setting up bluetooth_adapters
-2025-12-11 22:15:50.179 INFO (SyncWorker_1) [homeassistant.util.package] Attempting install of aiohomekit==3.2.20
-2025-12-11 22:15:50.505 INFO (SyncWorker_2) [homeassistant.loader] Loaded thread from homeassistant.components.thread
-2025-12-11 22:15:50.509 INFO (SyncWorker_0) [homeassistant.util.package] Attempting install of python-otbr-api==2.7.0
-2025-12-11 22:15:50.764 INFO (SyncWorker_0) [homeassistant.util.package] Attempting install of pyroute2==0.7.5
-2025-12-11 22:15:56.006 INFO (SyncWorker_4) [homeassistant.loader] Loaded unifiprotect from homeassistant.components.unifiprotect
-2025-12-11 22:15:56.008 INFO (SyncWorker_3) [homeassistant.util.package] Attempting install of uiprotect==7.33.2
-2025-12-11 22:15:56.281 INFO (SyncWorker_3) [homeassistant.util.package] Attempting install of unifi-discovery==1.2.0
-2025-12-11 22:16:39.377 INFO (MainThread) [custom_components.adaptive_hvac.coordinator] Manual override detected on climate.bedroom. Pausing for 30 min.
-2025-12-11 22:16:39.377 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.bedroom
-2025-12-11 22:16:39.377 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Skipping enforcement due to manual override (expires 2025-12-11 22:46:39.377605+00:00)
-2025-12-11 22:16:40.079 INFO (MainThread) [custom_components.adaptive_hvac.coordinator] Manual override detected on climate.bedroom. Pausing for 30 min.
-2025-12-11 22:16:40.079 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.bedroom
-2025-12-11 22:16:40.080 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Skipping enforcement due to manual override (expires 2025-12-11 22:46:40.079970+00:00)
-2025-12-11 22:16:41.799 INFO (MainThread) [custom_components.adaptive_hvac.coordinator] Manual override detected on climate.bedroom. Pausing for 30 min.
-2025-12-11 22:16:41.799 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.bedroom
-2025-12-11 22:16:41.799 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Skipping enforcement due to manual override (expires 2025-12-11 22:46:41.799563+00:00)
-2025-12-11 22:16:41.799 INFO (MainThread) [custom_components.adaptive_hvac.coordinator] Manual override detected on climate.bedroom. Pausing for 30 min.
-2025-12-11 22:16:41.799 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.bedroom
-2025-12-11 22:16:41.799 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Skipping enforcement due to manual override (expires 2025-12-11 22:46:41.799718+00:00)
-2025-12-11 22:16:42.525 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.study
-2025-12-11 22:16:42.525 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Skipping enforcement due to manual override (expires 2025-12-11 22:45:43.796778+00:00)
-2025-12-11 22:16:42.525 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.bedroom
-2025-12-11 22:16:42.525 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Skipping enforcement due to manual override (expires 2025-12-11 22:46:41.799718+00:00)
-2025-12-11 22:16:43.942 INFO (MainThread) [custom_components.adaptive_hvac.coordinator] Manual override detected on climate.bedroom. Pausing for 30 min.
-2025-12-11 22:16:43.942 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.bedroom
-2025-12-11 22:16:43.942 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Skipping enforcement due to manual override (expires 2025-12-11 22:46:43.942828+00:00)
-2025-12-11 22:16:43.942 INFO (MainThread) [custom_components.adaptive_hvac.coordinator] Manual override detected on climate.bedroom. Pausing for 30 min.
-2025-12-11 22:16:43.943 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.bedroom
-2025-12-11 22:16:43.943 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Skipping enforcement due to manual override (expires 2025-12-11 22:46:43.943013+00:00)
-2025-12-11 22:16:45.721 INFO (MainThread) [custom_components.adaptive_hvac.coordinator] Manual override detected on climate.study. Pausing for 30 min.
-2025-12-11 22:16:45.721 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.study
-2025-12-11 22:16:45.721 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Skipping enforcement due to manual override (expires 2025-12-11 22:46:45.721409+00:00)
-2025-12-11 22:16:46.179 INFO (MainThread) [custom_components.adaptive_hvac.coordinator] Manual override detected on climate.study. Pausing for 30 min.
-2025-12-11 22:16:46.179 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.study
-2025-12-11 22:16:46.179 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Skipping enforcement due to manual override (expires 2025-12-11 22:46:46.179626+00:00)
-2025-12-11 22:16:46.800 INFO (MainThread) [custom_components.adaptive_hvac.coordinator] Manual override detected on climate.study. Pausing for 30 min.
-2025-12-11 22:16:46.800 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.study
-2025-12-11 22:16:46.800 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Skipping enforcement due to manual override (expires 2025-12-11 22:46:46.800486+00:00)
-2025-12-11 22:16:46.801 INFO (MainThread) [custom_components.adaptive_hvac.coordinator] Manual override detected on climate.study. Pausing for 30 min.
-2025-12-11 22:16:46.801 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.study
-2025-12-11 22:16:46.801 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Skipping enforcement due to manual override (expires 2025-12-11 22:46:46.801098+00:00)
-2025-12-11 22:17:42.525 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.study
-2025-12-11 22:17:42.526 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Skipping enforcement due to manual override (expires 2025-12-11 22:46:46.801098+00:00)
-2025-12-11 22:17:42.526 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.bedroom
-2025-12-11 22:17:42.526 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Skipping enforcement due to manual override (expires 2025-12-11 22:46:43.943013+00:00)
-2025-12-11 22:18:42.526 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.study
-2025-12-11 22:18:42.526 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Skipping enforcement due to manual override (expires 2025-12-11 22:46:46.801098+00:00)
-2025-12-11 22:18:42.526 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.bedroom
-2025-12-11 22:18:42.526 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Skipping enforcement due to manual override (expires 2025-12-11 22:46:43.943013+00:00)
-2025-12-11 22:19:42.527 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.study
-2025-12-11 22:19:42.527 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Skipping enforcement due to manual override (expires 2025-12-11 22:46:46.801098+00:00)
-2025-12-11 22:19:42.527 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.bedroom
-2025-12-11 22:19:42.527 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Skipping enforcement due to manual override (expires 2025-12-11 22:46:43.943013+00:00)
-2025-12-11 22:20:13.761 ERROR (MainThread) [homeassistant.components.websocket_api.http.connection] [129988263666496] Error handling message: required key not provided @ data['entry_id']. Got None (invalid_format) keith from ::1 (Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36)
-2025-12-11 22:20:42.528 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.study
-2025-12-11 22:20:42.528 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Skipping enforcement due to manual override (expires 2025-12-11 22:46:46.801098+00:00)
-2025-12-11 22:20:42.528 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.bedroom
-2025-12-11 22:20:42.528 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Skipping enforcement due to manual override (expires 2025-12-11 22:46:43.943013+00:00)
-2025-12-11 22:20:50.458 ERROR (MainThread) [homeassistant.components.websocket_api.http.connection] [129988263666496] Error handling message: required key not provided @ data['entry_id']. Got None (invalid_format) keith from ::1 (Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36)
-2025-12-11 22:21:42.528 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.study
-2025-12-11 22:21:42.529 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Skipping enforcement due to manual override (expires 2025-12-11 22:46:46.801098+00:00)
-2025-12-11 22:21:42.529 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.bedroom
-2025-12-11 22:21:42.529 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Skipping enforcement due to manual override (expires 2025-12-11 22:46:43.943013+00:00)
-2025-12-11 22:22:42.529 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.study
-2025-12-11 22:22:42.530 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Skipping enforcement due to manual override (expires 2025-12-11 22:46:46.801098+00:00)
-2025-12-11 22:22:42.530 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.bedroom
-2025-12-11 22:22:42.530 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Skipping enforcement due to manual override (expires 2025-12-11 22:46:43.943013+00:00)
-2025-12-11 22:22:53.773 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.bedroom
-2025-12-11 22:22:53.774 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Skipping enforcement due to manual override (expires 2025-12-11 22:46:43.943013+00:00)
-2025-12-11 22:23:38.429 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.bedroom
-2025-12-11 22:23:38.429 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Skipping enforcement due to manual override (expires 2025-12-11 22:46:43.943013+00:00)
-2025-12-11 22:23:42.530 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.study
-2025-12-11 22:23:42.531 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Skipping enforcement due to manual override (expires 2025-12-11 22:46:46.801098+00:00)
-2025-12-11 22:23:42.531 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.bedroom
-2025-12-11 22:23:42.531 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Skipping enforcement due to manual override (expires 2025-12-11 22:46:43.943013+00:00)
-2025-12-11 22:24:11.984 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.bedroom
-2025-12-11 22:24:11.984 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Skipping enforcement due to manual override (expires 2025-12-11 22:46:43.943013+00:00)
-2025-12-11 22:24:42.531 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.study
-2025-12-11 22:24:42.531 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Skipping enforcement due to manual override (expires 2025-12-11 22:46:46.801098+00:00)
-2025-12-11 22:24:42.531 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.bedroom
-2025-12-11 22:24:42.531 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Skipping enforcement due to manual override (expires 2025-12-11 22:46:43.943013+00:00)
+2025-12-11 22:35:53.058 INFO (MainThread) [homeassistant.setup] Setting up cloud
+2025-12-11 22:35:53.059 INFO (MainThread) [homeassistant.setup] Setup of domain cloud took 0.00 seconds
+2025-12-11 22:35:53.171 INFO (SyncWorker_6) [homeassistant.util.package] Attempting install of habluetooth==5.7.0
+2025-12-11 22:35:53.387 INFO (MainThread) [homeassistant.components.websocket_api.http.connection] [123701072444800] Received unknown command: adaptive_hvac/get_zone_data
+2025-12-11 22:35:53.387 INFO (MainThread) [homeassistant.components.websocket_api.http.connection] [123701072444800] Received unknown command: adaptive_hvac/get_zone_data
+2025-12-11 22:35:53.395 INFO (MainThread) [homeassistant.components.websocket_api.http.connection] [123701072444800] Received unknown command: adaptive_hvac/get_zone_data
+2025-12-11 22:35:53.398 INFO (MainThread) [homeassistant.components.websocket_api.http.connection] [123701072444800] Received unknown command: adaptive_hvac/get_zone_data
+2025-12-11 22:35:53.398 INFO (MainThread) [homeassistant.components.websocket_api.http.connection] [123701072444800] Received unknown command: adaptive_hvac/get_zone_data
+2025-12-11 22:35:53.398 INFO (MainThread) [homeassistant.components.websocket_api.http.connection] [123701072444800] Received unknown command: adaptive_hvac/get_zone_data
+2025-12-11 22:35:53.398 INFO (MainThread) [homeassistant.components.websocket_api.http.connection] [123701072444800] Received unknown command: adaptive_hvac/get_zone_data
+2025-12-11 22:35:53.398 INFO (MainThread) [homeassistant.components.websocket_api.http.connection] [123701072444800] Received unknown command: adaptive_hvac/get_zone_data
+2025-12-11 22:35:53.399 INFO (MainThread) [homeassistant.components.websocket_api.http.connection] [123701072444800] Received unknown command: adaptive_hvac/get_zone_data
+2025-12-11 22:35:53.399 INFO (MainThread) [homeassistant.components.websocket_api.http.connection] [123701072444800] Received unknown command: adaptive_hvac/get_zone_data
+2025-12-11 22:35:53.415 INFO (MainThread) [homeassistant.components.websocket_api.http.connection] [123701072444800] Received unknown command: adaptive_hvac/get_zone_data
+2025-12-11 22:35:53.415 INFO (MainThread) [homeassistant.components.websocket_api.http.connection] [123701072444800] Received unknown command: adaptive_hvac/get_zone_data
+2025-12-11 22:35:53.466 INFO (MainThread) [homeassistant.setup] Setting up bluetooth
+2025-12-11 22:35:53.502 ERROR (MainThread) [habluetooth.manager] Missing required permissions for Bluetooth management: Missing NET_ADMIN/NET_RAW capabilities for Bluetooth management. Automatic adapter recovery is unavailable. Add NET_ADMIN and NET_RAW capabilities to the container to enable it
+2025-12-11 22:35:53.503 INFO (MainThread) [habluetooth.channels.bluez] Bluetooth management socket connection closed
+2025-12-11 22:35:53.504 INFO (MainThread) [homeassistant.setup] Setup of domain bluetooth took 0.04 seconds
+2025-12-11 22:35:53.512 INFO (MainThread) [homeassistant.bootstrap] Setting up stage 2: {'input_button', 'input_text', 'person', 'hardware', 'google_translate', 'input_boolean', 'adaptive_hvac', 'climate', 'schedule', 'input_datetime', 'system_health', 'timer', 'default_config', 'counter', 'met', 'automation', 'application_credentials', 'zone', 'analytics', 'radio_browser', 'script', 'template', 'tag', 'scene', 'input_number', 'input_select', 'shopping_list', 'sun'}; already set up: {'logger', 'bluetooth', 'backup', 'labs', 'frontend', 'network'}
+Dependencies: {'panel_custom', 'go2rtc', 'logbook', 'my', 'camera', 'energy', 'media_source', 'stream', 'image_upload', 'history', 'blueprint', 'homeassistant_alerts', 'usage_prediction', 'mobile_app', 'file', 'trace'}; already set up: {'lovelace', 'bluetooth', 'ffmpeg', 'repairs', 'network', 'wake_word', 'assist_pipeline', 'api', 'recorder', 'stt', 'cloud', 'device_automation', 'config', 'auth', 'intent', 'file_upload', 'diagnostics', 'system_log', 'dhcp', 'onboarding', 'usb', 'webhook', 'search', 'zeroconf', 'http', 'tts', 'backup', 'ssdp', 'websocket_api', 'frontend', 'conversation'}
+2025-12-11 22:35:53.513 INFO (MainThread) [homeassistant.setup] Setting up camera
+2025-12-11 22:35:53.514 INFO (MainThread) [homeassistant.setup] Setup of domain camera took 0.00 seconds
+2025-12-11 22:35:53.514 INFO (MainThread) [homeassistant.setup] Setting up scene
+2025-12-11 22:35:53.514 INFO (MainThread) [homeassistant.components.scene] Setting up homeassistant.scene
+2025-12-11 22:35:53.515 INFO (MainThread) [homeassistant.setup] Setup of domain scene took 0.00 seconds
+2025-12-11 22:35:53.515 INFO (MainThread) [homeassistant.setup] Setting up input_button
+2025-12-11 22:35:53.516 INFO (MainThread) [homeassistant.setup] Setup of domain input_button took 0.00 seconds
+2025-12-11 22:35:53.516 INFO (MainThread) [homeassistant.setup] Setting up media_source
+2025-12-11 22:35:53.516 INFO (MainThread) [homeassistant.setup] Setup of domain media_source took 0.00 seconds
+2025-12-11 22:35:53.516 INFO (MainThread) [homeassistant.setup] Setting up image_upload
+2025-12-11 22:35:53.518 INFO (MainThread) [homeassistant.setup] Setup of domain image_upload took 0.00 seconds
+2025-12-11 22:35:53.518 INFO (MainThread) [homeassistant.setup] Setting up zone
+2025-12-11 22:35:53.519 INFO (MainThread) [homeassistant.setup] Setup of domain zone took 0.00 seconds
+2025-12-11 22:35:53.519 INFO (MainThread) [homeassistant.setup] Setting up person
+2025-12-11 22:35:53.520 INFO (MainThread) [homeassistant.setup] Setting up input_boolean
+2025-12-11 22:35:53.520 INFO (MainThread) [homeassistant.setup] Setting up panel_custom
+2025-12-11 22:35:53.520 INFO (MainThread) [homeassistant.setup] Setup of domain panel_custom took 0.00 seconds
+2025-12-11 22:35:53.520 INFO (MainThread) [homeassistant.setup] Setting up stream
+2025-12-11 22:35:53.520 INFO (MainThread) [homeassistant.setup] Setting up timer
+2025-12-11 22:35:53.521 INFO (MainThread) [homeassistant.setup] Setup of domain timer took 0.00 seconds
+2025-12-11 22:35:53.521 INFO (MainThread) [homeassistant.setup] Setting up system_health
+2025-12-11 22:35:53.522 INFO (MainThread) [homeassistant.setup] Setup of domain system_health took 0.00 seconds
+2025-12-11 22:35:53.522 INFO (MainThread) [homeassistant.setup] Setting up trace
+2025-12-11 22:35:53.522 INFO (MainThread) [homeassistant.setup] Setup of domain trace took 0.00 seconds
+2025-12-11 22:35:53.522 INFO (MainThread) [homeassistant.setup] Setting up history
+2025-12-11 22:35:53.522 INFO (MainThread) [homeassistant.setup] Setup of domain history took 0.00 seconds
+2025-12-11 22:35:53.522 INFO (MainThread) [homeassistant.setup] Setting up logbook
+2025-12-11 22:35:53.523 INFO (MainThread) [homeassistant.setup] Setup of domain logbook took 0.00 seconds
+2025-12-11 22:35:53.524 INFO (MainThread) [homeassistant.setup] Setting up blueprint
+2025-12-11 22:35:53.524 INFO (MainThread) [homeassistant.setup] Setup of domain blueprint took 0.00 seconds
+2025-12-11 22:35:53.525 INFO (MainThread) [homeassistant.setup] Setting up automation
+2025-12-11 22:35:53.526 INFO (MainThread) [homeassistant.setup] Setup of domain automation took 0.00 seconds
+2025-12-11 22:35:53.528 INFO (MainThread) [homeassistant.setup] Setting up script
+2025-12-11 22:35:53.530 INFO (MainThread) [homeassistant.setup] Setup of domain script took 0.00 seconds
+2025-12-11 22:35:53.531 INFO (MainThread) [homeassistant.setup] Setting up input_number
+2025-12-11 22:35:53.531 INFO (MainThread) [homeassistant.setup] Setting up input_select
+2025-12-11 22:35:53.532 INFO (MainThread) [homeassistant.setup] Setup of domain input_select took 0.00 seconds
+2025-12-11 22:35:53.534 INFO (MainThread) [homeassistant.setup] Setup of domain person took 0.01 seconds
+2025-12-11 22:35:53.534 INFO (MainThread) [homeassistant.setup] Setup of domain input_boolean took 0.01 seconds
+2025-12-11 22:35:53.535 INFO (MainThread) [homeassistant.setup] Setup of domain input_number took 0.00 seconds
+2025-12-11 22:35:53.557 INFO (MainThread) [homeassistant.setup] Setting up climate
+2025-12-11 22:35:53.557 INFO (MainThread) [homeassistant.setup] Setting up switch
+2025-12-11 22:35:53.557 INFO (MainThread) [homeassistant.setup] Setup of domain switch took 0.00 seconds
+2025-12-11 22:35:53.562 INFO (MainThread) [homeassistant.setup] Setup of domain climate took 0.00 seconds
+2025-12-11 22:35:53.571 INFO (MainThread) [homeassistant.setup] Setting up input_text
+2025-12-11 22:35:53.572 INFO (MainThread) [homeassistant.setup] Setup of domain input_text took 0.00 seconds
+2025-12-11 22:35:53.617 INFO (MainThread) [homeassistant.setup] Setting up usage_prediction
+2025-12-11 22:35:53.617 INFO (MainThread) [homeassistant.setup] Setup of domain usage_prediction took 0.00 seconds
+2025-12-11 22:35:53.617 INFO (MainThread) [homeassistant.setup] Setting up hardware
+2025-12-11 22:35:53.636 INFO (MainThread) [homeassistant.setup] Setup of domain stream took 0.12 seconds
+2025-12-11 22:35:53.636 INFO (MainThread) [homeassistant.setup] Setup of domain hardware took 0.02 seconds
+2025-12-11 22:35:53.641 INFO (MainThread) [homeassistant.setup] Setting up file
+2025-12-11 22:35:53.641 INFO (MainThread) [homeassistant.setup] Setup of domain file took 0.00 seconds
+2025-12-11 22:35:53.641 INFO (MainThread) [homeassistant.setup] Setting up google_translate
+2025-12-11 22:35:53.641 INFO (MainThread) [homeassistant.setup] Setup of domain google_translate took 0.00 seconds
+2025-12-11 22:35:53.651 INFO (MainThread) [homeassistant.setup] Setting up adaptive_hvac
+2025-12-11 22:35:53.651 INFO (MainThread) [homeassistant.setup] Setup of domain adaptive_hvac took 0.00 seconds
+2025-12-11 22:35:53.651 DEBUG (MainThread) [custom_components.adaptive_hvac.storage] Storage loaded data: {'zones': {'01KC45CM2NHGM8VCDS1DKCDKQP': {'active': True, 'week_profile': [{'start': '09:00', 'end': '17:00', 'days': ['mon']}], 'overlays': [], 'climate_entity_id': 'climate.study', 'current_temp': 20, 'target_temp': 18, 'hvac_action': 'idle', 'hvac_mode': 'heat', 'override_end': None}, '01KC4W5TBY6RZGTARJFYHSC5VX': {'active': False, 'week_profile': [], 'overlays': []}, '01KC6YX6KTJW7DCJ9H5NY7KPA4': {'overlays': [{'id': 'overlay_1765491823325', 'name': 'atest', 'trigger_entity': 'input_boolean.fake_window', 'trigger_state': 'on', 'type': 'absolute', 'action': {'hvac_mode': 'off'}, 'active': True}]}}}
+2025-12-11 22:35:53.651 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Setting up HvacCoordinator for climate.study
+2025-12-11 22:35:53.651 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.study
+2025-12-11 22:35:53.652 INFO (MainThread) [custom_components.adaptive_hvac.coordinator] Adjusting Mode climate.study: None -> heat
+2025-12-11 22:35:53.652 WARNING (MainThread) [homeassistant.helpers.service] Referenced entities climate.study are missing or not currently available
+2025-12-11 22:35:53.652 INFO (MainThread) [custom_components.adaptive_hvac.coordinator] Adjusting Temp climate.study: None -> 18.0
+2025-12-11 22:35:53.652 WARNING (MainThread) [homeassistant.helpers.service] Referenced entities climate.study are missing or not currently available
+2025-12-11 22:35:53.652 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Setting up HvacCoordinator for climate.bedroom
+2025-12-11 22:35:53.652 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Listening to overlay triggers: {'input_boolean.fake_window'}
+2025-12-11 22:35:53.652 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.bedroom
+2025-12-11 22:35:53.652 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Absolute overlay enforced OFF
+2025-12-11 22:35:53.652 INFO (MainThread) [custom_components.adaptive_hvac.coordinator] Adjusting Mode climate.bedroom: None -> off
+2025-12-11 22:35:53.652 WARNING (MainThread) [homeassistant.helpers.service] Referenced entities climate.bedroom are missing or not currently available
+2025-12-11 22:35:53.652 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] State is correct (Mode: None, Temp: None)
+2025-12-11 22:35:53.653 INFO (MainThread) [homeassistant.setup] Setting up schedule
+2025-12-11 22:35:53.653 INFO (MainThread) [homeassistant.setup] Setup of domain schedule took 0.00 seconds
+2025-12-11 22:35:53.653 INFO (MainThread) [homeassistant.setup] Setting up input_datetime
+2025-12-11 22:35:53.654 INFO (MainThread) [homeassistant.setup] Setup of domain input_datetime took 0.00 seconds
+2025-12-11 22:35:53.654 INFO (MainThread) [homeassistant.setup] Setting up tag
+2025-12-11 22:35:53.654 INFO (MainThread) [homeassistant.setup] Setup of domain tag took 0.00 seconds
+2025-12-11 22:35:53.703 INFO (MainThread) [homeassistant.setup] Setting up energy
+2025-12-11 22:35:53.704 INFO (MainThread) [homeassistant.setup] Setup of domain energy took 0.00 seconds
+2025-12-11 22:35:53.722 INFO (MainThread) [homeassistant.setup] Setting up go2rtc
+2025-12-11 22:35:53.723 INFO (MainThread) [homeassistant.setup] Setup of domain go2rtc took 0.00 seconds
+2025-12-11 22:35:53.726 INFO (MainThread) [homeassistant.setup] Setting up homeassistant_alerts
+2025-12-11 22:35:53.726 INFO (MainThread) [homeassistant.setup] Setup of domain homeassistant_alerts took 0.00 seconds
+2025-12-11 22:35:53.727 INFO (MainThread) [homeassistant.setup] Setting up my
+2025-12-11 22:35:53.727 INFO (MainThread) [homeassistant.setup] Setup of domain my took 0.00 seconds
+2025-12-11 22:35:53.729 INFO (MainThread) [homeassistant.setup] Setting up sun
+2025-12-11 22:35:53.730 INFO (MainThread) [homeassistant.setup] Setup of domain sun took 0.00 seconds
+2025-12-11 22:35:53.731 INFO (MainThread) [homeassistant.setup] Setting up binary_sensor
+2025-12-11 22:35:53.731 INFO (MainThread) [homeassistant.setup] Setup of domain binary_sensor took 0.00 seconds
+2025-12-11 22:35:53.732 INFO (MainThread) [homeassistant.components.binary_sensor] Setting up sun.binary_sensor
+2025-12-11 22:35:53.732 INFO (MainThread) [homeassistant.components.sensor] Setting up sun.sensor
+2025-12-11 22:35:53.736 INFO (MainThread) [homeassistant.setup] Setting up counter
+2025-12-11 22:35:53.737 INFO (MainThread) [homeassistant.setup] Setup of domain counter took 0.00 seconds
+2025-12-11 22:35:53.740 INFO (MainThread) [homeassistant.setup] Setting up met
+2025-12-11 22:35:53.740 INFO (MainThread) [homeassistant.setup] Setup of domain met took 0.00 seconds
+2025-12-11 22:35:53.743 INFO (MainThread) [homeassistant.setup] Setting up application_credentials
+2025-12-11 22:35:53.743 INFO (MainThread) [homeassistant.setup] Setup of domain application_credentials took 0.00 seconds
+2025-12-11 22:35:53.782 INFO (MainThread) [homeassistant.setup] Setting up radio_browser
+2025-12-11 22:35:53.782 INFO (MainThread) [homeassistant.setup] Setup of domain radio_browser took 0.00 seconds
+2025-12-11 22:35:53.812 INFO (MainThread) [homeassistant.setup] Setting up template
+2025-12-11 22:35:53.812 INFO (MainThread) [homeassistant.setup] Setup of domain template took 0.00 seconds
+2025-12-11 22:35:53.813 INFO (MainThread) [homeassistant.components.sensor] Setting up template.sensor
+2025-12-11 22:35:53.813 INFO (MainThread) [homeassistant.components.sensor] Setting up template.sensor
+2025-12-11 22:35:53.817 INFO (MainThread) [homeassistant.setup] Setting up shopping_list
+2025-12-11 22:35:53.817 INFO (MainThread) [homeassistant.setup] Setup of domain shopping_list took 0.00 seconds
+2025-12-11 22:35:53.819 INFO (MainThread) [homeassistant.components.climate] Setting up generic_thermostat.climate
+2025-12-11 22:35:53.821 INFO (MainThread) [homeassistant.components.climate] Setting up generic_thermostat.climate
+2025-12-11 22:35:53.825 INFO (MainThread) [custom_components.adaptive_hvac.coordinator] Manual override detected on climate.study. Pausing for 30 min.
+2025-12-11 22:35:53.825 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.study
+2025-12-11 22:35:53.825 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Skipping enforcement due to manual override (expires 2025-12-11 23:05:53.825644+00:00)
+2025-12-11 22:35:53.826 INFO (MainThread) [custom_components.adaptive_hvac.coordinator] Manual override detected on climate.bedroom. Pausing for 30 min.
+2025-12-11 22:35:53.826 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.bedroom
+2025-12-11 22:35:53.827 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Absolute overlay enforced OFF
+2025-12-11 22:35:53.827 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] State is correct (Mode: off, Temp: 21.0)
+2025-12-11 22:35:53.831 INFO (MainThread) [homeassistant.components.tts] Setting up google_translate.tts
+2025-12-11 22:35:53.846 INFO (MainThread) [homeassistant.setup] Setting up mobile_app
+2025-12-11 22:35:53.847 INFO (MainThread) [homeassistant.setup] Setting up notify
+2025-12-11 22:35:53.848 INFO (MainThread) [homeassistant.setup] Setup of domain notify took 0.00 seconds
+2025-12-11 22:35:53.849 INFO (MainThread) [homeassistant.setup] Setup of domain mobile_app took 0.00 seconds
+2025-12-11 22:35:53.849 INFO (MainThread) [homeassistant.components.sensor] Setting up energy.sensor
+2025-12-11 22:35:53.851 INFO (MainThread) [homeassistant.components.notify] Setting up notify.mobile_app
+2025-12-11 22:35:53.852 INFO (MainThread) [homeassistant.setup] Setting up default_config
+2025-12-11 22:35:53.853 INFO (MainThread) [homeassistant.setup] Setup of domain default_config took 0.00 seconds
+2025-12-11 22:35:53.856 INFO (MainThread) [homeassistant.setup] Setting up analytics
+2025-12-11 22:35:53.856 INFO (MainThread) [homeassistant.setup] Setup of domain analytics took 0.00 seconds
+2025-12-11 22:35:53.858 INFO (MainThread) [homeassistant.setup] Setting up todo
+2025-12-11 22:35:53.859 INFO (MainThread) [homeassistant.setup] Setup of domain todo took 0.00 seconds
+2025-12-11 22:35:53.860 INFO (MainThread) [homeassistant.components.todo] Setting up shopping_list.todo
+2025-12-11 22:35:53.912 INFO (MainThread) [homeassistant.setup] Setting up weather
+2025-12-11 22:35:53.912 INFO (MainThread) [homeassistant.setup] Setup of domain weather took 0.00 seconds
+2025-12-11 22:35:53.912 INFO (MainThread) [homeassistant.components.weather] Setting up met.weather
+2025-12-11 22:35:53.943 INFO (MainThread) [homeassistant.bootstrap] Home Assistant initialized in 1.57s
+2025-12-11 22:35:53.943 INFO (MainThread) [homeassistant.core] Starting Home Assistant 2025.12.2
+2025-12-11 22:35:53.945 INFO (MainThread) [custom_components.adaptive_hvac.coordinator] Manual override detected on climate.study. Pausing for 30 min.
+2025-12-11 22:35:53.945 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.study
+2025-12-11 22:35:53.945 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Skipping enforcement due to manual override (expires 2025-12-11 23:05:53.945058+00:00)
+2025-12-11 22:35:53.945 INFO (MainThread) [custom_components.adaptive_hvac.coordinator] Manual override detected on climate.bedroom. Pausing for 30 min.
+2025-12-11 22:35:53.945 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.bedroom
+2025-12-11 22:35:53.945 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Absolute overlay enforced OFF
+2025-12-11 22:35:53.945 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] State is correct (Mode: off, Temp: 21.0)
+2025-12-11 22:35:53.954 INFO (SyncWorker_1) [homeassistant.loader] Loaded smlight from homeassistant.components.smlight
+2025-12-11 22:35:53.955 INFO (SyncWorker_0) [homeassistant.loader] Loaded cast from homeassistant.components.cast
+2025-12-11 22:35:53.955 INFO (SyncWorker_3) [homeassistant.loader] Loaded samsungtv from homeassistant.components.samsungtv
+2025-12-11 22:35:53.962 INFO (SyncWorker_2) [homeassistant.loader] Loaded zha from homeassistant.components.zha
+2025-12-11 22:35:53.971 INFO (SyncWorker_7) [homeassistant.loader] Loaded homeassistant_hardware from homeassistant.components.homeassistant_hardware
+2025-12-11 22:35:53.972 INFO (SyncWorker_3) [homeassistant.loader] Loaded apple_tv from homeassistant.components.apple_tv
+2025-12-11 22:35:53.973 INFO (SyncWorker_0) [homeassistant.loader] Loaded brother from homeassistant.components.brother
+2025-12-11 22:35:53.973 INFO (SyncWorker_2) [homeassistant.loader] Loaded esphome from homeassistant.components.esphome
+2025-12-11 22:35:53.974 INFO (SyncWorker_6) [homeassistant.loader] Loaded androidtv_remote from homeassistant.components.androidtv_remote
+2025-12-11 22:35:53.974 INFO (SyncWorker_1) [homeassistant.loader] Loaded ipp from homeassistant.components.ipp
+2025-12-11 22:35:53.974 INFO (SyncWorker_7) [homeassistant.loader] Loaded homekit_controller from homeassistant.components.homekit_controller
+2025-12-11 22:35:54.006 INFO (SyncWorker_6) [homeassistant.loader] Loaded bluetooth_adapters from homeassistant.components.bluetooth_adapters
+2025-12-11 22:35:54.010 INFO (SyncWorker_0) [homeassistant.loader] Loaded ruuvi_gateway from homeassistant.components.ruuvi_gateway
+2025-12-11 22:35:54.274 INFO (SyncWorker_7) [homeassistant.loader] Loaded home_connect from homeassistant.components.home_connect
+2025-12-11 22:35:54.286 INFO (SyncWorker_3) [homeassistant.loader] Loaded snmp from homeassistant.components.snmp
+2025-12-11 22:35:54.312 INFO (SyncWorker_1) [homeassistant.loader] Loaded mqtt from homeassistant.components.mqtt
+2025-12-11 22:35:54.361 INFO (SyncWorker_7) [homeassistant.loader] Loaded shelly from homeassistant.components.shelly
+2025-12-11 22:35:55.318 INFO (MainThread) [homeassistant.setup] Setting up homeassistant_hardware
+2025-12-11 22:35:56.136 INFO (MainThread) [homeassistant.setup] Setting up bluetooth_adapters
+2025-12-11 22:35:56.143 INFO (SyncWorker_7) [homeassistant.loader] Loaded thread from homeassistant.components.thread
+2025-12-11 22:36:06.152 INFO (MainThread) [custom_components.adaptive_hvac.coordinator] Manual override cleared by user on climate.bedroom
+2025-12-11 22:36:06.152 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.bedroom
+2025-12-11 22:36:06.153 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Absolute overlay enforced OFF
+2025-12-11 22:36:06.153 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] State is correct (Mode: off, Temp: 21.0)
+2025-12-11 22:36:06.606 INFO (SyncWorker_7) [homeassistant.loader] Loaded unifiprotect from homeassistant.components.unifiprotect
+2025-12-11 22:36:49.138 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.bedroom
+2025-12-11 22:36:49.138 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Absolute overlay enforced OFF
+2025-12-11 22:36:49.138 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] State is correct (Mode: off, Temp: 21.0)
+2025-12-11 22:36:53.653 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.study
+2025-12-11 22:36:53.653 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Skipping enforcement due to manual override (expires 2025-12-11 23:05:53.945058+00:00)
+2025-12-11 22:36:53.654 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.bedroom
+2025-12-11 22:36:53.654 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Absolute overlay enforced OFF
+2025-12-11 22:36:53.654 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] State is correct (Mode: off, Temp: 21.0)
+2025-12-11 22:37:03.403 INFO (MainThread) [custom_components.adaptive_hvac.coordinator] Manual override detected on climate.study. Pausing for 30 min.
+2025-12-11 22:37:03.403 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.study
+2025-12-11 22:37:03.403 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Skipping enforcement due to manual override (expires 2025-12-11 23:07:03.403614+00:00)
+2025-12-11 22:37:05.264 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.bedroom
+2025-12-11 22:37:05.264 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Absolute overlay enforced OFF
+2025-12-11 22:37:05.264 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] State is correct (Mode: off, Temp: 21.0)
+2025-12-11 22:37:08.037 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.bedroom
+2025-12-11 22:37:08.037 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Absolute overlay enforced OFF
+2025-12-11 22:37:08.037 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] State is correct (Mode: off, Temp: 21.0)
+2025-12-11 22:37:35.016 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Overlay trigger changed: input_boolean.fake_window
+2025-12-11 22:37:35.016 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.bedroom
+2025-12-11 22:37:35.016 INFO (MainThread) [custom_components.adaptive_hvac.coordinator] Adjusting Mode climate.bedroom: off -> heat
+2025-12-11 22:37:35.017 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] State is correct (Mode: off, Temp: 21.0)
+2025-12-11 22:37:35.017 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.bedroom
+2025-12-11 22:37:35.017 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] State is correct (Mode: heat, Temp: 21.0)
+2025-12-11 22:37:35.017 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.bedroom
+2025-12-11 22:37:35.017 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] State is correct (Mode: heat, Temp: 21.0)
+2025-12-11 22:37:43.132 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Overlay trigger changed: input_boolean.fake_window
+2025-12-11 22:37:43.132 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.bedroom
+2025-12-11 22:37:43.132 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Absolute overlay enforced OFF
+2025-12-11 22:37:43.132 INFO (MainThread) [custom_components.adaptive_hvac.coordinator] Adjusting Mode climate.bedroom: heat -> off
+2025-12-11 22:37:43.132 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] State is correct (Mode: heat, Temp: 21.0)
+2025-12-11 22:37:43.132 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.bedroom
+2025-12-11 22:37:43.132 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Absolute overlay enforced OFF
+2025-12-11 22:37:43.132 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] State is correct (Mode: off, Temp: 21.0)
+2025-12-11 22:37:45.412 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Overlay trigger changed: input_boolean.fake_window
+2025-12-11 22:37:45.412 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.bedroom
+2025-12-11 22:37:45.412 INFO (MainThread) [custom_components.adaptive_hvac.coordinator] Adjusting Mode climate.bedroom: off -> heat
+2025-12-11 22:37:45.412 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] State is correct (Mode: off, Temp: 21.0)
+2025-12-11 22:37:45.412 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.bedroom
+2025-12-11 22:37:45.412 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] State is correct (Mode: heat, Temp: 21.0)
+2025-12-11 22:37:45.413 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.bedroom
+2025-12-11 22:37:45.413 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] State is correct (Mode: heat, Temp: 21.0)
+2025-12-11 22:37:53.653 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.study
+2025-12-11 22:37:53.653 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Skipping enforcement due to manual override (expires 2025-12-11 23:07:03.403614+00:00)
+2025-12-11 22:37:53.654 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.bedroom
+2025-12-11 22:37:53.654 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] State is correct (Mode: heat, Temp: 21.0)
+2025-12-11 22:38:29.497 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.bedroom
+2025-12-11 22:38:29.497 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] State is correct (Mode: heat, Temp: 21.0)
+2025-12-11 22:38:31.341 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.bedroom
+2025-12-11 22:38:31.341 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] State is correct (Mode: heat, Temp: 21.0)
+2025-12-11 22:38:33.083 INFO (MainThread) [custom_components.adaptive_hvac.coordinator] Manual override detected on climate.study. Pausing for 30 min.
+2025-12-11 22:38:33.083 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.study
+2025-12-11 22:38:33.083 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Skipping enforcement due to manual override (expires 2025-12-11 23:08:33.083382+00:00)
+2025-12-11 22:38:53.653 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.study
+2025-12-11 22:38:53.654 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Skipping enforcement due to manual override (expires 2025-12-11 23:08:33.083382+00:00)
+2025-12-11 22:38:53.655 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.bedroom
+2025-12-11 22:38:53.655 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] State is correct (Mode: heat, Temp: 21.0)
+2025-12-11 22:39:53.654 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.study
+2025-12-11 22:39:53.654 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Skipping enforcement due to manual override (expires 2025-12-11 23:08:33.083382+00:00)
+2025-12-11 22:39:53.656 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.bedroom
+2025-12-11 22:39:53.656 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] State is correct (Mode: heat, Temp: 21.0)
+2025-12-11 22:40:53.655 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.study
+2025-12-11 22:40:53.655 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Skipping enforcement due to manual override (expires 2025-12-11 23:08:33.083382+00:00)
+2025-12-11 22:40:53.656 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] Recalculating target for climate.bedroom
+2025-12-11 22:40:53.656 DEBUG (MainThread) [custom_components.adaptive_hvac.coordinator] State is correct (Mode: heat, Temp: 21.0)

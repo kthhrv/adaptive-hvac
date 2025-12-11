@@ -180,4 +180,32 @@ describe('AdaptiveHvacCard', () => {
             data: { overlays: [] } // Empty array means it was deleted
         }));
     });
+    it('sends clear_manual_override when clicking status bar', async () => {
+        // Mock hass spy
+        const callWSSpy = vi.fn().mockResolvedValue({});
+        element.hass = { ...element.hass, callWS: callWSSpy } as any;
+
+        // Force to status view and set override_end
+        (element as any)._viewMode = 'detail';
+        (element as any)._activeTab = 'status';
+        (element as any)._zoneId = 'test_zone';
+        (element as any)._zoneData = {
+            ...element.hass.states['climate.test_zone'].attributes,
+            override_end: new Date(Date.now() + 100000).toISOString()
+        };
+
+        element.requestUpdate();
+        await element.updateComplete;
+
+        // Find status bar using data-testid
+        const statusBar = element.shadowRoot?.querySelector('[data-testid="status-bar-override"]');
+
+        expect(statusBar).toBeTruthy();
+        (statusBar as HTMLElement).click();
+
+        expect(callWSSpy).toHaveBeenCalledWith(expect.objectContaining({
+            type: 'adaptive_hvac/clear_manual_override',
+            entry_id: 'test_zone'
+        }));
+    });
 });

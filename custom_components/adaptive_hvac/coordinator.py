@@ -85,6 +85,13 @@ class HvacCoordinator:
 
         await self.async_recalculate()
 
+    async def async_clear_manual_override(self) -> None:
+        """Clear any manual override."""
+        if self._override_end:
+            _LOGGER.info("Manual override cleared by user on %s", self.climate_entity)
+            self._override_end = None
+            await self.async_recalculate()
+
     @property
     def runtime_data(self) -> dict[str, Any]:
         """Return runtime data for the frontend."""

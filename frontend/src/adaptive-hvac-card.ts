@@ -476,7 +476,9 @@ export class AdaptiveHvacCard extends LitElement {
       }
 
       return html`
-                            <div class="overlay-row" style="background: var(--secondary-background-color); padding: 12px; border-radius: 8px; border-left: 4px solid ${isActive ? 'var(--accent-color)' : 'transparent'}; display: flex; justify-content: space-between; align-items: center;">
+                            <div class="overlay-row" 
+                                 @click="${() => this._editOverlay(index)}"
+                                 style="background: var(--secondary-background-color); padding: 12px; border-radius: 8px; border-left: 4px solid ${isActive ? 'var(--accent-color)' : 'transparent'}; display: flex; justify-content: space-between; align-items: center; cursor: pointer;">
                                 <div class="overlay-info">
                                     <div class="overlay-name" style="font-weight: 500;">${overlay.name}</div>
                                     <div class="overlay-desc" style="font-size: 0.85rem; color: var(--secondary-text-color);">
@@ -484,8 +486,11 @@ export class AdaptiveHvacCard extends LitElement {
                                     </div>
                                 </div>
                                 <div class="overlay-actions" style="display: flex; gap: 8px;">
-                                    <ha-icon id="edit-overlay-${index}" icon="mdi:pencil" @click="${() => this._editOverlay(index)}" style="cursor: pointer; color: var(--secondary-text-color);"></ha-icon>
-                                    <ha-icon id="delete-overlay-${index}" icon="mdi:delete" @click="${() => this._deleteOverlay(index)}" style="cursor: pointer; color: var(--secondary-text-color);"></ha-icon>
+                                    <ha-icon id="edit-overlay-${index}" icon="mdi:pencil" style="color: var(--secondary-text-color);"></ha-icon>
+                                    <ha-icon id="delete-overlay-${index}" icon="mdi:delete" 
+                                        @click="${(e: Event) => { e.stopPropagation(); this._deleteOverlay(index); }}" 
+                                        style="cursor: pointer; color: var(--secondary-text-color);">
+                                    </ha-icon>
                                 </div>
                             </div>
                         `;
@@ -743,11 +748,30 @@ export class AdaptiveHvacCard extends LitElement {
     const timeStr = endTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
     return html`
-      <div style="background: var(--warning-color, #ff9800); color: black; padding: 8px; border-radius: 8px; margin-top: 10px; text-align: center; font-weight: bold;">
+      <div 
+        @click="${this._clearOverride}"
+        title="Click to cancel override"
+        data-testid="status-bar-override"
+        style="background: var(--warning-color, #ff9800); color: black; padding: 8px; border-radius: 8px; margin-top: 10px; text-align: center; font-weight: bold; cursor: pointer; user-select: none;">
         <ha-icon icon="mdi:clock-alert-outline"></ha-icon>
         Manual Override (Ends ${timeStr})
       </div>
     `;
+  }
+
+  private async _clearOverride(): Promise<void> {
+    if (!this.hass || !this._zoneId) return;
+    try {
+      await this.hass.callWS({
+        type: "adaptive_hvac/clear_manual_override",
+        entry_id: this._zoneId,
+      });
+      // Verification: The backend will recalculate and send an update.
+      // But we can optimistically clear it locally for instant feedback? 
+      // Nah, let's wait for the push update to avoid flickering state.
+    } catch (err) {
+      console.error("Failed to clear override:", err);
+    }
   }
 }
 

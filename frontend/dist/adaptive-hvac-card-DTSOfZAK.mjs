@@ -284,7 +284,7 @@ O.elementStyles = [], O.shadowRootOptions = { mode: "open" }, O[z("elementProper
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const C = globalThis, j = C.trustedTypes, tt = j ? j.createPolicy("lit-html", { createHTML: (o) => o }) : void 0, lt = "$lit$", f = `lit$${Math.random().toFixed(9).slice(2)}$`, dt = "?" + f, xt = `<${dt}>`, A = document, T = () => A.createComment(""), R = (o) => o === null || typeof o != "object" && typeof o != "function", J = Array.isArray, wt = (o) => J(o) || typeof (o == null ? void 0 : o[Symbol.iterator]) == "function", q = `[ 	
+const C = globalThis, j = C.trustedTypes, tt = j ? j.createPolicy("lit-html", { createHTML: (o) => o }) : void 0, lt = "$lit$", f = `lit$${Math.random().toFixed(9).slice(2)}$`, dt = "?" + f, xt = `<${dt}>`, A = document, T = () => A.createComment(""), P = (o) => o === null || typeof o != "object" && typeof o != "function", J = Array.isArray, wt = (o) => J(o) || typeof (o == null ? void 0 : o[Symbol.iterator]) == "function", q = `[ 	
 \f\r]`, k = /<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g, et = /-->/g, it = />/g, $ = RegExp(`>|${q}(?:([^\\s"'>=/]+)(${q}*=${q}*(?:[^ 	
 \f\r"'\`<>=]|("|')|))|$)`, "g"), st = /'/g, rt = /"/g, ct = /^(?:script|style|textarea|title)$/i, At = (o) => (t, ...e) => ({ _$litType$: o, strings: t, values: e }), h = At(1), E = Symbol.for("lit-noChange"), u = Symbol.for("lit-nothing"), ot = /* @__PURE__ */ new WeakMap(), x = A.createTreeWalker(A, 129);
 function ht(o, t) {
@@ -303,13 +303,13 @@ const Ot = (o, t) => {
   }
   return [ht(o, r + (o[e] || "<?>") + (t === 2 ? "</svg>" : t === 3 ? "</math>" : "")), i];
 };
-class P {
+class R {
   constructor({ strings: t, _$litType$: e }, i) {
     let s;
     this.parts = [];
     let r = 0, a = 0;
     const l = t.length - 1, n = this.parts, [d, p] = Ot(t, e);
-    if (this.el = P.createElement(d, i), x.currentNode = this.el.content, e === 2 || e === 3) {
+    if (this.el = R.createElement(d, i), x.currentNode = this.el.content, e === 2 || e === 3) {
       const c = this.el.content.firstChild;
       c.replaceWith(...c.childNodes);
     }
@@ -344,7 +344,7 @@ function S(o, t, e = o, i) {
   var a, l;
   if (t === E) return t;
   let s = i !== void 0 ? (a = e._$Co) == null ? void 0 : a[i] : e._$Cl;
-  const r = R(t) ? void 0 : t._$litDirective$;
+  const r = P(t) ? void 0 : t._$litDirective$;
   return (s == null ? void 0 : s.constructor) !== r && ((l = s == null ? void 0 : s._$AO) == null || l.call(s, !1), r === void 0 ? s = void 0 : (s = new r(o), s._$AT(o, e, i)), i !== void 0 ? (e._$Co ?? (e._$Co = []))[i] = s : e._$Cl = s), s !== void 0 && (t = S(o, s._$AS(o, t.values), s, i)), t;
 }
 class Et {
@@ -395,7 +395,7 @@ class U {
     return this._$AB;
   }
   _$AI(t, e = this) {
-    t = S(this, t, e), R(t) ? t === u || t == null || t === "" ? (this._$AH !== u && this._$AR(), this._$AH = u) : t !== this._$AH && t !== E && this._(t) : t._$litType$ !== void 0 ? this.$(t) : t.nodeType !== void 0 ? this.T(t) : wt(t) ? this.k(t) : this._(t);
+    t = S(this, t, e), P(t) ? t === u || t == null || t === "" ? (this._$AH !== u && this._$AR(), this._$AH = u) : t !== this._$AH && t !== E && this._(t) : t._$litType$ !== void 0 ? this.$(t) : t.nodeType !== void 0 ? this.T(t) : wt(t) ? this.k(t) : this._(t);
   }
   O(t) {
     return this._$AA.parentNode.insertBefore(t, this._$AB);
@@ -404,11 +404,11 @@ class U {
     this._$AH !== t && (this._$AR(), this._$AH = this.O(t));
   }
   _(t) {
-    this._$AH !== u && R(this._$AH) ? this._$AA.nextSibling.data = t : this.T(A.createTextNode(t)), this._$AH = t;
+    this._$AH !== u && P(this._$AH) ? this._$AA.nextSibling.data = t : this.T(A.createTextNode(t)), this._$AH = t;
   }
   $(t) {
     var r;
-    const { values: e, _$litType$: i } = t, s = typeof i == "number" ? this._$AC(t) : (i.el === void 0 && (i.el = P.createElement(ht(i.h, i.h[0]), this.options)), i);
+    const { values: e, _$litType$: i } = t, s = typeof i == "number" ? this._$AC(t) : (i.el === void 0 && (i.el = R.createElement(ht(i.h, i.h[0]), this.options)), i);
     if (((r = this._$AH) == null ? void 0 : r._$AD) === s) this._$AH.p(e);
     else {
       const a = new Et(s, this), l = a.u(this.options);
@@ -417,7 +417,7 @@ class U {
   }
   _$AC(t) {
     let e = ot.get(t.strings);
-    return e === void 0 && ot.set(t.strings, e = new P(t)), e;
+    return e === void 0 && ot.set(t.strings, e = new R(t)), e;
   }
   k(t) {
     J(this._$AH) || (this._$AH = [], this._$AR());
@@ -451,11 +451,11 @@ class I {
   _$AI(t, e = this, i, s) {
     const r = this.strings;
     let a = !1;
-    if (r === void 0) t = S(this, t, e, 0), a = !R(t) || t !== this._$AH && t !== E, a && (this._$AH = t);
+    if (r === void 0) t = S(this, t, e, 0), a = !P(t) || t !== this._$AH && t !== E, a && (this._$AH = t);
     else {
       const l = t;
       let n, d;
-      for (t = r[0], n = 0; n < r.length - 1; n++) d = S(this, l[i + n], e, n), d === E && (d = this._$AH[n]), a || (a = !R(d) || d !== this._$AH[n]), d === u ? t = u : t !== u && (t += (d ?? "") + r[n + 1]), this._$AH[n] = d;
+      for (t = r[0], n = 0; n < r.length - 1; n++) d = S(this, l[i + n], e, n), d === E && (d = this._$AH[n]), a || (a = !P(d) || d !== this._$AH[n]), d === u ? t = u : t !== u && (t += (d ?? "") + r[n + 1]), this._$AH[n] = d;
     }
     a && !s && this.j(t);
   }
@@ -505,7 +505,7 @@ class Ct {
   }
 }
 const B = C.litHtmlPolyfillSupport;
-B == null || B(P, U), (C.litHtmlVersions ?? (C.litHtmlVersions = [])).push("3.3.1");
+B == null || B(R, U), (C.litHtmlVersions ?? (C.litHtmlVersions = [])).push("3.3.1");
 const Dt = (o, t, e) => {
   const i = (e == null ? void 0 : e.renderBefore) ?? t;
   let s = i._$litPart$;
@@ -556,7 +556,7 @@ V == null || V({ LitElement: D });
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const Tt = { attribute: !0, type: String, converter: N, reflect: !1, hasChanged: F }, Rt = (o = Tt, t, e) => {
+const Tt = { attribute: !0, type: String, converter: N, reflect: !1, hasChanged: F }, Pt = (o = Tt, t, e) => {
   const { kind: i, metadata: s } = e;
   let r = globalThis.litPropertyMetadata.get(s);
   if (r === void 0 && globalThis.litPropertyMetadata.set(s, r = /* @__PURE__ */ new Map()), i === "setter" && ((o = Object.create(o)).wrapped = !0), r.set(e.name, o), i === "accessor") {
@@ -578,7 +578,7 @@ const Tt = { attribute: !0, type: String, converter: N, reflect: !1, hasChanged:
   throw Error("Unsupported decorator location: " + i);
 };
 function Y(o) {
-  return (t, e) => typeof e == "object" ? Rt(o, t, e) : ((i, s, r) => {
+  return (t, e) => typeof e == "object" ? Pt(o, t, e) : ((i, s, r) => {
     const a = s.hasOwnProperty(r);
     return s.constructor.createProperty(r, i), a ? Object.getOwnPropertyDescriptor(s, r) : void 0;
   })(o, t, e);
@@ -591,10 +591,10 @@ function Y(o) {
 function m(o) {
   return Y({ ...o, state: !0, attribute: !1 });
 }
-var Pt = Object.defineProperty, Ut = Object.getOwnPropertyDescriptor, y = (o, t, e, i) => {
+var Rt = Object.defineProperty, Ut = Object.getOwnPropertyDescriptor, y = (o, t, e, i) => {
   for (var s = i > 1 ? void 0 : i ? Ut(t, e) : t, r = o.length - 1, a; r >= 0; r--)
     (a = o[r]) && (s = (i ? a(t, e, s) : a(s)) || s);
-  return i && s && Pt(t, e, s), s;
+  return i && s && Rt(t, e, s), s;
 };
 class v extends D {
   constructor() {
@@ -959,7 +959,9 @@ class v extends D {
       const i = (a = (r = this._runtimeData) == null ? void 0 : r.active_overlays) == null ? void 0 : a.includes(t.name);
       let s = "";
       return t.type === "absolute" ? s = `Force ${(l = t.action.hvac_mode) == null ? void 0 : l.toUpperCase()}` : s = `${(t.action.temp_offset || 0) > 0 ? "+" : ""}${t.action.temp_offset}°C`, h`
-                            <div class="overlay-row" style="background: var(--secondary-background-color); padding: 12px; border-radius: 8px; border-left: 4px solid ${i ? "var(--accent-color)" : "transparent"}; display: flex; justify-content: space-between; align-items: center;">
+                            <div class="overlay-row" 
+                                 @click="${() => this._editOverlay(e)}"
+                                 style="background: var(--secondary-background-color); padding: 12px; border-radius: 8px; border-left: 4px solid ${i ? "var(--accent-color)" : "transparent"}; display: flex; justify-content: space-between; align-items: center; cursor: pointer;">
                                 <div class="overlay-info">
                                     <div class="overlay-name" style="font-weight: 500;">${t.name}</div>
                                     <div class="overlay-desc" style="font-size: 0.85rem; color: var(--secondary-text-color);">
@@ -967,8 +969,13 @@ class v extends D {
                                     </div>
                                 </div>
                                 <div class="overlay-actions" style="display: flex; gap: 8px;">
-                                    <ha-icon id="edit-overlay-${e}" icon="mdi:pencil" @click="${() => this._editOverlay(e)}" style="cursor: pointer; color: var(--secondary-text-color);"></ha-icon>
-                                    <ha-icon id="delete-overlay-${e}" icon="mdi:delete" @click="${() => this._deleteOverlay(e)}" style="cursor: pointer; color: var(--secondary-text-color);"></ha-icon>
+                                    <ha-icon id="edit-overlay-${e}" icon="mdi:pencil" style="color: var(--secondary-text-color);"></ha-icon>
+                                    <ha-icon id="delete-overlay-${e}" icon="mdi:delete" 
+                                        @click="${(n) => {
+        n.stopPropagation(), this._deleteOverlay(e);
+      }}" 
+                                        style="cursor: pointer; color: var(--secondary-text-color);">
+                                    </ha-icon>
                                 </div>
                             </div>
                         `;
@@ -1130,11 +1137,26 @@ class v extends D {
     if (!this._zoneData.override_end) return h``;
     const e = new Date(this._zoneData.override_end).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
     return h`
-      <div style="background: var(--warning-color, #ff9800); color: black; padding: 8px; border-radius: 8px; margin-top: 10px; text-align: center; font-weight: bold;">
+      <div 
+        @click="${this._clearOverride}"
+        title="Click to cancel override"
+        data-testid="status-bar-override"
+        style="background: var(--warning-color, #ff9800); color: black; padding: 8px; border-radius: 8px; margin-top: 10px; text-align: center; font-weight: bold; cursor: pointer; user-select: none;">
         <ha-icon icon="mdi:clock-alert-outline"></ha-icon>
         Manual Override (Ends ${e})
       </div>
     `;
+  }
+  async _clearOverride() {
+    if (!(!this.hass || !this._zoneId))
+      try {
+        await this.hass.callWS({
+          type: "adaptive_hvac/clear_manual_override",
+          entry_id: this._zoneId
+        });
+      } catch (t) {
+        console.error("Failed to clear override:", t);
+      }
   }
 }
 y([

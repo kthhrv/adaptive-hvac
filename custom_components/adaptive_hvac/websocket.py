@@ -14,6 +14,7 @@ def async_setup(hass: HomeAssistant) -> None:
     """Set up the websocket API."""
     websocket_api.async_register_command(hass, ws_get_zone_data)
     websocket_api.async_register_command(hass, ws_update_zone_data)
+    websocket_api.async_register_command(hass, ws_clear_manual_override)
 
 @websocket_api.websocket_command({
     vol.Required("type"): "adaptive_hvac/get_zone_data",
@@ -66,5 +67,21 @@ async def ws_update_zone_data(
     if coordinator := hass.data[DOMAIN]["coordinators"].get(entry_id):
         coordinator.zone_data = data # Update local cache
         await coordinator.async_recalculate()
+
+    connection.send_result(msg["id"])
+
+@websocket_api.websocket_command({
+    vol.Required("type"): "adaptive_hvac/clear_manual_override",
+    vol.Required("entry_id"): str,
+})
+@websocket_api.async_response
+async def ws_clear_manual_override(
+    hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]
+) -> None:
+    """Handle clear manual override command."""
+    entry_id = msg["entry_id"]
+    
+    if coordinator := hass.data[DOMAIN]["coordinators"].get(entry_id):
+        await coordinator.async_clear_manual_override()
 
     connection.send_result(msg["id"])
