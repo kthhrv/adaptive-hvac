@@ -1,4 +1,4 @@
-import { LitElement, html, css } from 'lit';
+import { LitElement, html, css, TemplateResult } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { HomeAssistant, ZoneData, Overlay } from './types';
 
@@ -175,6 +175,24 @@ export class AdaptiveHvacCard extends LitElement {
     const isHeating = this._zoneData.hvac_action === 'heating';
     const currentTemp = this._zoneData.current_temp ?? '--';
     const targetTemp = this._zoneData.target_temp ?? '--';
+    const nextEvent = this._computeNextEvent();
+    const overrideEnd = this._zoneData.override_end;
+
+    let footerContent;
+    let footerIcon = "mdi:clock-outline";
+    let footerStyle = "";
+
+    if (overrideEnd) {
+      const endTime = new Date(overrideEnd);
+      const timeStr = endTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      footerContent = html`Manual until ${timeStr}`;
+      footerIcon = "mdi:timer-sand";
+      footerStyle = "color: var(--warning-color, #ff9800); font-weight: 500;";
+    } else {
+      footerContent = nextEvent
+        ? html`${nextEvent.time} -> ${nextEvent.temp}°C`
+        : html`No upcoming events`;
+    }
 
     return html`
         <div class="zone-mini-card" @click="${() => this._viewMode = 'detail'}">
@@ -190,12 +208,70 @@ export class AdaptiveHvacCard extends LitElement {
                     <span class="current">${currentTemp}°</span>
                     <span class="target">/ ${targetTemp}°</span>
                 </div>
-                <div class="next-event">
-                    <ha-icon icon="mdi:clock-outline" style="--mdc-icon-size: 16px;"></ha-icon> 22:00 -> 18°C
+                <div class="next-event" style="${footerStyle}">
+                    <ha-icon icon="${footerIcon}" style="--mdc-icon-size: 16px;"></ha-icon> 
+                    ${footerContent}
                 </div>
             </div>
         </div>
     `;
+  }
+
+  private _computeNextEvent(): { time: string, temp: number } | null {
+    if (!this._zoneData.week_profile) return null;
+
+    const days = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+    const now = new Date();
+    const currentDayIdx = now.getDay(); // 0 = sun
+    const currentMinutes = now.getHours() * 60 + now.getMinutes();
+
+    // 1. Look for events TODAY that start AFTER now
+    let nextEvent = this._findNextEventForDay(days[currentDayIdx], currentMinutes);
+
+    // 2. If none, look for events TOMORROW (start from 00:00)
+    if (!nextEvent) {
+      const nextDayIdx = (currentDayIdx + 1) % 7;
+      nextEvent = this._findNextEventForDay(days[nextDayIdx], -1); // -1 ensures we catch anything starting at 00:00
+    }
+
+    return nextEvent;
+  }
+
+  private _findNextEventForDay(day: string, afterMinutes: number): { time: string, temp: number } | null {
+    const candidates: { time: string, minutes: number, temp: number }[] = [];
+    const ECO_TEMP = 18; // Default backend "Eco" temp
+
+    this._zoneData.week_profile.forEach(rule => {
+      if (rule.days.includes(day)) {
+        // 1. Start of Comfort Rule
+        const [startH, startM] = rule.start.split(':').map(Number);
+        const startMinutes = startH * 60 + startM;
+        if (startMinutes > afterMinutes) {
+          candidates.push({
+            time: rule.start,
+            minutes: startMinutes,
+            temp: rule.target.temp
+          });
+        }
+
+        // 2. End of Comfort (Return to Eco)
+        const [endH, endM] = rule.end.split(':').map(Number);
+        const endMinutes = endH * 60 + endM;
+        if (endMinutes > afterMinutes) {
+          candidates.push({
+            time: rule.end,
+            minutes: endMinutes,
+            temp: ECO_TEMP
+          });
+        }
+      }
+    });
+
+    if (candidates.length === 0) return null;
+
+    // Sort by time
+    candidates.sort((a, b) => a.minutes - b.minutes);
+    return { time: candidates[0].time, temp: candidates[0].temp };
   }
 
   private _renderDetail() {

@@ -13,6 +13,13 @@
             "days": [
               "mon"
             ]
+          },
+          {
+            "start": "09:00",
+            "end": "23:30",
+            "days": [
+              "thu"
+            ]
           }
         ],
         "overlays": [],
@@ -21,7 +28,8 @@
         "target_temp": 18,
         "hvac_action": "idle",
         "hvac_mode": "heat",
-        "override_end": null
+        "override_end": null,
+        "active_overlays": []
       },
       "01KC4W5TBY6RZGTARJFYHSC5VX": {
         "active": false,

@@ -1,5 +1,12 @@
 # Loads default set of integrations. Do not remove.
-default_config:
+# default_config:
+config:
+frontend:
+http:
+system_health:
+history:
+logbook:
+recorder:
 
 logger:
   default: info
