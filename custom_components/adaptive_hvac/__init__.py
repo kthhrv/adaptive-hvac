@@ -1,8 +1,11 @@
 from __future__ import annotations
 
+import logging
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import Platform
 from homeassistant.core import HomeAssistant
+
+_LOGGER = logging.getLogger(__name__)
 
 from .const import DOMAIN
 from .coordinator import HvacCoordinator
@@ -14,6 +17,8 @@ from homeassistant.components.http import StaticPathConfig
 # TODO: Add specific platforms as we implement them (e.g., CLIMATE, SENSOR)
 PLATFORMS: list[Platform] = []
 
+import os
+
 # Set to True for local development with Vite
 DEV_MODE = False
 
@@ -24,10 +29,16 @@ async def async_setup(hass: HomeAssistant, config: dict) -> bool:
         module_url = "http://localhost:5173/src/adaptive-hvac-panel.ts"
     else:
         # Register static path for production assets
+        component_dir = os.path.dirname(__file__)
+        www_dir = os.path.join(component_dir, "www")
+        
+        if not os.path.isdir(www_dir):
+            _LOGGER.error(f"Frontend assets not found at {www_dir}. Verify HACS installation.")
+        
         await hass.http.async_register_static_paths([
             StaticPathConfig(
                 url_path="/adaptive_hvac_assets",
-                path=hass.config.path("custom_components/adaptive_hvac/www"),
+                path=www_dir,
                 cache_headers=True
             )
         ])

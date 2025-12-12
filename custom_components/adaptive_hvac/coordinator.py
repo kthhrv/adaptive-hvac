@@ -11,6 +11,7 @@ from homeassistant.core import HomeAssistant, CALLBACK_TYPE, Event, DOMAIN as HA
 from homeassistant.const import ATTR_TEMPERATURE, Platform
 from homeassistant.helpers.event import async_track_state_change_event, async_track_time_interval
 from homeassistant.helpers.event import async_track_state_change_event, async_track_time_interval
+from homeassistant.exceptions import ServiceNotFound
 from homeassistant.util import dt as dt_util
 
 from .const import CONF_CLIMATE_ENTITY
@@ -254,14 +255,19 @@ class HvacCoordinator:
         # Enforce Mode
         if current_mode != target_hvac_mode:
              _LOGGER.info("Adjusting Mode %s: %s -> %s", self.climate_entity, current_mode, target_hvac_mode)
-             await self.hass.services.async_call(
-                Platform.CLIMATE,
-                "set_hvac_mode",
-                {
-                    "entity_id": self.climate_entity,
-                    "hvac_mode": target_hvac_mode
-                }
-            )
+             try:
+                 await self.hass.services.async_call(
+                    Platform.CLIMATE,
+                    "set_hvac_mode",
+                    {
+                        "entity_id": self.climate_entity,
+                        "hvac_mode": target_hvac_mode
+                    }
+                )
+             except ServiceNotFound:
+                 _LOGGER.error("Service 'climate.set_hvac_mode' not found. Ensure 'climate' integration is loaded.")
+             except Exception as err:
+                 _LOGGER.error("Error setting HVAC mode for %s: %s", self.climate_entity, err)
 
         # Enforce Temp (only if allowed)
         if target_hvac_mode != "off" and current_target != target_temp:
